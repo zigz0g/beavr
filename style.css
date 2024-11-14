@@ -1,5 +1,13 @@
 body {
-    background-color: #DCF2F1;
+    background-color: #2A2B2A;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: color-burn;
+    opacity: 1;
+}
+
+body background-image {
+    opacity: 0;
 }
 
 p {
@@ -7,11 +15,14 @@ p {
     color: #ededed;
 }
 
-h1 {
-    font-family: 'Helvetica', 'Arial', sans-serif;
+.sh {
+    font-family: "Host Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
     color: #ededed;
 }
 
 .navbar {
-    background-color: #0F1035;
+    background-color: #1b1450;
 }
