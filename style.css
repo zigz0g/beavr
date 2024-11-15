@@ -41,6 +41,25 @@ p {
     
 }
 
+.headimg {
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  position: initial;
+  animation: fadeIn ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
+}
+
 .navbar {
     background-color: #1b1450;
 }
