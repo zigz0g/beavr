@@ -1,5 +1,5 @@
 body {
-    background-color: #FBFAFE;
+    background-color: #FEFCFB;
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: color-burn;
@@ -36,16 +36,43 @@ p {
     color: #ededed2b;
 }
 
+.sh2 {
+  font-family: "Host Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 25pt;
+  font-style: normal;
+  text-shadow: 0 1px 0 black;
+  color: #ededed;
+}
+
+.sh3 {
+  font-family: "Host Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 30pt;
+  font-style: normal;
+  color: #69747C;
+}
+
 .icocolor {
     color: #ededed;
     
 }
 
 .headimg {
-  filter: blur(3px);
-  -webkit-filter: blur(3px);
-  position: initial;
-  animation: fadeIn ease 3s;
+  filter: brightness(50%) blur(3px);
+  -webkit-filter: brightness(50%) blur(3px);
+  animation: fadeIn ease 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  object-fit: cover;
+  object-position: center center;
+}
+
+
+.headtext {
+  animation: fadeIn ease 2.5s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
@@ -62,6 +89,7 @@ p {
 
 .navbar {
     background-color: #1b1450;
+    z-index: 1;
 }
 
 .navbar-toggler-icon {
