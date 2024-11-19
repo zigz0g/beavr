@@ -11,6 +11,12 @@ p {
     color: #ededed;
 }
 
+.st {
+  font-family: "Host Grotesk", sans-serif;
+  color: #585858;
+  font-size: x-large;
+}
+
 .sh {
     font-family: "Host Grotesk", sans-serif;
     font-optical-sizing: auto;
@@ -53,6 +59,10 @@ p {
   font-size: 30pt;
   font-style: normal;
   color: #69747C;
+}
+
+.active2 {
+  font-weight: 1000; 
 }
 
 .icocolor {
