@@ -85,15 +85,111 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 <h3 class="card-title">Additional Information</h3>
-                                <p class="normalText"><strong>Ticket Price:</strong> ${event.ticketPrice}</p>
+                                <p class="normalText"><strong>Ticket Price:</strong> $${event.studentPrice} students, $${event.adultPrice} adults</p>
                                 <p class="normalText"><strong>Food & Beverage:</strong> ${event.foodAndBeverage}</p>
                                 <p class="normalText"><strong>Dress Code:</strong> ${event.dressCode}</p>
                                 <p class="normalText"><strong>Age Restriction:</strong> ${event.ageRestriction}</p>
                             </div>
                         </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="card-title">Purchase Tickets</h3>
+                                <form id="ticketForm" class="needs-validation" novalidate>
+                                    <div class="mb-3">
+                                        <label for="studentTickets" class="form-label">Student Tickets</label>
+                                        <input type="number" class="form-control" id="studentTickets" 
+                                               min="0" max="5" value="0" 
+                                               oninput="this.value = Math.min(Math.max(0, this.value), 5)" required>
+                                        <div class="form-text">Student Price: $${event.studentPrice}</div>
+                                    </div>
+                                    ${event.adultPrice >= 0 ? `
+                                    <div class="mb-3">
+                                        <label for="adultTickets" class="form-label">Adult Tickets</label>
+                                        <input type="number" class="form-control" id="adultTickets" 
+                                               min="0" max="5" value="0" 
+                                               oninput="this.value = Math.min(Math.max(0, this.value), 5)" required>
+                                        <div class="form-text">Adult Price: $${event.adultPrice}</div>
+                                    </div>
+                                    ` : ''}
+                                    <div class="mb-3">
+                                        <label for="customerName" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="customerName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="customerEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="customerEmail" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="specialRequirements" class="form-label">Special Requirements (Optional)</label>
+                                        <textarea class="form-control" id="specialRequirements" rows="2"></textarea>
+                                    </div>
+                                    <hr class="my-4">
+                                    <h4 class="mb-3">Payment Details</h4>
+                                    <div class="mb-3">
+                                        <label for="cardName" class="form-label">Name on Card</label>
+                                        <input type="text" class="form-control" id="cardName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cardNumber" class="form-label">Card Number</label>
+                                        <input type="text" class="form-control" id="cardNumber" 
+                                               pattern="[0-9]{16}" maxlength="16" 
+                                               placeholder="1234567890123456" required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="expiryDate" class="form-label">Expiry Date</label>
+                                            <input type="text" class="form-control" id="expiryDate" 
+                                                   pattern="(0[1-9]|1[0-2])\/([0-9]{2})" 
+                                                   placeholder="MM/YY" maxlength="5" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="cvv" class="form-label">CVV</label>
+                                            <input type="text" class="form-control" id="cvv" 
+                                                   pattern="[0-9]{3,4}" maxlength="4" 
+                                                   placeholder="123" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div id="totalPrice" class="fw-bold fs-5"></div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Complete Purchase</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `;
+
+
+            const form = document.getElementById('ticketForm');
+            const totalPriceDiv = document.getElementById('totalPrice');
+            
+            const updateTotal = () => {
+                const studentQty = parseInt(document.getElementById('studentTickets').value) || 0;
+                const adultQty = parseInt(document.getElementById('adultTickets')?.value) || 0;
+                
+                const studentTotal = studentQty * event.studentPrice;
+                const adultTotal = adultQty * (event.adultPrice || 0);
+                
+                const total = studentTotal + adultTotal;
+                totalPriceDiv.textContent = `Total: $${total.toFixed(2)}`;
+            };
+
+            document.getElementById('studentTickets').addEventListener('input', updateTotal);
+            if (event.adultPrice >= 0) {
+                document.getElementById('adultTickets').addEventListener('input', updateTotal);
+            }
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (!form.checkValidity()) {
+                    e.stopPropagation();
+                    form.classList.add('was-validated');
+                    return;
+                }
+                
+                alert('Thank you for your purchase! Check your email for more details.');
+            });
         } else {
             document.getElementById('event-details').innerHTML = '<h2>Event not found</h2>';
         }
