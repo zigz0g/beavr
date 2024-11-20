@@ -86,7 +86,6 @@
             cardContainer.insertAdjacentHTML('beforeend', cardHTML);
           });
         
-          // Sort cards by date
           const cardDivs = Array.from(cardContainer.children);
           cardDivs.sort((a, b) => {
             const dateA = new Date(a.getAttribute("data-date"));

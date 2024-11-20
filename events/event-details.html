@@ -71,7 +71,7 @@
                             <img src="${event.image}" class="img-fluid object-fit-cover" style="max-height: 400px; width: auto;" alt="${event.title}">
                         </div>
                         <p class="text-muted small mt-2">${event.imageSource}</p>
-                    </div>
+                    </div> 
                     <div class="col-md-6">
                         <div class="card mb-4">
                             <div class="card-body">
@@ -85,7 +85,7 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 <h3 class="card-title">Additional Information</h3>
-                                <p class="normalText"><strong>Ticket Price:</strong> $${event.studentPrice} students, $${event.adultPrice} adults</p>
+                                <p class="normalText"><strong>Ticket Price:</strong> $${event.studentPrice} students${event.adultPrice >= 0 ? `, $${event.adultPrice} adults` : ''}</p>
                                 <p class="normalText"><strong>Food & Beverage:</strong> ${event.foodAndBeverage}</p>
                                 <p class="normalText"><strong>Dress Code:</strong> ${event.dressCode}</p>
                                 <p class="normalText"><strong>Age Restriction:</strong> ${event.ageRestriction}</p>
