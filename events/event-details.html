@@ -67,16 +67,28 @@
                 <h1 class="sh3 mb-4">${event.title}</h1>
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="${event.image}" class="img-fluid rounded" alt="${event.title}">
+                        <div class="image-container d-flex justify-content-center align-items-center" style="max-height: 400px; overflow: hidden;">
+                            <img src="${event.image}" class="img-fluid object-fit-cover" style="max-height: 400px; width: auto;" alt="${event.title}">
+                        </div>
+                        <p class="text-muted small mt-2">${event.imageSource}</p>
                     </div>
                     <div class="col-md-6">
-                        <div class="card">
+                        <div class="card mb-4">
                             <div class="card-body">
-                                <h5 class="card-title">Event Details</h5>
-                                <p><strong>Date:</strong> ${event.date}</p>
-                                <p><strong>Time:</strong> ${event.time}</p>
-                                <p><strong>Location:</strong> ${event.location}</p>
-                                <p class="mt-4">${event.fullDescription}</p>
+                                <h3 class="card-title">Event Details</h3>
+                                <p class="normalText"><strong>Date:</strong> ${event.date}</p>
+                                <p class="normalText"><strong>Time:</strong> ${event.time}</p>
+                                <p class="normalText"><strong>Location:</strong> ${event.location}</p>
+                                <p class="mt-4 normalText">${event.fullDescription}</p>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="card-title">Additional Information</h3>
+                                <p class="normalText"><strong>Ticket Price:</strong> ${event.ticketPrice}</p>
+                                <p class="normalText"><strong>Food & Beverage:</strong> ${event.foodAndBeverage}</p>
+                                <p class="normalText"><strong>Dress Code:</strong> ${event.dressCode}</p>
+                                <p class="normalText"><strong>Age Restriction:</strong> ${event.ageRestriction}</p>
                             </div>
                         </div>
                     </div>
