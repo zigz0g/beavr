@@ -27,13 +27,13 @@
             <div class="collapse navbar-collapse justify-content-end me-5" id="mainNavBar">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link sh1 mx-1" href="#">About</a>
+                  <a class="nav-link sh1 mx-1" href="../about/">About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link sh1 mx-1 active2" href="./">Events</a>
+                  <a class="nav-link sh1 mx-1 active2" href="../events/">Events</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link sh1 mx-1 me-5" href="#">FAQ</a>
+                  <a class="nav-link sh1 mx-1 me-5" href="../faq/">FAQ</a>
                 </li>
               </ul>
             </div>
@@ -41,7 +41,7 @@
             <div class="collapse navbar-collapse me-5 justify-content-end" id="mainNavBar">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link text-nowrap sh1" href="#">Contact Us</a>
+                  <a class="nav-link text-nowrap sh1" href="../contact/">Contact Us</a>
                 </li>
               </ul>
             </div>
@@ -67,33 +67,49 @@
                 <h1 class="sh3 mb-4">${event.title}</h1>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="image-container d-flex justify-content-center align-items-center" style="max-height: 400px; overflow: hidden;">
-                            <img src="${event.image}" class="img-fluid object-fit-cover" style="max-height: 400px; width: auto;" alt="${event.title}">
+                        <div class="image-container d-flex justify-content-center align-items-center shadow-lg rounded-4" style="max-height: 400px; overflow: hidden;">
+                            <img src="${event.image}" class="img-fluid rounded-4" style="max-height: 400px; width: 100%; object-fit: cover;" alt="${event.title}">
                         </div>
-                        <p class="text-muted small mt-2">${event.imageSource}</p>
+                        <p class="text-muted small mt-2 fst-italic">${event.imageSource}</p>
                     </div> 
                     <div class="col-md-6">
-                        <div class="card mb-4">
+                        <div class="card mb-4 shadow border-0 rounded-4">
                             <div class="card-body">
-                                <h3 class="card-title">Event Details</h3>
-                                <p class="normalText"><strong>Date:</strong> ${event.date}</p>
-                                <p class="normalText"><strong>Time:</strong> ${event.time}</p>
-                                <p class="normalText"><strong>Location:</strong> ${event.location}</p>
+                                <h3 class="card-title sh2 text-dark mb-4">Event Details</h3>
+                                <div class="p-3 bg-light rounded-3 mb-3">
+                                    <p class="normalText mb-2"><strong>Date:</strong> ${event.date}</p>
+                                    <p class="normalText mb-2"><strong>Time:</strong> ${event.time}</p>
+                                    <p class="normalText mb-0"><strong>Location:</strong> ${event.location}</p>
+                                </div>
                                 <p class="mt-4 normalText">${event.fullDescription}</p>
                             </div>
                         </div>
-                        <div class="card mb-4">
+                        <div class="card mb-4 shadow border-0 rounded-4">
                             <div class="card-body">
-                                <h3 class="card-title">Additional Information</h3>
-                                <p class="normalText"><strong>Ticket Price:</strong> $${event.studentPrice} students${event.adultPrice >= 0 ? `, $${event.adultPrice} adults` : ''}</p>
-                                <p class="normalText"><strong>Food & Beverage:</strong> ${event.foodAndBeverage}</p>
-                                <p class="normalText"><strong>Dress Code:</strong> ${event.dressCode}</p>
-                                <p class="normalText"><strong>Age Restriction:</strong> ${event.ageRestriction}</p>
+                                <h3 class="card-title sh2 text-dark mb-4">Additional Information</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="p-3 bg-light rounded-3 mb-3">
+                                            <p class="normalText mb-0"><strong>Ticket Price:</strong><br>$${event.studentPrice} students${event.adultPrice >= 0 ? `, $${event.adultPrice} adults` : ''}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-3 bg-light rounded-3 mb-3">
+                                            <p class="normalText mb-0"><strong>Age Restriction:</strong><br>${event.ageRestriction}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 bg-light rounded-3 mb-3">
+                                    <p class="normalText mb-0"><strong>Food & Beverage:</strong><br>${event.foodAndBeverage}</p>
+                                </div>
+                                <div class="p-3 bg-light rounded-3">
+                                    <p class="normalText mb-0"><strong>Dress Code:</strong><br>${event.dressCode}</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="card mb-4">
+                        <div class="card mb-4 shadow border-0 rounded-4">
                             <div class="card-body">
-                                <h3 class="card-title">Purchase Tickets</h3>
+                                <h3 class="card-title sh2 text-dark mb-4">Purchase Tickets</h3>
                                 <form id="ticketForm" class="needs-validation" novalidate>
                                     <div class="mb-3">
                                         <label for="studentTickets" class="form-label">Student Tickets</label>
@@ -195,5 +211,35 @@
         }
     });
     </script>
+
+
+    <footer class="footer mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="sh">Hawk's Nest</h5>
+                    <p>Your premier event venue in Urbana, Maryland</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="sh">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../about/" class="sh1">About Us</a></li>
+                        <li><a href="../events/" class="sh1">Events</a></li>
+                        <li><a href="../faq/" class="sh1">FAQ</a></li>
+                        <li><a href="../contact/" class="sh1">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="sh">Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li><p>3471 Campus Drive</p></li>
+                        <li><p>Ijamsville, MD 21704</p></li>
+                        <li><p>Phone: (555) 123-4567</p></li>
+                        <li><p>Email: info@hawksnest.com</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html> 

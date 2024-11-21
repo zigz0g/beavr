@@ -27,10 +27,10 @@
                 <div class="collapse navbar-collapse justify-content-end me-5" id="mainNavBar">
                   <ul class="navbar-nav">
                     <li class="nav-item">
-                      <a class="nav-link sh1 mx-1" href="../about/">About</a>
+                      <a class="nav-link sh1 mx-1 active2" href="./">About</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link sh1 mx-1 active2" href="./">Events</a>
+                      <a class="nav-link sh1 mx-1" href="../events/">Events</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link sh1 mx-1 me-5" href="../faq/">FAQ</a>
@@ -41,68 +41,66 @@
                 <div class="collapse navbar-collapse me-5 justify-content-end" id="mainNavBar">
                   <ul class="navbar-nav">
                     <li class="nav-item">
-                      <a class="nav-link text-nowrap sh1" href="../contact/">Contact Us</a>
+                      <a class="nav-link text-nowrap sh1" href="#">Contact Us</a>
                     </li>
                   </ul>
                 </div>
             </div>
         </nav>
         <br>
-
-        <div class="container-md mx-auto justify-content-center text-center">
-          <h1 class="sh3">Current Events</h1>
-        </div>
-
-        <!-- Use grid cards here for events, dates in footer + use horizontal cards -->
-        <div class="container text-center">
-          <div class="row row-cols-1 row-cols-md-3 g-4" id="card-container">
-            <!-- Insert cards here -->
-          </div>
-        </div>
         
-        <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-
-          const response = await fetch('data/events.json');
-          const data = await response.json();
-          const cardContainer = document.getElementById("card-container");
-        
-
-          data.events.forEach((event, index) => {
-            const cardHTML = `
-              <div class="col-12 mb-3 card-animate" style="animation-delay: ${index * 0.2}s;" data-date="${event.date}">
-                <div class="card h-100" style="cursor: pointer; max-width: 400px; margin: 0 auto;" onclick="showEventDetails('${event.id}')">
-                  <div class="d-flex justify-content-center align-items-center" style="height: 250px; overflow: hidden;">
-                    <img src="${event.image}" class="img-fluid w-100 h-100 object-fit-cover" alt="${event.title}">
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">${event.title}</h5>
-                    <p class="card-text normalText">${event.description}</p>
-                    <p class="card-text dateDiv st"><small class="text-body-secondary">${event.date}</small></p>
-                  </div>
+        <div class="container">
+            <div class="row align-items-center fade-in">
+                <div class="col-lg-6">
+                    <h2 class="sh3 mb-4 slide-in-left">Welcome to the Hawk's Nest</h2>
+                    <p class="normalText slide-in-left delay-1">With the best school in Urbana, Maryland, The Hawk's Nest is an incredible venue with versatile spaces to create unforgettable experiences.</p>
+                    
+                    <h3 class="sh3 mt-4 slide-in-left delay-2">Our Space</h3>
+                    <p class="normalText slide-in-left delay-2">Our thoughtfully designed venue features:</p>
+                    <ul class="feature-list slide-in-left delay-3">
+                        <li class="hover-effect">Spacious main hall with modern amenities</li>
+                        <li class="hover-effect">Outdoor garden area for ceremonies and receptions</li>
+                        <li class="hover-effect">State-of-the-art audio-visual equipment</li>
+                        <li class="hover-effect">Flexible floor plans to accommodate various event sizes</li>
+                        <li class="hover-effect">Full-service catering kitchen</li>
+                    </ul>
                 </div>
-              </div>
-            `;
-            cardContainer.insertAdjacentHTML('beforeend', cardHTML);
-          });
-        
-          const cardDivs = Array.from(cardContainer.children);
-          cardDivs.sort((a, b) => {
-            const dateA = new Date(a.getAttribute("data-date"));
-            const dateB = new Date(b.getAttribute("data-date"));
-            return dateA - dateB;
-          });
-        
-          cardDivs.forEach(cardDiv => {
-            cardContainer.appendChild(cardDiv);
-          });
-        });
-        
-        function showEventDetails(eventId) {
-          window.location.href = `event-details.html?id=${eventId}`;
-        }
-        </script>
+                <div class="col-lg-6">
+                    <img src="../images/urbanagym.jpg" alt="Hawk's Nest Venue Exterior" class="img-fluid rounded shadow-lg mb-4 zoom-in hover-scale">
+                    <p class="text-muted small mb-0">https://x.com/lewisuhs</p>
+                </div>
+            </div>
 
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow hover-lift">
+                        <div class="card-body">
+                            <h4 class="normalText card-title">Sports Events</h4>
+                            <p class="normalText card-text">Host tournaments, competitions, and athletic events in our spacious gymnasium.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow hover-lift">
+                        <div class="card-body">
+                            <h4 class="normalText card-title">Corporate Events</h4>
+                            <p class="normalText card-text">Host professional meetings, conferences, and events with our flexible spaces.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow hover-lift">
+                        <div class="card-body">
+                            <h4 class="normalText card-title">Community Events</h4>
+                            <p class="normalText card-text">From fundraisers to local gatherings, our space accommodates anything you need.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        
         <footer class="footer mt-5 py-4">
             <div class="container">
                 <div class="row">
