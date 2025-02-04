@@ -55,53 +55,123 @@
             margin-right: auto;
         }
 
+        .seating-container {
+            max-width: 1600px; /* Increased for more horizontal space */
+            margin: 0 auto;
+            padding: 20px;
+            overflow: hidden;
+        }
+
         #seating-container {
-            max-width: 100%;
-            overflow-x: auto;
+            width: 100%;
+            overflow: hidden;
             padding-bottom: 1rem;
         }
 
         #inner-seating-container {
             width: 100%;
+            margin: 0 auto;
+            transform-origin: center top;
+            display: flex;
+            justify-content: center;
+            transform: scale(1); /* Start at full size */
+        }
+
+        /* Adjust the main seatchart container */
+        .sc-main-container {
+            width: 100%;
+            display: flex;
+            flex-direction: row; /* Change to row to put cart on the side */
+            align-items: flex-start;
+            gap: 2rem; /* Add space between seating chart and cart */
+            justify-content: center;
+        }
+
+        /* Adjust the map container */
+        .sc-map {
+            width: auto; /* Let it take natural width */
+            min-width: 800px; /* Ensure minimum width */
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Adjust the right container (cart and legend) */
+        .sc-right-container {
+            width: auto;
+            min-width: 300px;
+            max-width: 400px;
+        }
+
+        @media (max-width: 1400px) {
+            #inner-seating-container {
+                transform: scale(0.9);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            #inner-seating-container {
+                transform: scale(0.8);
+            }
+            .sc-main-container {
+                flex-direction: column; /* Stack vertically on smaller screens */
+                align-items: center;
+            }
+            .sc-map {
+                min-width: unset;
+                width: 100%;
+            }
+            .sc-right-container {
+                width: 100%;
+                max-width: 600px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            #inner-seating-container {
+                transform: scale(0.7);
+            }
         }
 
         @media (max-width: 768px) {
+            #inner-seating-container {
+                transform: scale(0.6);
+            }
+            .seating-container {
+                touch-action: manipulation;
+                -webkit-overflow-scrolling: touch;
+            }
+            #inner-seating-container {
+                width: 100%;
+                transform-origin: center top;
+                min-height: 50vh;
+            }
             .seatChart-seat {
-                width: 20px !important;
-                height: 20px !important;
-                margin: 1px !important;
-                font-size: 8px !important;
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 14px !important;
+                margin: 3px !important;
             }
-            #seating-container {
-                transform: scale(0.9);
-                transform-origin: left top;
-            }
-            .stage {
-                width: 200px; 
-            }
-
-            .purchase-column {
-                order: 2;
-            }
-            .seating-column {
-                order: 1;
-                margin-bottom: 2rem;
+            /* Add visual guides */
+            .mobile-hint {
+                display: block;
+                text-align: center;
+                padding: 10px;
+                background: #f5f5f5;
+                margin-bottom: 15px;
+                border-radius: 8px;
             }
         }
 
         @media (max-width: 480px) {
-            .seatChart-seat {
-                width: 16px !important;
-                height: 16px !important;
-                margin: 1px !important;
-                font-size: 7px !important;
+            #inner-seating-container {
+                transform: scale(0.5);
             }
-            #seating-container {
-                transform: scale(0.8);
-            }
-            .stage {
-                width: 150px;
-            }
+        }
+
+        .back-button {
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            font-size: 1.1rem;
         }
 
         .footer p {
@@ -120,6 +190,19 @@
             .purchase-card {
                 max-width: 90%; /* Allow more width on smaller screens */
             }
+        }
+
+        .fade-transition {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .fade-in {
+            opacity: 1;
+        }
+
+        #checkout-form {
+            display: none;
         }
     </style>
 </head>
@@ -159,217 +242,79 @@
         </div>
     </nav>
 
-    <div class="container mt-5" id="purchase-form">
-        <div class="row justify-content-center">
-            <div class="col-md-5 purchase-column col-12">
-                <div class="card shadow border-0 rounded-4 purchase-card">
-                    <div class="card-body p-4">
-                        <h1 class="sh3 mb-4" id="event-title">Purchase Tickets</h1>
-                        <div id="event-summary" class="mb-4">
+    <div class="container mt-5">
+        <!-- Seating Chart Section -->
+        <div id="seating-section" class="fade-transition fade-in">
+            <div class="seating-container">
+                <h1 class="sh3 mb-4 text-center" id="event-title">Select Your Seats</h1>
+                <div class="stage mb-4">
+                    <h3 class="sh3 mb-0">BACK OF GYM</h3>
+                </div>
+                <div id="seating-container" class="d-flex justify-content-center">
+                    <div id="inner-seating-container"></div>
+                </div>
+                <button id="proceed-to-checkout" class="btn btn-primary w-100 py-3 fw-bold fs-4 mt-4">Proceed to Checkout</button>
+            </div>
+        </div>
 
+        <!-- Checkout Form Section -->
+        <div id="checkout-form" class="fade-transition">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-12">
+                    <button class="btn btn-secondary back-button" id="back-to-seating">
+                        <i class="bi bi-arrow-left"></i> Back to Seating
+                    </button>
+                    <div class="card shadow border-0 rounded-4">
+                        <div class="card-body p-4">
+                            <h1 class="sh3 mb-4">Complete Your Purchase</h1>
+                            <div id="order-summary" class="mb-4">
+                                <h3 class="sh3 mb-3">Order Summary</h3>
+                                <div id="selected-seats"></div>
+                                <div id="total-price" class="h4 mt-3"></div>
+                            </div>
+                            <form id="ticketForm" class="needs-validation" novalidate>
+                                <div class="mb-4">
+                                    <h3 class="sh3 mb-3">Contact Information</h3>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label normalText">Full Name</label>
+                                        <input type="text" class="form-control" id="name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label normalText">Email</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label normalText">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone" required>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <h3 class="sh3 mb-3">Payment Information</h3>
+                                    <div class="mb-3">
+                                        <label for="cardNumber" class="form-label normalText">Card Number</label>
+                                        <input type="text" class="form-control" id="cardNumber" required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="expiry" class="form-label normalText">Expiration Date</label>
+                                            <input type="text" class="form-control" id="expiry" placeholder="MM/YY" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="cvv" class="form-label normalText">CVV</label>
+                                            <input type="text" class="form-control" id="cvv" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary w-100 py-3 fw-bold fs-4">Complete Purchase</button>
+                            </form>
                         </div>
-                        <form id="ticketForm" class="needs-validation" novalidate>
-                            <div id="ticketSelectors" class="mb-4">
-                                <h3 class="sh3 mb-3">Select Tickets</h3>
-                                <div class="mb-3">
-                                    <label for="studentTickets" class="form-label normalText">Student Tickets</label>
-                                    <input type="number" class="form-control" id="studentTickets" min="0" value="0" required>
-                                </div>
-                                <div class="mb-3" id="adultTicketsContainer">
-                                    <label for="adultTickets" class="form-label normalText">Adult Tickets</label>
-                                    <input type="number" class="form-control" id="adultTickets" min="0" value="0">
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <h3 class="sh3 mb-3">Contact Information</h3>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label normalText">Full Name</label>
-                                    <input type="text" class="form-control" id="name" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label normalText">Email</label>
-                                    <input type="email" class="form-control" id="email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label normalText">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" required>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <h3 class="sh3 mb-3">Payment Information</h3>
-                                <div class="mb-3">
-                                    <label for="cardNumber" class="form-label normalText">Card Number</label>
-                                    <input type="text" class="form-control" id="cardNumber" required>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="expiry" class="form-label normalText">Expiration Date</label>
-                                        <input type="text" class="form-control" id="expiry" placeholder="MM/YY" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="cvv" class="form-label normalText">CVV</label>
-                                        <input type="text" class="form-control" id="cvv" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary w-100 py-3 fw-bold fs-4">Complete Purchase</button>
-                        </form>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-7 seating-column col-12" id="seating-section">
-
-            </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const eventId = urlParams.get('id');
-
-            const response = await fetch('../data/events.json');
-            const data = await response.json();
-            const event = data.events.find(e => e.id === eventId);
-
-            if (event) {
-                document.getElementById('event-title').textContent = `Purchase Tickets - ${event.title}`;
-                
-                const imageHtml = `
-                    <div class="mb-4">
-                        <div class="image-container d-flex justify-content-center align-items-center shadow-lg rounded-4" style="max-height: 400px; overflow: hidden;">
-                            <img src="../${event.image}" class="img-fluid rounded-4" style="max-height: 400px; width: 100%; object-fit: cover;" alt="${event.title}">
-                        </div>
-                        <p class="text-muted small mt-2 fst-italic">${event.imageSource}</p>
-                    </div>
-                `;
-                
-                document.getElementById('event-summary').insertAdjacentHTML('beforebegin', imageHtml);
-
-                if (event.hasSeatingChart) {
-                    const seatingHtml = `
-                        <div class="card shadow border-0 rounded-4">
-                            <div class="card-body p-4">
-                                <h2 class="sh3 text-center">Select Your Seats</h2>
-                                <div class="stage mb-4">
-                                    <h3 class="sh3 mb-0">BACK OF GYM</h3>
-                                </div>
-                                <div id="seating-container" class="d-flex justify-content-center">
-                                    <div id="inner-seating-container"></div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    document.getElementById('seating-section').innerHTML = seatingHtml;
-
-                    const options = {
-                        map: {
-                            rows: 10,
-                            columns: 10,
-                            frontVisible: false,
-                            seatTypes: {
-                                default: {
-                                    label: 'Standard',
-                                    cssClass: 'standard',
-                                    price: event.studentPrice
-                                },
-                                first: {
-                                    label: 'Premier',
-                                    cssClass: 'first-class',
-                                    price: event.studentPrice * 1.5,
-                                    seatRows: [0, 1, 2]
-                                },
-                                economy: {
-                                    label: 'Economy',
-                                    cssClass: 'economy',
-                                    price: event.studentPrice * 0.8,
-                                    seatRows: [7, 8, 9]
-                                }
-                            },
-                            rowSpacers: [3, 7],
-                            columnSpacers: [5]
-                        },
-                        cart: {
-                            currency: '$',
-                            submitLabel: 'Complete Purchase',
-                            visible: true
-                        }
-                    };
-
-                    const element = document.getElementById('inner-seating-container');
-                    if (element) {
-                        const sc = new Seatchart(element, options);
-                        sc.addEventListener('submit', function(e) {
-                            console.log('Selected seats total:', e.total);
-                        });
-
-                        window.seatchart = sc;
-
-                        const completePurchaseButton = document.querySelector('.sc-cart-btn.sc-cart-btn-submit');
-                        if (completePurchaseButton) {
-                            completePurchaseButton.style.display = 'none';
-                        }
-                    }
-
-                    document.getElementById('ticketSelectors').style.display = 'none';
-                } else {
-                    document.querySelector('.seating-column').style.display = 'none';
-                    document.querySelector('.purchase-column').classList.add('text-center', 'd-flex', 'justify-content-center');
-                    document.querySelector('.purchase-column').style.margin = '0 auto';
-                    document.querySelector('.purchase-column').style.maxWidth = '500px';
-                }
-
-                if (event.adultPrice < 0) {
-                    document.getElementById('adultTicketsContainer').style.display = 'none';
-                }
-
-                const form = document.getElementById('ticketForm');
-                const totalPriceDiv = document.getElementById('totalPrice');
-                
-                const updateTotal = () => {
-                    const studentQty = parseInt(document.getElementById('studentTickets').value) || 0;
-                    const adultQty = parseInt(document.getElementById('adultTickets')?.value) || 0;
-                    
-                    const studentTotal = studentQty * event.studentPrice;
-                    const adultTotal = adultQty * (event.adultPrice || 0);
-                    
-                    const total = studentTotal + adultTotal;
-                    totalPriceDiv.textContent = `Total: $${total.toFixed(2)}`;
-                };
-
-                document.getElementById('studentTickets').addEventListener('input', updateTotal);
-                if (event.adultPrice >= 0) {
-                    document.getElementById('adultTickets').addEventListener('input', updateTotal);
-                }
-                
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    
-                    if (event.hasSeatingChart) {
-                        const selectedSeats = sc.getSelectedSeats();
-                        if (selectedSeats.length === 0) {
-                            alert('Please select at least one seat');
-                            return;
-                        }
-                    }
-
-                    if (!form.checkValidity()) {
-                        e.stopPropagation();
-                        form.classList.add('was-validated');
-                        return;
-                    }
-                    
-                    alert('Thank you for your purchase! Check your email for more details.');
-                });
-            } else {
-                document.getElementById('purchase-form').innerHTML = '<h2>Event not found</h2>';
-            }
-        });
-    </script>
 
     <footer class="footer mt-5 py-4">
         <div class="container">
@@ -399,5 +344,168 @@
             </div>
         </div>
     </footer>
+
+    <div class="mobile-hint">
+        Pinch to zoom and pan to navigate the seating chart
+    </div>
+
+    <script>
+        let currentEvent; // Store the event data globally
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('id');
+
+            const response = await fetch('../data/events.json');
+            const data = await response.json();
+            const event = data.events.find(e => e.id === eventId);
+            currentEvent = event; // Store the event data for later use
+
+            if (event) {
+                document.getElementById('event-title').textContent = `Select Your Seats - ${event.title}`;
+
+                // Log the prices to verify they're correct
+                console.log('Student Price:', event.studentPrice);
+                console.log('Adult Price:', event.adultPrice);
+
+                const options = {
+                    map: {
+                        rows: 10,
+                        columns: 10,
+                        frontVisible: false,
+                        seatTypes: {
+                            default: {
+                                label: 'Standard',
+                                cssClass: 'standard',
+                                price: Number(event.studentPrice) // Ensure it's a number
+                            },
+                            first: {
+                                label: 'Premier',
+                                cssClass: 'first-class',
+                                price: Number(event.studentPrice * 1.5),
+                                seatRows: [0, 1, 2]
+                            },
+                            economy: {
+                                label: 'Economy',
+                                cssClass: 'economy',
+                                price: Number(event.studentPrice * 0.8),
+                                seatRows: [7, 8, 9]
+                            }
+                        },
+                        rowSpacers: [3, 7],
+                        columnSpacers: [5]
+                    },
+                    cart: {
+                        currency: '$',
+                        visible: true
+                    }
+                };
+
+                const element = document.getElementById('inner-seating-container');
+                if (element) {
+                    const sc = new Seatchart(element, options);
+                    window.seatchart = sc;
+
+                    const completePurchaseButton = document.querySelector('.sc-cart-btn.sc-cart-btn-submit');
+                    if (completePurchaseButton) {
+                        completePurchaseButton.style.display = 'none';
+                    }
+
+                    sc.addEventListener('cartchange', (e) => {
+                        console.log('Cart changed:', e);
+                        const selectedSeats = sc.getCart();
+                        updateOrderSummary(selectedSeats);
+                    });
+
+                    document.getElementById('proceed-to-checkout').addEventListener('click', () => {
+                        const selectedSeats = sc.getCart();
+
+                        if (!selectedSeats || selectedSeats.length === 0) {
+                            alert('Please select at least one seat');
+                            return;
+                        }
+
+                        document.getElementById('seating-section').classList.remove('fade-in');
+                        setTimeout(() => {
+                            document.getElementById('seating-section').style.display = 'none';
+                            document.getElementById('checkout-form').style.display = 'block';
+                            setTimeout(() => {
+                                document.getElementById('checkout-form').classList.add('fade-in');
+                            }, 50);
+                        }, 500);
+                    });
+
+                    document.getElementById('ticketForm').addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        if (!e.target.checkValidity()) {
+                            e.stopPropagation();
+                            e.target.classList.add('was-validated');
+                            return;
+                        }
+                        
+                        alert('Thank you for your purchase! Check your email for more details.');
+                        window.location.href = "../../events/index.html";
+                    });
+                }
+            } else {
+                document.getElementById('seating-section').innerHTML = '<h2>Event not found</h2>';
+            }
+
+            // Add back button functionality
+            document.getElementById('back-to-seating').addEventListener('click', () => {
+                document.getElementById('checkout-form').classList.remove('fade-in');
+                setTimeout(() => {
+                    document.getElementById('checkout-form').style.display = 'none';
+                    document.getElementById('seating-section').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('seating-section').classList.add('fade-in');
+                    }, 50);
+                }, 500);
+            });
+
+            // Adjust seating chart size to fit screen
+            const seatingContainer = document.getElementById('seating-container');
+            if (seatingContainer) {
+                const containerWidth = seatingContainer.offsetWidth;
+                const containerHeight = seatingContainer.offsetHeight;
+                const scale = Math.min(
+                    containerWidth / (seatingContainer.scrollWidth + 40),
+                    containerHeight / (seatingContainer.scrollHeight + 40)
+                );
+                
+                if (scale < 1) {
+                    seatingContainer.style.transform = `scale(${scale})`;
+                }
+            }
+        });
+
+        function updateOrderSummary(selectedSeats) {
+            const selectedSeatsDiv = document.getElementById('selected-seats');
+            selectedSeatsDiv.innerHTML = selectedSeats.map(seat => 
+                `<div class="mb-2">Seat: ${seat.label} (Row: ${seat.index.row + 1}, Column: ${seat.index.col + 1}) - Type: ${seat.type}</div>`
+            ).join('');
+
+            // Calculate total price based on seat type and current event prices
+            const totalPrice = selectedSeats.reduce((total, seat) => {
+                let price = currentEvent.studentPrice; // Base price
+                
+                // Adjust price based on seat type
+                switch(seat.type) {
+                    case 'first':
+                        price *= 1.5;
+                        break;
+                    case 'economy':
+                        price *= 0.8;
+                        break;
+                    // default price remains unchanged
+                }
+                
+                console.log(`Seat Type: ${seat.type}, Price: ${price}`); // Debug log
+                return total + price;
+            }, 0);
+
+            document.getElementById('total-price').textContent = `Total: $${totalPrice.toFixed(2)}`;
+        }
+    </script>
 </body>
 </html> 
