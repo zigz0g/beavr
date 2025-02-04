@@ -14,7 +14,8 @@
       "adultPrice": 10,
       "foodAndBeverage": "Concession stand available with snacks, drinks, and light meals",
       "dressCode": "Casual, school appropriate attire",
-      "ageRestriction": "All ages welcome"
+      "ageRestriction": "All ages welcome",
+      "hasSeatingChart": false
     },
     {
       "id": "2",
@@ -30,7 +31,8 @@
       "adultPrice": 0,
       "foodAndBeverage": "Water fountains available, no food service",
       "dressCode": "Business casual",
-      "ageRestriction": "High school students and parents"
+      "ageRestriction": "High school students and parents",
+      "hasSeatingChart": false
     },
     {
       "id": "3",
@@ -45,7 +47,8 @@
       "studentPrice": 75,
       "foodAndBeverage": "Appetizers and desserts, beverages included",
       "dressCode": "Formal attire",
-      "ageRestriction": "Seniors and approved guests"
+      "ageRestriction": "Seniors and approved guests",
+      "hasSeatingChart": false
     },
     {
       "id": "4",
@@ -61,7 +64,8 @@
       "adultPrice": 5,
       "foodAndBeverage": "Food trucks available outside",
       "dressCode": "Casual",
-      "ageRestriction": "All ages welcome"
+      "ageRestriction": "All ages welcome",
+      "hasSeatingChart": false
     },
     {
       "id": "5",
@@ -77,7 +81,8 @@
       "adultPrice": 0,
       "foodAndBeverage": "Light refreshments after ceremony",
       "dressCode": "Semi-formal",
-      "ageRestriction": "All ages welcome"
+      "ageRestriction": "All ages welcome",
+      "hasSeatingChart": true
     },
     {
       "id": "6",
@@ -93,7 +98,8 @@
       "adultPrice": -1,
       "foodAndBeverage": "Lunch and snacks provided",
       "dressCode": "Athletic wear and appropriate shoes required",
-      "ageRestriction": "Ages 8-14"
+      "ageRestriction": "Ages 8-14",
+      "hasSeatingChart": false
     },
     {
       "id": "7",
@@ -109,7 +115,8 @@
       "adultPrice": 0,
       "foodAndBeverage": "Healthy snacks and smoothie bar available",
       "dressCode": "Comfortable clothing",
-      "ageRestriction": "All ages welcome"
+      "ageRestriction": "All ages welcome",
+      "hasSeatingChart": false
     },
     {
       "id": "8",
@@ -125,7 +132,8 @@
       "adultPrice": 10,
       "foodAndBeverage": "Concession stand available",
       "dressCode": "Casual, school appropriate attire",
-      "ageRestriction": "All ages welcome"
+      "ageRestriction": "All ages welcome",
+      "hasSeatingChart": true
     },
     {
       "id": "9",
@@ -141,7 +149,8 @@
       "adultPrice": 2,
       "foodAndBeverage": "Bake sale and coffee station available",
       "dressCode": "Casual, school appropriate attire",
-      "ageRestriction": "All ages welcome"
+      "ageRestriction": "All ages welcome",
+      "hasSeatingChart": false
     },
     {
       "id": "10",
@@ -157,7 +166,8 @@
       "adultPrice": 12,
       "foodAndBeverage": "Light refreshments during intermission",
       "dressCode": "Semi-formal",
-      "ageRestriction": "All ages welcome"
+      "ageRestriction": "All ages welcome",
+      "hasSeatingChart": true
     },
     {
       "id": "11",
@@ -173,7 +183,8 @@
       "adultPrice": 15,
       "foodAndBeverage": "Concession stand",
       "dressCode": "Casual",
-      "ageRestriction": "All ages welcome"
+      "ageRestriction": "All ages welcome",
+      "hasSeatingChart": false
     },
     {
       "id": "12",
@@ -189,7 +200,8 @@
       "adultPrice": 0,
       "foodAndBeverage": "Water fountains available, no food service",
       "dressCode": "Business casual",
-      "ageRestriction": "All ages welcome"
+      "ageRestriction": "All ages welcome",
+      "hasSeatingChart": false
     }
   ]
 } 

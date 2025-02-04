@@ -483,3 +483,11 @@ p {
   z-index: 1000;
   text-align: center;
 }
+
+.seatChart-type-label {
+  color: black !important;
+}
+
+.seating-chart .seatChart-type-label {
+  color: black;
+}
