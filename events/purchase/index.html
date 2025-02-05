@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/seatchart@0.1.0/dist/seatchart.min.js"></script>
     <style>
         .sc-cart-total {
-            font-size: 24px;
+            font-size: 1.6em !important;
             font-weight: bold; 
             color: #000;
         }
@@ -35,7 +35,7 @@
             background-color: #90be6d;
         }
         .seatChart-type-label {
-            color: black !important;
+            font-size: 1.3em !important;
         }
         .seatChart-legend {
             color: black !important;
@@ -56,7 +56,7 @@
         }
 
         .seating-container {
-            max-width: 1600px; /* Increased for more horizontal space */
+            max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
             overflow: hidden;
@@ -74,32 +74,31 @@
             transform-origin: center top;
             display: flex;
             justify-content: center;
-            transform: scale(1); /* Start at full size */
+            transform: scale(1); 
         }
 
-        /* Adjust the main seatchart container */
         .sc-main-container {
             width: 100%;
             display: flex;
-            flex-direction: row; /* Change to row to put cart on the side */
+            flex-direction: row; 
             align-items: flex-start;
-            gap: 2rem; /* Add space between seating chart and cart */
+            gap: 2rem; 
             justify-content: center;
         }
 
-        /* Adjust the map container */
+
         .sc-map {
-            width: auto; /* Let it take natural width */
-            min-width: 800px; /* Ensure minimum width */
+            width: auto; 
+            min-width: 800px; 
             display: flex;
             justify-content: center;
         }
 
-        /* Adjust the right container (cart and legend) */
         .sc-right-container {
             width: auto;
-            min-width: 300px;
-            max-width: 400px;
+            min-width: 400px;
+            max-width: 500px;
+            padding-right: 20px;
         }
 
         @media (max-width: 1400px) {
@@ -113,7 +112,7 @@
                 transform: scale(0.8);
             }
             .sc-main-container {
-                flex-direction: column; /* Stack vertically on smaller screens */
+                flex-direction: column; 
                 align-items: center;
             }
             .sc-map {
@@ -160,6 +159,27 @@
                 margin-bottom: 15px;
                 border-radius: 8px;
             }
+            .sc-cart {
+                font-size: 1.5em;
+                padding: 25px;
+            }
+            .sc-cart-total {
+                font-size: 1.8em !important;
+            }
+            .sc-cart-title {
+                font-size: 1.6em;
+            }
+            .seatChart-type-label {
+                font-size: 1.6em !important;
+            }
+            .seatChart-legend {
+                font-size: 1.5em !important;
+                margin-top: 20px !important;
+            }
+            .sc-right-container {
+                max-width: 100%;
+                padding: 15px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -188,7 +208,7 @@
 
         @media (max-width: 768px) {
             .purchase-card {
-                max-width: 90%; /* Allow more width on smaller screens */
+                max-width: 90%;
             }
         }
 
@@ -202,6 +222,66 @@
         }
 
         #checkout-form {
+            display: none;
+        }
+
+        .sc-cart {
+            width: 100%;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: visible;
+            font-size: 1.2em;
+        }
+
+        .sc-cart-header {
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .sc-cart-title {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .sc-cart-table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .sc-cart-btn {
+            width: calc(100% - 20px) !important;
+            margin: 10px !important;
+            padding: 15px 0 !important;
+            font-size: 1.1rem !important;
+        }
+
+        .sc-cart-btn-submit {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-weight: bold !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+            transition: all 0.2s ease !important;
+            height: 50px !important;
+        }
+
+        .sc-cart-minus-btn {
+            width: 20px !important;
+            height: 20px !important;
+            flex: 0 0 20px !important;
+            padding: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 12px !important;
+        }
+
+        #proceed-to-checkout {
             display: none;
         }
     </style>
@@ -243,13 +323,10 @@
     </nav>
 
     <div class="container mt-5">
-        <!-- Seating Chart Section -->
+
         <div id="seating-section" class="fade-transition fade-in">
             <div class="seating-container">
                 <h1 class="sh3 mb-4 text-center" id="event-title">Select Your Seats</h1>
-                <div class="stage mb-4">
-                    <h3 class="sh3 mb-0">BACK OF GYM</h3>
-                </div>
                 <div id="seating-container" class="d-flex justify-content-center">
                     <div id="inner-seating-container"></div>
                 </div>
@@ -257,21 +334,43 @@
             </div>
         </div>
 
-        <!-- Checkout Form Section -->
+
         <div id="checkout-form" class="fade-transition">
             <div class="row justify-content-center">
                 <div class="col-md-6 col-12">
-                    <button class="btn btn-secondary back-button" id="back-to-seating">
+                    <button class="btn btn-secondary back-button" id="back-to-seating" style="display: none;">
                         <i class="bi bi-arrow-left"></i> Back to Seating
                     </button>
                     <div class="card shadow border-0 rounded-4">
                         <div class="card-body p-4">
-                            <h1 class="sh3 mb-4">Complete Your Purchase</h1>
+                            <h1 class="sh3 mb-4 text-center">Complete Your Purchase</h1>
+                            
+                            <div id="ticket-selector" style="display: none;" class="mb-4">
+                                <h3 class="sh3 mb-3">Select Tickets</h3>
+                                <div class="row mb-2">
+                                    <div class="col-7">
+                                        <label class="form-label">Student Tickets ($<span id="student-price"></span>)</label>
+                                    </div>
+                                    <div class="col-5">
+                                        <input type="number" class="form-control" id="student-quantity" min="0" value="1">
+                                    </div>
+                                </div>
+                                <div class="row mb-2" id="adult-ticket-row">
+                                    <div class="col-7">
+                                        <label class="form-label">Adult Tickets ($<span id="adult-price"></span>)</label>
+                                    </div>
+                                    <div class="col-5">
+                                        <input type="number" class="form-control" id="adult-quantity" min="0" value="0">
+                                    </div>
+                                </div>
+                            </div>
+
                             <div id="order-summary" class="mb-4">
                                 <h3 class="sh3 mb-3">Order Summary</h3>
                                 <div id="selected-seats"></div>
                                 <div id="total-price" class="h4 mt-3"></div>
                             </div>
+
                             <form id="ticketForm" class="needs-validation" novalidate>
                                 <div class="mb-4">
                                     <h3 class="sh3 mb-3">Contact Information</h3>
@@ -345,12 +444,8 @@
         </div>
     </footer>
 
-    <div class="mobile-hint">
-        Pinch to zoom and pan to navigate the seating chart
-    </div>
-
     <script>
-        let currentEvent; // Store the event data globally
+        let currentEvent;
 
         document.addEventListener("DOMContentLoaded", async () => {
             const urlParams = new URLSearchParams(window.location.search);
@@ -359,12 +454,48 @@
             const response = await fetch('../data/events.json');
             const data = await response.json();
             const event = data.events.find(e => e.id === eventId);
-            currentEvent = event; // Store the event data for later use
+            currentEvent = event; 
 
-            if (event) {
+            if (!event) {
+                document.getElementById('seating-section').innerHTML = '<h2>Event not found</h2>';
+                return;
+            }
+
+            // Show appropriate section based on hasSeatingChart
+            if (!event.hasSeatingChart) {
+                document.getElementById('seating-section').style.display = 'none';
+                document.getElementById('checkout-form').style.display = 'block';
+                document.getElementById('checkout-form').classList.add('fade-in');
+                document.getElementById('back-to-seating').style.display = 'none';
+                document.getElementById('selected-seats').style.display = 'none';
+                document.getElementById('ticket-selector').style.display = 'block';
+                
+                // Set prices in the labels
+                document.getElementById('student-price').textContent = event.studentPrice.toFixed(2);
+                if (event.adultPrice !== undefined && event.adultPrice >= 0) {
+                    document.getElementById('adult-price').textContent = event.adultPrice.toFixed(2);
+                } else {
+                    document.getElementById('adult-ticket-row').style.display = 'none';
+                }
+
+                // Add event listeners for quantity changes
+                const updateTotal = () => {
+                    const studentQty = parseInt(document.getElementById('student-quantity').value) || 0;
+                    const adultQty = parseInt(document.getElementById('adult-quantity').value) || 0;
+                    const total = (studentQty * event.studentPrice) + 
+                                 (event.adultPrice >= 0 ? (adultQty * event.adultPrice) : 0);
+                    document.getElementById('total-price').textContent = `Total: $${total.toFixed(2)}`;
+                };
+
+                document.getElementById('student-quantity').addEventListener('change', updateTotal);
+                document.getElementById('adult-quantity').addEventListener('change', updateTotal);
+                
+                // Initialize total
+                updateTotal();
+            } else {
                 document.getElementById('event-title').textContent = `Select Your Seats - ${event.title}`;
+                document.getElementById('ticket-selector').style.display = 'none';
 
-                // Log the prices to verify they're correct
                 console.log('Student Price:', event.studentPrice);
                 console.log('Adult Price:', event.adultPrice);
 
@@ -372,12 +503,13 @@
                     map: {
                         rows: 10,
                         columns: 10,
-                        frontVisible: false,
+                        frontVisible: true,
+                        front: 'STAGE',
                         seatTypes: {
                             default: {
                                 label: 'Standard',
                                 cssClass: 'standard',
-                                price: Number(event.studentPrice) // Ensure it's a number
+                                price: Number(event.studentPrice) 
                             },
                             first: {
                                 label: 'Premier',
@@ -406,20 +538,14 @@
                     const sc = new Seatchart(element, options);
                     window.seatchart = sc;
 
-                    const completePurchaseButton = document.querySelector('.sc-cart-btn.sc-cart-btn-submit');
-                    if (completePurchaseButton) {
-                        completePurchaseButton.style.display = 'none';
-                    }
-
                     sc.addEventListener('cartchange', (e) => {
                         console.log('Cart changed:', e);
                         const selectedSeats = sc.getCart();
                         updateOrderSummary(selectedSeats);
                     });
 
-                    document.getElementById('proceed-to-checkout').addEventListener('click', () => {
+                    sc.addEventListener('submit', (e) => {
                         const selectedSeats = sc.getCart();
-
                         if (!selectedSeats || selectedSeats.length === 0) {
                             alert('Please select at least one seat');
                             return;
@@ -434,24 +560,16 @@
                             }, 50);
                         }, 500);
                     });
-
-                    document.getElementById('ticketForm').addEventListener('submit', (e) => {
-                        e.preventDefault();
-                        if (!e.target.checkValidity()) {
-                            e.stopPropagation();
-                            e.target.classList.add('was-validated');
-                            return;
-                        }
-                        
-                        alert('Thank you for your purchase! Check your email for more details.');
-                        window.location.href = "../../events/index.html";
-                    });
                 }
-            } else {
-                document.getElementById('seating-section').innerHTML = '<h2>Event not found</h2>';
             }
 
-            // Add back button functionality
+            // Add form submission handler
+            document.getElementById('ticketForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Purchase successful! Your tickets have been sent to your email.');
+                window.location.href = '../../events/';
+            });
+
             document.getElementById('back-to-seating').addEventListener('click', () => {
                 document.getElementById('checkout-form').classList.remove('fade-in');
                 setTimeout(() => {
@@ -463,7 +581,7 @@
                 }, 500);
             });
 
-            // Adjust seating chart size to fit screen
+
             const seatingContainer = document.getElementById('seating-container');
             if (seatingContainer) {
                 const containerWidth = seatingContainer.offsetWidth;
@@ -482,14 +600,14 @@
         function updateOrderSummary(selectedSeats) {
             const selectedSeatsDiv = document.getElementById('selected-seats');
             selectedSeatsDiv.innerHTML = selectedSeats.map(seat => 
-                `<div class="mb-2">Seat: ${seat.label} (Row: ${seat.index.row + 1}, Column: ${seat.index.col + 1}) - Type: ${seat.type}</div>`
+                `<div class="mb-2">Seat: ${seat.label}</div>`
             ).join('');
 
-            // Calculate total price based on seat type and current event prices
+
             const totalPrice = selectedSeats.reduce((total, seat) => {
-                let price = currentEvent.studentPrice; // Base price
+                let price = currentEvent.studentPrice;
                 
-                // Adjust price based on seat type
+  
                 switch(seat.type) {
                     case 'first':
                         price *= 1.5;
@@ -497,10 +615,9 @@
                     case 'economy':
                         price *= 0.8;
                         break;
-                    // default price remains unchanged
                 }
                 
-                console.log(`Seat Type: ${seat.type}, Price: ${price}`); // Debug log
+                console.log(`Seat Type: ${seat.type}, Price: ${price}`);
                 return total + price;
             }, 0);
 
