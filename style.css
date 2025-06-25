@@ -738,7 +738,7 @@ p {
   
   .navbar-brand h1 {
     font-size: 1.4rem;
-    font-weight: 900;
+    font-weight: 400;
   }
   
   .navbar-brand img {
@@ -851,7 +851,7 @@ p {
   
   .navbar-brand h1 {
     font-size: 1.2rem;
-    font-weight: 900;
+    font-weight: 400;
   }
   
   .navbar-brand img {
@@ -1001,14 +1001,14 @@ p {
 }
 /* Navbar Styles */
 .navbar-hero {
-  background: rgba(27, 20, 80, 0.3) !important;
+  background: #1b1450 !important;
   backdrop-filter: blur(10px);
   transition: background 0.4s ease;
   z-index: 1000;
   padding: 0.5rem 1rem;
 }
 .navbar-hero.scrolled {
-  background: rgba(27, 20, 80, 0.95) !important;
+  background: #1b1450 !important;
   box-shadow: 0 2px 16px rgba(0,0,0,0.15);
 }
 .navbar-brand {
@@ -1019,7 +1019,7 @@ p {
   color: #fff;
   font-size: 1.8rem;
   font-family: 'Raleway', sans-serif;
-  font-weight: 900;
+  font-weight: 400;
   letter-spacing: 1px;
   margin: 0;
   white-space: nowrap;
@@ -1090,11 +1090,11 @@ p {
 .headimg { display: none !important; }
 
 body.home .navbar-hero {
-  background: transparent !important;
-  box-shadow: none !important;
+  background: #1b1450 !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.15);
 }
 body.home .navbar-hero.scrolled {
-  background: rgba(27, 20, 80, 0.95) !important;
+  background: #1b1450 !important;
   box-shadow: 0 2px 16px rgba(0,0,0,0.15);
 }
 
@@ -1107,4 +1107,23 @@ html, body {
 
 html::-webkit-scrollbar, body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+/* Navbar text responsive display */
+.desktop-text {
+  display: inline;
+}
+
+.mobile-text {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-text {
+    display: none;
+  }
+  
+  .mobile-text {
+    display: inline;
+  }
 }
