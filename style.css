@@ -26,7 +26,7 @@ p {
 .sh {
     font-family: "Host Grotesk", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 500;
+    font-weight: 900;
     font-style: normal;
     color: #ededed;
 }
@@ -728,24 +728,47 @@ p {
 
 /* Mobile responsive design */
 @media (max-width: 768px) {
+  .navbar-hero {
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .navbar-brand {
+    max-width: 50%;
+  }
+  
+  .navbar-brand h1 {
+    font-size: 1.4rem;
+    font-weight: 900;
+  }
+  
+  .navbar-brand img {
+    width: 32px;
+    height: 32px;
+  }
+  
   .search-box {
-    width: 75%;
-    padding: 2rem 2.5rem;
-    gap: 2rem;
+    width: 90%;
+    padding: 1.5rem 2rem;
+    gap: 1.5rem;
   }
   
   .input-section {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
   }
   
   .search-field input {
     max-width: none;
     width: 100%;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
   }
   
   .search-btn {
     align-self: center;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
   }
   
   /* Mobile Calendar Popup */
@@ -796,29 +819,88 @@ p {
     padding: 12px 20px;
     font-size: 16px;
   }
+  
+  /* Mobile slogan scaling */
+  .hero-slogan {
+    font-size: 1.8rem !important;
+    line-height: 1.2;
+    font-weight: 900;
+  }
+  
+  .hero-bottom-left {
+    left: 1.5vw;
+    bottom: 3vh;
+    max-width: 45vw;
+  }
+  
+  .hero-bottom-right {
+    right: 1.5vw;
+    bottom: 3vh;
+  }
+  
+  .hero-label {
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .navbar-brand {
+    max-width: 45%;
+  }
+  
+  .navbar-brand h1 {
+    font-size: 1.2rem;
+    font-weight: 900;
+  }
+  
+  .navbar-brand img {
+    width: 28px;
+    height: 28px;
+  }
+  
   .search-box {
-    width: 85%;
-    padding: 2.5rem 3rem;
-    gap: 2.5rem;
+    width: 95%;
+    padding: 1.2rem 1.5rem;
+    gap: 1.2rem;
   }
   
   .search-field label {
-    font-size: 1.2rem;
-    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
   }
   
   .search-field input {
-    padding: 1rem 1.2rem;
-    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
   }
   
   .search-btn {
-    width: 65px;
-    height: 65px;
-    font-size: 1.5rem;
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+  
+  /* Extra small mobile slogan */
+  .hero-slogan {
+    font-size: 1.5rem !important;
+    line-height: 1.1;
+  }
+  
+  .hero-bottom-left {
+    left: 1vw;
+    bottom: 2vh;
+    max-width: 50vw;
+  }
+  
+  .hero-bottom-right {
+    right: 1vw;
+    bottom: 2vh;
+  }
+  
+  .hero-label {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.8rem;
   }
 }
 
@@ -923,17 +1005,31 @@ p {
   backdrop-filter: blur(10px);
   transition: background 0.4s ease;
   z-index: 1000;
+  padding: 0.5rem 1rem;
 }
 .navbar-hero.scrolled {
   background: rgba(27, 20, 80, 0.95) !important;
   box-shadow: 0 2px 16px rgba(0,0,0,0.15);
 }
+.navbar-brand {
+  flex-shrink: 0;
+  max-width: 60%;
+}
 .navbar-brand h1 {
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: 'Raleway', sans-serif;
-  font-weight: 700;
+  font-weight: 900;
   letter-spacing: 1px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.navbar-brand img {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
 }
 .navbar .nav-link {
   color: #fff !important;
@@ -944,6 +1040,11 @@ p {
 }
 .navbar-hero.scrolled .nav-link {
   color: #fff !important;
+}
+.navbar-toggler {
+  border: none;
+  padding: 0.25rem 0.5rem;
+  flex-shrink: 0;
 }
 /* Slogan and Label */
 .hero-bottom-left {
