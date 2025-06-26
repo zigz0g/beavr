@@ -425,6 +425,37 @@
         document.addEventListener('DOMContentLoaded', () => {
             console.log('DOM loaded, initializing calendar');
             window.calendar = new Calendar();
+            
+            // Add search button functionality
+            const searchBtn = document.querySelector('.search-btn');
+            if (searchBtn) {
+                searchBtn.addEventListener('click', function() {
+                    const activity = document.getElementById('activity').value;
+                    const when = document.getElementById('when').value;
+                    
+                    // Build URL with parameters
+                    let contactUrl = './contact/';
+                    const params = new URLSearchParams();
+                    
+                    if (activity && activity.trim() !== '') {
+                        params.append('activity', activity.trim());
+                    }
+                    
+                    if (when && when !== 'Anytime') {
+                        params.append('date', when);
+                    }
+                    
+                    // Always set inquiry type to venue booking when coming from search
+                    params.append('inquiry', 'venue-booking');
+                    
+                    if (params.toString()) {
+                        contactUrl += '?' + params.toString();
+                    }
+                    
+                    // Redirect to contact page
+                    window.location.href = contactUrl;
+                });
+            }
         });
         
         // Test function to manually show calendar
