@@ -141,7 +141,7 @@
                                         </div>
                                         
                                         <!-- Calendar Section -->
-                                        <div class="calendar-section" id="calendarSection" style="display: none;">
+                                        <div class="calendar-section" id="calendarSection">
                                             <div class="calendar-header">
                                                 <button class="calendar-nav" id="prevMonth">
                                                     <i class="bi bi-chevron-left"></i>
@@ -311,18 +311,6 @@
                         }, 10);
                     }
                 });
-                
-                // Handle window resize for responsive calendar
-                window.addEventListener('resize', () => {
-                    const calendar = document.getElementById('calendarSection');
-                    if (calendar && calendar.style.display === 'block') {
-                        // Re-show calendar with new positioning
-                        this.hideCalendar();
-                        setTimeout(() => {
-                            this.showCalendar();
-                        }, 50);
-                    }
-                });
             }
             
             toggleCalendar() {
@@ -331,8 +319,7 @@
                 const dateField = document.getElementById('eventDate');
                 
                 if (calendar && dateField) {
-                    const isVisible = calendar.style.display === 'block';
-                    if (isVisible) {
+                    if (calendar.classList.contains('show')) {
                         this.hideCalendar();
                     } else {
                         this.showCalendar();
@@ -343,135 +330,20 @@
             }
             
             showCalendar() {
-                console.log('ContactCalendar: Show calendar called');
+                // Only toggle the .show class, do not set display directly
                 const calendar = document.getElementById('calendarSection');
-                const dateField = document.getElementById('eventDate');
-                
-                if (calendar && dateField) {
-                    // Check if we're on mobile (screen width <= 768px)
-                    const isMobile = window.innerWidth <= 768;
-                    
-                    // Move calendar to body if it's not already there
-                    if (calendar.parentElement !== document.body) {
-                        document.body.appendChild(calendar);
-                    }
-                    
-                    if (isMobile) {
-                        // Mobile: Use bottom sheet approach like home page
-                        calendar.style.display = 'block';
-                        calendar.style.position = 'fixed';
-                        calendar.style.bottom = '0';
-                        calendar.style.left = '0';
-                        calendar.style.right = '0';
-                        calendar.style.width = '100%';
-                        calendar.style.background = 'white';
-                        calendar.style.borderRadius = '20px 20px 0 0';
-                        calendar.style.boxShadow = '0 -10px 40px rgba(0, 0, 0, 0.15)';
-                        calendar.style.maxHeight = '70vh';
-                        calendar.style.overflowY = 'auto';
-                        calendar.style.zIndex = '999999';
-                        calendar.style.transform = 'translateY(100%)';
-                        calendar.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                        calendar.style.borderTop = 'none';
-                        calendar.style.padding = '2rem 2rem 1.5rem 2rem';
-                        calendar.style.top = 'auto';
-                        
-                        // Trigger the slide-up animation after a brief delay
-                        requestAnimationFrame(() => {
-                            calendar.style.transform = 'translateY(0)';
-                        });
-                        
-                        console.log('ContactCalendar: Mobile calendar should slide up from bottom');
-                    } else {
-                        // Desktop: Use positioned approach with fade animation
-                        const fieldRect = dateField.getBoundingClientRect();
-                        
-                        // Calculate position
-                        let top = fieldRect.bottom + 5;
-                        let left = fieldRect.left;
-                        let width = fieldRect.width;
-                        
-                        // Check if calendar would go off the bottom of the screen
-                        const calendarHeight = 300; // Approximate calendar height
-                        if (top + calendarHeight > window.innerHeight) {
-                            // Position above the field instead
-                            top = fieldRect.top - calendarHeight - 5;
-                        }
-                        
-                        // Check if calendar would go off the right side of the screen
-                        if (left + width > window.innerWidth) {
-                            left = window.innerWidth - width - 10;
-                        }
-                        
-                        // Ensure left position is not negative
-                        if (left < 10) {
-                            left = 10;
-                        }
-                        
-                        // Force visibility with inline styles
-                        calendar.style.display = 'block';
-                        calendar.style.position = 'fixed';
-                        calendar.style.top = top + 'px';
-                        calendar.style.left = left + 'px';
-                        calendar.style.width = width + 'px';
-                        calendar.style.background = 'white';
-                        calendar.style.border = '1px solid #dee2e6';
-                        calendar.style.borderRadius = '0.375rem';
-                        calendar.style.boxShadow = '0 0.5rem 1rem rgba(0, 0, 0, 0.15)';
-                        calendar.style.zIndex = '9999';
-                        calendar.style.padding = '1rem';
-                        calendar.style.opacity = '0';
-                        calendar.style.visibility = 'visible';
-                        calendar.style.maxHeight = 'none';
-                        calendar.style.overflow = 'visible';
-                        calendar.style.transform = 'scale(0.95) translateY(-10px)';
-                        calendar.style.transition = 'opacity 0.2s ease-out, transform 0.2s ease-out';
-                        calendar.style.bottom = 'auto';
-                        
-                        // Trigger the fade-in animation
-                        requestAnimationFrame(() => {
-                            calendar.style.opacity = '1';
-                            calendar.style.transform = 'scale(1) translateY(0)';
-                        });
-                        
-                        console.log('ContactCalendar: Desktop calendar should fade in');
-                        console.log('ContactCalendar: Calendar position - top:', calendar.style.top, 'left:', calendar.style.left);
-                    }
+                if (calendar) {
+                    calendar.classList.add('show');
                 } else {
-                    console.error('ContactCalendar: Calendar or date field element not found!');
+                    console.error('ContactCalendar: Calendar element not found!');
                 }
             }
             
             hideCalendar() {
-                console.log('ContactCalendar: Hide calendar called');
+                // Only toggle the .show class, do not set display directly
                 const calendar = document.getElementById('calendarSection');
                 if (calendar) {
-                    const isMobile = window.innerWidth <= 768;
-                    
-                    if (isMobile) {
-                        // Mobile: Slide down animation
-                        calendar.style.transform = 'translateY(100%)';
-                        setTimeout(() => {
-                            calendar.style.display = 'none';
-                            // Move calendar back to its original location when hiding
-                            const venueBookingFields = document.getElementById('venueBookingFields');
-                            if (venueBookingFields && calendar.parentElement === document.body) {
-                                venueBookingFields.appendChild(calendar);
-                            }
-                        }, 300); // Wait for animation to complete
-                    } else {
-                        // Desktop: Fade out animation
-                        calendar.style.opacity = '0';
-                        calendar.style.transform = 'scale(0.95) translateY(-10px)';
-                        setTimeout(() => {
-                            calendar.style.display = 'none';
-                            // Move calendar back to its original location when hiding
-                            const venueBookingFields = document.getElementById('venueBookingFields');
-                            if (venueBookingFields && calendar.parentElement === document.body) {
-                                venueBookingFields.appendChild(calendar);
-                            }
-                        }, 200); // Wait for fade animation to complete
-                    }
+                    calendar.classList.remove('show');
                 }
             }
             
@@ -603,6 +475,50 @@
             if (venueBookingFields) {
                 venueBookingFields.style.position = 'relative';
             }
+
+            // Move calendar outside constraining containers on mobile for proper modal behavior
+            function moveCalendarForMobile() {
+                const calendar = document.getElementById('calendarSection');
+                if (calendar && window.innerWidth <= 768) {
+                    // Move calendar to body to escape all container constraints
+                    document.body.appendChild(calendar);
+                }
+            }
+            
+            // Run on load and resize
+            moveCalendarForMobile();
+            window.addEventListener('resize', moveCalendarForMobile);
+            
+            // Function to reset form to initial state
+            function resetForm() {
+                const form = document.querySelector('.contact-form');
+                if (form) {
+                    form.reset();
+                }
+                
+                // Manually clear specific fields that might not be reset by form.reset()
+                const fields = [
+                    'firstName', 'lastName', 'email', 'activity', 'eventDate', 'message'
+                ];
+                
+                fields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (field) {
+                        field.value = '';
+                    }
+                });
+                
+                // Reset inquiry type to default
+                const inquiryType = document.getElementById('inquiryType');
+                if (inquiryType) {
+                    inquiryType.value = '';
+                }
+                
+                // Hide venue booking fields
+                if (venueBookingFields) {
+                    venueBookingFields.style.display = 'none';
+                }
+            }
             
             // Handle inquiry type change
             const inquiryType = document.getElementById('inquiryType');
@@ -625,6 +541,11 @@
             const activity = urlParams.get('activity');
             const date = urlParams.get('date');
             const inquiry = urlParams.get('inquiry');
+            
+            // If no URL parameters, reset the form to clear any persisted data
+            if (!activity && !date && !inquiry) {
+                resetForm();
+            }
             
             let shouldScroll = false;
             

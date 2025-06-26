@@ -52,7 +52,7 @@
                 </div>
                 <div class="search-field">
                   <label for="when">When?</label>
-                  <input type="text" id="when" value="Anytime" readonly class="calendar-trigger">
+                  <input type="text" id="when" value="Event Date" readonly class="calendar-trigger">
                 </div>
                 <button class="search-btn">
                   <i class="bi bi-arrow-right"></i>
@@ -383,7 +383,7 @@
                 this.selectedDate = null;
                 const whenField = document.getElementById('when');
                 if (whenField) {
-                    whenField.value = 'Anytime';
+                    whenField.value = 'Event Date';
                 }
                 this.hideCalendar();
             }
