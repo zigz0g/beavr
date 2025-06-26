@@ -24,24 +24,26 @@ p {
 }
 
 .sh {
-    font-family: "Host Grotesk", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 900;
+    font-weight: 700;
     font-style: normal;
     color: #ededed;
 }
 
 .sh1 {
-    font-family: "Host Grotesk", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 400;
-    font-size: 20pt;
+    font-weight: 500;
+    font-size: 18pt;
     font-style: normal;
     color: #ededed;
+    letter-spacing: 0.5px;
 }
 
 .sh1:hover {
     color: #ededed75;
+    font-weight: 600;
 }
 
 .sh1:focus {
@@ -49,9 +51,9 @@ p {
 }
 
 .sh2 {
-  font-family: "Host Grotesk", sans-serif;
+  font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 25pt;
   font-style: normal;
   text-shadow: 0 1px 0 black;
@@ -59,16 +61,17 @@ p {
 }
 
 .sh3 {
-  font-family: "Host Grotesk", sans-serif;
+  font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 300;
+  font-weight: 600;
   font-size: 30pt;
   font-style: normal;
   color: #69747C;
 }
 
 .active2 {
-  font-weight: 1000; 
+  font-weight: 700; 
+  color: #ffffff !important;
 }
 
 .icocolor {
@@ -1061,9 +1064,9 @@ p {
 .navbar-brand h1 {
   color: #fff;
   font-size: 1.8rem;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 400;
-  letter-spacing: 1px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 300;
+  letter-spacing: 2px;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -1078,8 +1081,10 @@ p {
   color: #fff !important;
   font-weight: 500;
   font-size: 1.1rem;
+  font-family: 'Raleway', sans-serif;
   margin-left: 1rem;
-  transition: color 0.2s;
+  transition: color 0.2s, font-weight 0.2s;
+  letter-spacing: 0.3px;
 }
 .navbar-hero.scrolled .nav-link {
   color: #fff !important;
@@ -1200,4 +1205,10 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.navbar .nav-link:hover {
+  color: #fff !important;
+  font-weight: 600;
+  transform: translateY(-1px);
 }
