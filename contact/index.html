@@ -196,6 +196,178 @@
                 color: #2a1f7a;
             }
 
+            /* Calendar Popup Overlay */
+            .calendar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .calendar-overlay.show {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .calendar-popup {
+                background: white;
+                border-radius: 15px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                padding: 2rem;
+                max-width: 400px;
+                width: 95%;
+                transform: scale(0.8) translateY(20px);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .calendar-overlay.show .calendar-popup {
+                transform: scale(1) translateY(0);
+            }
+
+            .calendar-popup .calendar-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 0 1.5rem 0;
+                border-bottom: 1px solid #f0f0f0;
+                margin-bottom: 1rem;
+            }
+
+            .calendar-popup .calendar-header h3 {
+                font-family: "Host Grotesk", sans-serif;
+                font-size: 18px;
+                font-weight: 600;
+                color: #1b1450;
+                margin: 0;
+            }
+
+            .calendar-popup .calendar-nav {
+                background: none;
+                border: none;
+                width: 36px;
+                height: 36px;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                color: #69747C;
+            }
+
+            .calendar-popup .calendar-nav:hover {
+                background-color: rgba(27, 20, 80, 0.1);
+                color: #1b1450;
+            }
+
+            .calendar-popup .calendar-weekdays {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                padding: 1rem 0 0.5rem 0;
+                border-bottom: 1px solid #f0f0f0;
+                margin-bottom: 0.5rem;
+            }
+
+            .calendar-popup .calendar-weekdays div {
+                text-align: center;
+                font-size: 13px;
+                font-weight: 600;
+                color: #69747C;
+                padding: 0.5rem 0;
+            }
+
+            .calendar-popup .calendar-days {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                padding: 0.5rem 0 1rem 0;
+                gap: 2px;
+            }
+
+            .calendar-popup .calendar-day {
+                width: 42px;
+                height: 42px;
+                border: none;
+                background: none;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                font-size: 15px;
+                color: #1b1450;
+                transition: all 0.2s ease;
+                margin: 0 auto;
+            }
+
+            .calendar-popup .calendar-day:hover:not(.disabled) {
+                background-color: rgba(27, 20, 80, 0.1);
+            }
+
+            .calendar-popup .calendar-day.selected {
+                background-color: #1b1450;
+                color: white;
+            }
+
+            .calendar-popup .calendar-day.today {
+                background-color: rgba(27, 20, 80, 0.1);
+                font-weight: 600;
+            }
+
+            .calendar-popup .calendar-day.disabled {
+                color: #ccc;
+                cursor: not-allowed;
+            }
+
+            .calendar-popup .calendar-day.other-month {
+                color: #ccc;
+            }
+
+            .calendar-popup .calendar-footer {
+                display: flex;
+                justify-content: space-between;
+                padding: 1rem 0 0 0;
+                border-top: 1px solid #f0f0f0;
+                gap: 1rem;
+            }
+
+            .calendar-popup .btn-clear, .calendar-popup .btn-apply {
+                padding: 0.75rem 1.5rem;
+                border: none;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                flex: 1;
+            }
+
+            .calendar-popup .btn-clear {
+                background-color: #f8f9fa;
+                color: #69747C;
+            }
+
+            .calendar-popup .btn-clear:hover {
+                background-color: #e9ecef;
+            }
+
+            .calendar-popup .btn-apply {
+                background-color: #1b1450;
+                color: white;
+            }
+
+            .calendar-popup .btn-apply:hover {
+                background-color: #2a1f7a;
+            }
+
             /* Mobile Responsive */
             @media (max-width: 768px) {
                 .contact-hero {
@@ -232,6 +404,28 @@
                     padding: 0.8rem 2rem;
                     font-size: 1rem;
                 }
+
+                /* Calendar mobile optimizations */
+                .calendar-popup {
+                    padding: 1.5rem;
+                    max-width: 380px;
+                    width: 98%;
+                }
+                
+                .calendar-popup .calendar-day {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 14px;
+                }
+                
+                .calendar-popup .calendar-header h3 {
+                    font-size: 18px;
+                }
+                
+                .calendar-popup .calendar-weekdays div {
+                    font-size: 13px;
+                    padding: 0.5rem 0;
+                }
             }
 
             @media (max-width: 480px) {
@@ -253,6 +447,26 @@
 
                 .contact-form-body {
                     padding: 1rem;
+                }
+
+                /* Calendar extra small screen optimizations */
+                .calendar-popup {
+                    padding: 1.25rem;
+                    max-width: 340px;
+                }
+                
+                .calendar-popup .calendar-day {
+                    width: 36px;
+                    height: 36px;
+                    font-size: 13px;
+                }
+                
+                .calendar-popup .calendar-header h3 {
+                    font-size: 16px;
+                }
+                
+                .calendar-popup .calendar-weekdays div {
+                    font-size: 12px;
                 }
             }
         </style>
@@ -387,34 +601,6 @@
                                         <i class="bi bi-calendar"></i>
                                     </button>
                                 </div>
-                                
-                                <!-- Calendar Section -->
-                                <div class="calendar-section" id="calendarSection">
-                                    <div class="calendar-header">
-                                        <button type="button" class="calendar-nav" id="prevMonth">
-                                            <i class="bi bi-chevron-left"></i>
-                                        </button>
-                                        <h3 id="currentMonth">December 2024</h3>
-                                        <button type="button" class="calendar-nav" id="nextMonth">
-                                            <i class="bi bi-chevron-right"></i>
-                                        </button>
-                                    </div>
-                                    <div class="calendar-weekdays">
-                                        <div>Sun</div>
-                                        <div>Mon</div>
-                                        <div>Tue</div>
-                                        <div>Wed</div>
-                                        <div>Thu</div>
-                                        <div>Fri</div>
-                                        <div>Sat</div>
-                                    </div>
-                                    <div class="calendar-days" id="calendarDays">
-                                    </div>
-                                    <div class="calendar-footer">
-                                        <button type="button" class="btn-clear" id="clearDate">Clear</button>
-                                        <button type="button" class="btn-apply" id="applyDate">Apply</button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -433,14 +619,40 @@
             </section>
         </div>
 
+        <!-- Calendar Popup Overlay -->
+        <div class="calendar-overlay" id="calendarOverlay">
+            <div class="calendar-popup" id="calendarSection">
+                <div class="calendar-header">
+                    <button type="button" class="calendar-nav" id="prevMonth">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <h3 id="currentMonth">December 2024</h3>
+                    <button type="button" class="calendar-nav" id="nextMonth">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="calendar-weekdays">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                <div class="calendar-days" id="calendarDays">
+                </div>
+                <div class="calendar-footer">
+                    <button type="button" class="btn-clear" id="clearDate">Clear</button>
+                    <button type="button" class="btn-apply" id="applyDate">Apply</button>
+                </div>
+            </div>
+        </div>
+
         <footer class="footer mt-5 py-4">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <h5 class="sh">Hawk's Nest</h5>
-                        <p>Your premier event venue in Urbana, Maryland</p>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <h5 class="sh">Quick Links</h5>
                         <ul class="list-unstyled">
                             <li><a href="../about/index.html" class="sh1">About Us</a></li>
@@ -449,7 +661,7 @@
                             <li><a href="../contact/index.html" class="sh1">Contact</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <h5 class="sh">Contact Info</h5>
                         <ul class="list-unstyled">
                             <li><p>3471 Campus Drive</p></li>
@@ -614,18 +826,14 @@
                 
                 // Close calendar when clicking outside
                 document.addEventListener('click', (e) => {
-                    const calendar = document.getElementById('calendarSection');
+                    const overlay = document.getElementById('calendarOverlay');
                     const trigger = document.getElementById('calendarTrigger');
                     const dateField = document.getElementById('eventDate');
                     
-                    // Check if click is outside calendar, trigger, and date field
-                    if (calendar && 
-                        !calendar.contains(e.target) && 
-                        !trigger.contains(e.target) && 
-                        !dateField.contains(e.target)) {
-                        setTimeout(() => {
-                            this.hideCalendar();
-                        }, 10);
+                    // Check if click is on the overlay background (not the calendar popup itself)
+                    if (overlay && 
+                        e.target === overlay) {
+                        this.hideCalendar();
                     }
                 });
             }
@@ -647,20 +855,18 @@
             }
             
             showCalendar() {
-                // Only toggle the .show class, do not set display directly
-                const calendar = document.getElementById('calendarSection');
-                if (calendar) {
-                    calendar.classList.add('show');
+                const overlay = document.getElementById('calendarOverlay');
+                if (overlay) {
+                    overlay.classList.add('show');
                 } else {
-                    console.error('ContactCalendar: Calendar element not found!');
+                    console.error('ContactCalendar: Calendar overlay element not found!');
                 }
             }
             
             hideCalendar() {
-                // Only toggle the .show class, do not set display directly
-                const calendar = document.getElementById('calendarSection');
-                if (calendar) {
-                    calendar.classList.remove('show');
+                const overlay = document.getElementById('calendarOverlay');
+                if (overlay) {
+                    overlay.classList.remove('show');
                 }
             }
             
@@ -787,25 +993,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Contact page: DOM loaded');
             
-            // Ensure the form container has proper positioning for the calendar
-            const venueBookingFields = document.getElementById('venueBookingFields');
-            if (venueBookingFields) {
-                venueBookingFields.style.position = 'relative';
-            }
-
-            // Move calendar outside constraining containers on mobile for proper modal behavior
-            function moveCalendarForMobile() {
-                const calendar = document.getElementById('calendarSection');
-                if (calendar && window.innerWidth <= 768) {
-                    // Move calendar to body to escape all container constraints
-                    document.body.appendChild(calendar);
-                }
-            }
-            
-            // Run on load and resize
-            moveCalendarForMobile();
-            window.addEventListener('resize', moveCalendarForMobile);
-            
             // Function to reset form to initial state
             function resetForm() {
                 const form = document.querySelector('.contact-form');
@@ -832,6 +1019,7 @@
                 }
                 
                 // Hide venue booking fields
+                const venueBookingFields = document.getElementById('venueBookingFields');
                 if (venueBookingFields) {
                     venueBookingFields.style.display = 'none';
                 }

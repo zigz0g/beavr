@@ -5,12 +5,235 @@
         <link href="../style.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
-        <title>Hawk's Nest</title>
+        <title>About Hawk's Nest - Premier Event Venue in Urbana, Maryland</title>
         <link rel="icon" type="image/x-icon" href="../images/hawkico.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;900&family=Lato:ital@1&family=Raleway:wght@200;500;600;700;900&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <style>
+            .about-hero {
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                color: white;
+                padding: 3rem 0 2rem 0;
+                margin-bottom: 2rem;
+                position: relative;
+            }
+
+            .about-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+
+            .about-subtitle {
+                font-size: 1.1rem;
+                opacity: 0.95;
+                max-width: 600px;
+                margin: 0 auto;
+                line-height: 1.5;
+            }
+
+            .mission-section {
+                padding: 2rem 0;
+                background: #f8f9fa;
+                margin-bottom: 2rem;
+            }
+
+            .mission-card {
+                background: white;
+                border-radius: 15px;
+                padding: 2rem;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                text-align: center;
+                border: none;
+            }
+
+            .mission-icon {
+                width: 60px;
+                height: 60px;
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 1rem;
+                color: white;
+                font-size: 1.5rem;
+            }
+
+            .features-section {
+                padding: 2rem 0;
+            }
+
+            .feature-card {
+                background: white;
+                border-radius: 10px;
+                padding: 1.5rem;
+                box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+                transition: all 0.3s ease;
+                height: 100%;
+                border: none;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            }
+
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 0.75rem;
+                color: white !important;
+                font-size: 1.3rem;
+            }
+
+            .feature-icon i {
+                color: white !important;
+            }
+
+            .feature-card h4 {
+                color: #1b1450;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                font-size: 1.1rem;
+            }
+
+            .feature-card p {
+                color: #6c757d;
+                line-height: 1.4;
+                margin-bottom: 0;
+                font-size: 0.9rem;
+            }
+
+            .stats-section {
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                color: white;
+                padding: 2rem 0;
+                margin: 2rem 0;
+            }
+
+            .stat-item {
+                text-align: center;
+                padding: 1rem 0.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 0.25rem;
+                display: block;
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
+                opacity: 0.9;
+                font-weight: 500;
+            }
+
+            .cta-section {
+                background: #f8f9fa;
+                padding: 2rem 0;
+                text-align: center;
+            }
+
+            .cta-button {
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                color: white;
+                padding: 0.75rem 2rem;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+                display: inline-block;
+                margin-top: 1rem;
+            }
+
+            .cta-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(27, 20, 80, 0.3);
+                color: white;
+            }
+
+            .event-card {
+                background: white;
+                border-radius: 10px;
+                padding: 1.5rem;
+                box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+                transition: all 0.3s ease;
+                height: 100%;
+                border: none;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+
+            .event-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            }
+
+            .event-icon {
+                font-size: 2.5rem;
+                color: white;
+                margin-bottom: 0.75rem;
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 0.75rem;
+            }
+
+            .event-card h4 {
+                color: #1b1450;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                font-size: 1.1rem;
+            }
+
+            .event-card p {
+                color: #6c757d;
+                line-height: 1.4;
+                margin-bottom: 0;
+                font-size: 0.9rem;
+            }
+
+            @media (max-width: 768px) {
+                .about-title {
+                    font-size: 2rem;
+                }
+                
+                .about-subtitle {
+                    font-size: 1rem;
+                }
+                
+                .mission-card {
+                    padding: 1.5rem;
+                }
+                
+                .feature-card, .event-card {
+                    padding: 1.25rem;
+                }
+                
+                .stat-number {
+                    font-size: 2rem;
+                }
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-md bg-body-primary shadow-lg sticky-top">
@@ -35,67 +258,190 @@
                 </div>
             </div>
         </nav>
-        <br>
-        
-        <div class="container">
-            <div class="row align-items-center fade-in">
-                <div class="col-lg-6">
-                    <h2 class="sh3 mb-4 slide-in-left">Welcome to the Hawk's Nest</h2>
-                    <p class="normalText slide-in-left delay-1">With the best venue in Urbana, Maryland, The Hawk's Nest is an incredible venue with versatile spaces to create unforgettable experiences.</p>
-                    <h3 class="sh3 mt-4 slide-in-left delay-2">Our Space</h3>
-                    <p class="normalText slide-in-left delay-2">Our thoughtfully designed venue features:</p>
-                    <ul class="feature-list slide-in-left delay-3">
-                        <li class="hover-effect">Spacious main hall with modern amenities</li>
-                        <li class="hover-effect">Outdoor garden area for ceremonies and receptions</li>
-                        <li class="hover-effect">State-of-the-art audio-visual equipment</li>
-                        <li class="hover-effect">Flexible floor plans to accommodate various event sizes</li>
-                        <li class="hover-effect">Full-service catering kitchen</li>
-                    </ul>
-                </div>
-                <div class="col-lg-6">
-                    <img src="../images/urbanagym.jpg" alt="Hawk's Nest Venue Exterior" class="img-fluid rounded shadow-lg mb-4 zoom-in hover-scale">
-                    <p class="text-muted small mb-0">https://x.com/lewisuhs</p>
-                </div>
-            </div>
 
-            <div class="row mt-5">
-                <div class="col-md-4">
-                    <div class="card h-100 shadow hover-lift">
-                        <div class="card-body">
-                            <h4 class="normalText card-title">Sports Events</h4>
-                            <p class="normalText card-text">Host tournaments, competitions, and athletic events in our spacious gymnasium.</p>
-                        </div>
+        <!-- Hero Section -->
+        <section class="about-hero" data-aos="fade-up" data-aos-once="true">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1 class="about-title">Where Memories Come to Life</h1>
+                        <p class="about-subtitle">Urbana's premier event venue for sports, corporate, and community events. Capacity up to 3,500 guests.</p>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100 shadow hover-lift">
-                        <div class="card-body">
-                            <h4 class="normalText card-title">Corporate Events</h4>
-                            <p class="normalText card-text">Host professional meetings, conferences, and events with our flexible spaces.</p>
+                
+                <!-- Stats integrated into hero -->
+                <div class="row mt-4">
+                    <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="100" data-aos-once="true">
+                        <div class="stat-item">
+                            <span class="stat-number">3,500</span>
+                            <div class="stat-label">Capacity</div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100 shadow hover-lift">
-                        <div class="card-body">
-                            <h4 class="normalText card-title">Community Events</h4>
-                            <p class="normalText card-text">From fundraisers to local gatherings, our space accommodates anything you need.</p>
+                    <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
+                        <div class="stat-item">
+                            <span class="stat-number">200</span>
+                            <div class="stat-label">Parking</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300" data-aos-once="true">
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <div class="stat-label">Support</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="400" data-aos-once="true">
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <div class="stat-label">Satisfaction</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <br>
+        <!-- Mission Section -->
+        <section class="mission-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="mission-card" data-aos="fade-up" data-aos-once="true">
+                            <div class="mission-icon">
+                                <i class="bi bi-heart-fill"></i>
+                            </div>
+                            <h2 class="sh3 mb-2">Our Mission</h2>
+                            <p class="normalText">Transform your event vision into reality with our versatile venue and professional support team.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left" data-aos-once="true">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Modern event venue interior" class="img-fluid rounded shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="row text-center mb-3">
+                    <div class="col-lg-6 mx-auto">
+                        <h2 class="sh3 mb-2" data-aos="fade-up" data-aos-once="true">Why Choose Hawk's Nest?</h2>
+                    </div>
+                </div>
+                
+                <div class="row g-3">
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100" data-aos-once="true">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <h4>3,500 Capacity</h4>
+                            <p>Flexible floor plans for any event size.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-gear-wide-connected"></i>
+                            </div>
+                            <h4>Modern Tech</h4>
+                            <p>Professional AV systems and lighting.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300" data-aos-once="true">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-cup-hot"></i>
+                            </div>
+                            <h4>Full Service</h4>
+                            <p>Catering kitchen and support services.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400" data-aos-once="true">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <h4>Prime Location</h4>
+                            <p>Easy access with 200 parking spaces.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500" data-aos-once="true">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <h4>Expert Support</h4>
+                            <p>Professional event planning assistance.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600" data-aos-once="true">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-calendar-check"></i>
+                            </div>
+                            <h4>Flexible Booking</h4>
+                            <p>Year-round availability and packages.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Types Section -->
+        <section class="container mb-4">
+            <div class="row text-center mb-3">
+                <div class="col-lg-6 mx-auto">
+                    <h2 class="sh3 mb-2" data-aos="fade-up" data-aos-once="true">Perfect for Every Event</h2>
+                </div>
+            </div>
+            
+            <div class="row g-3">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-once="true">
+                    <div class="event-card">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Basketball court" class="img-fluid rounded mb-3" style="height: 150px; object-fit: cover; width: 100%;">
+                        <i class="bi bi-trophy event-icon"></i>
+                        <h4 class="sh3">Athletic Events</h4>
+                        <p class="normalText">Championship games, tournaments, and sports competitions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
+                    <div class="event-card">
+                        <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Conference room" class="img-fluid rounded mb-3" style="height: 150px; object-fit: cover; width: 100%;">
+                        <i class="bi bi-building event-icon"></i>
+                        <h4 class="sh3">Corporate Functions</h4>
+                        <p class="normalText">Meetings, conferences, and professional events.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-once="true">
+                    <div class="event-card">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Community event" class="img-fluid rounded mb-3" style="height: 150px; object-fit: cover; width: 100%;">
+                        <i class="bi bi-people-fill event-icon"></i>
+                        <h4 class="sh3">Community Events</h4>
+                        <p class="normalText">Fundraisers, graduations, and local gatherings.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <h2 class="sh3 mb-2" data-aos="fade-up" data-aos-once="true">Ready to Get Started?</h2>
+                        <p class="normalText mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-once="true">Let's make your event extraordinary.</p>
+                        <a href="../contact/index.html" class="cta-button" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
+                            <i class="bi bi-arrow-right me-2"></i>Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
         
-        <footer class="footer mt-5 py-4">
+        <footer class="footer mt-4 py-3">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <h5 class="sh">Hawk's Nest</h5>
-                        <p>Your premier event venue in Urbana, Maryland</p>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <h5 class="sh">Quick Links</h5>
                         <ul class="list-unstyled">
                             <li><a href="../about/index.html" class="sh1">About Us</a></li>
@@ -104,7 +450,7 @@
                             <li><a href="../contact/index.html" class="sh1">Contact</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <h5 class="sh">Contact Info</h5>
                         <ul class="list-unstyled">
                             <li><p>3471 Campus Drive</p></li>
@@ -116,5 +462,17 @@
                 </div>
             </div>
         </footer>
+
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                offset: 120,
+                duration: 600,
+                easing: 'ease-in-out',
+                delay: 0,
+                once: true,
+                mirror: false
+            });
+        </script>
     </body>
 </html>

@@ -327,17 +327,62 @@ p {
 
   .footer {
     background-color: #1b1450;
-    color: white;
+    color: #ededed;
   }
 
   .footer a {
-    color: white;
+    color: #ededed;
     text-decoration: none;
-    transition: opacity 0.3s ease;
+    transition: color 0.3s ease;
   }
 
   .footer a:hover {
-    opacity: 0.8;
+    color: #ededed75;
+  }
+
+  /* Footer improvements */
+  .footer h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #ededed;
+  }
+
+  .footer .list-unstyled li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer .list-unstyled a {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ededed;
+    transition: color 0.3s ease;
+  }
+
+  .footer .list-unstyled a:hover {
+    color: #ededed75;
+  }
+
+  .footer .list-unstyled p {
+    font-size: 0.95rem;
+    color: #ededed;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Mobile footer adjustments */
+  @media (max-width: 768px) {
+    .footer h5 {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .footer .list-unstyled a {
+        font-size: 1rem;
+    }
+    
+    .footer .list-unstyled p {
+        font-size: 0.9rem;
+    }
   }
 
   .fade-in {
@@ -1217,4 +1262,280 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   color: #fff !important;
   font-weight: 600;
   transform: translateY(-1px);
+}
+
+/* Hide desktop calendar on mobile */
+@media (max-width: 768px) {
+  .calendar-section {
+    display: none !important;
+  }
+  
+  /* Additional mobile optimizations */
+  .mobile-calendar-popup {
+    padding: 1rem;
+    max-width: 320px;
+    width: 98%;
+  }
+  
+  .mobile-calendar-popup .calendar-day {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+  
+  .mobile-calendar-popup .calendar-header h3 {
+    font-size: 16px;
+  }
+  
+  .mobile-calendar-popup .calendar-weekdays div {
+    font-size: 12px;
+    padding: 0.25rem 0;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 375px) {
+  .mobile-calendar-popup {
+    padding: 0.75rem;
+    max-width: 300px;
+  }
+  
+  .mobile-calendar-popup .calendar-day {
+    width: 30px;
+    height: 30px;
+    font-size: 11px;
+  }
+  
+  .mobile-calendar-popup .calendar-header h3 {
+    font-size: 14px;
+  }
+  
+  .mobile-calendar-popup .calendar-weekdays div {
+    font-size: 11px;
+  }
+}
+
+/* Mobile Calendar Popup Overlay - Only visible on mobile */
+.mobile-calendar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-calendar-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-calendar-popup {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  max-width: 400px;
+  width: 95%;
+  transform: scale(0.8) translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-calendar-overlay.show .mobile-calendar-popup {
+  transform: scale(1) translateY(0);
+}
+
+.mobile-calendar-popup .calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 1.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 1rem;
+}
+
+.mobile-calendar-popup .calendar-header h3 {
+  font-family: "Host Grotesk", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1b1450;
+  margin: 0;
+}
+
+.mobile-calendar-popup .calendar-nav {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #69747C;
+}
+
+.mobile-calendar-popup .calendar-nav:hover {
+  background-color: rgba(27, 20, 80, 0.1);
+  color: #1b1450;
+}
+
+.mobile-calendar-popup .calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 1rem 0 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-calendar-popup .calendar-weekdays div {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #69747C;
+  padding: 0.5rem 0;
+}
+
+.mobile-calendar-popup .calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0.5rem 0 1rem 0;
+  gap: 2px;
+}
+
+.mobile-calendar-popup .calendar-day {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  color: #1b1450;
+  transition: all 0.2s ease;
+  margin: 0 auto;
+}
+
+.mobile-calendar-popup .calendar-day:hover:not(.disabled) {
+  background-color: rgba(27, 20, 80, 0.1);
+}
+
+.mobile-calendar-popup .calendar-day.selected {
+  background-color: #1b1450;
+  color: white;
+}
+
+.mobile-calendar-popup .calendar-day.today {
+  background-color: rgba(27, 20, 80, 0.1);
+  font-weight: 600;
+}
+
+.mobile-calendar-popup .calendar-day.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.mobile-calendar-popup .calendar-day.other-month {
+  color: #ccc;
+}
+
+.mobile-calendar-popup .calendar-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0 0 0;
+  border-top: 1px solid #f0f0f0;
+  gap: 1rem;
+}
+
+.mobile-calendar-popup .btn-clear, .mobile-calendar-popup .btn-apply {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+}
+
+.mobile-calendar-popup .btn-clear {
+  background-color: #f8f9fa;
+  color: #69747C;
+}
+
+.mobile-calendar-popup .btn-clear:hover {
+  background-color: #e9ecef;
+}
+
+.mobile-calendar-popup .btn-apply {
+  background-color: #1b1450;
+  color: white;
+}
+
+.mobile-calendar-popup .btn-apply:hover {
+  background-color: #2a1f7a;
+}
+
+/* Hide mobile calendar on desktop */
+@media (min-width: 769px) {
+  .mobile-calendar-overlay {
+    display: none !important;
+  }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 768px) {
+  .mobile-calendar-popup {
+    padding: 1.5rem;
+    max-width: 380px;
+    width: 98%;
+  }
+  
+  .mobile-calendar-popup .calendar-day {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+  
+  .mobile-calendar-popup .calendar-header h3 {
+    font-size: 18px;
+  }
+  
+  .mobile-calendar-popup .calendar-weekdays div {
+    font-size: 13px;
+    padding: 0.5rem 0;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 375px) {
+  .mobile-calendar-popup {
+    padding: 1.25rem;
+    max-width: 340px;
+  }
+  
+  .mobile-calendar-popup .calendar-day {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+  
+  .mobile-calendar-popup .calendar-header h3 {
+    font-size: 16px;
+  }
+  
+  .mobile-calendar-popup .calendar-weekdays div {
+    font-size: 12px;
+  }
 }

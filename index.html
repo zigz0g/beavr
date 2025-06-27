@@ -91,6 +91,36 @@
           </div>
         </header>
         
+        <!-- Mobile Calendar Popup Overlay -->
+        <div class="mobile-calendar-overlay" id="mobileCalendarOverlay">
+          <div class="mobile-calendar-popup" id="mobileCalendarSection">
+            <div class="calendar-header">
+              <button class="calendar-nav" id="mobilePrevMonth">
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <h3 id="mobileCurrentMonth">December 2024</h3>
+              <button class="calendar-nav" id="mobileNextMonth">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+            <div class="calendar-weekdays">
+              <div>Sun</div>
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+            </div>
+            <div class="calendar-days" id="mobileCalendarDays">
+            </div>
+            <div class="calendar-footer">
+              <button class="btn-clear" id="mobileClearDate">Clear</button>
+              <button class="btn-apply" id="mobileApplyDate">Apply</button>
+            </div>
+          </div>
+        </div>
+        
         <div class="hero-bottom-left position-absolute">
           <span class="hero-slogan">Your event,<br>our campus.</span>
         </div>
@@ -150,11 +180,7 @@
         <footer class="footer mt-5 py-4">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <h5 class="sh">Hawk's Nest</h5>
-                        <p>Your premier event venue in Urbana, Maryland</p>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <h5 class="sh">Quick Links</h5>
                         <ul class="list-unstyled">
                             <li><a href="./about/index.html" class="sh1">About Us</a></li>
@@ -163,7 +189,7 @@
                             <li><a href="./contact/index.html" class="sh1">Contact</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <h5 class="sh">Contact Info</h5>
                         <ul class="list-unstyled">
                             <li><p>3471 Campus Drive</p></li>
@@ -184,6 +210,7 @@
                 this.currentDate = new Date();
                 this.selectedDate = null;
                 this.currentMonth = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
+                this.isMobile = window.innerWidth <= 768;
                 
                 this.init();
             }
@@ -192,6 +219,7 @@
                 console.log('Calendar init called');
                 this.bindEvents();
                 this.renderCalendar();
+                this.renderMobileCalendar();
             }
             
             bindEvents() {
@@ -200,6 +228,12 @@
                 const nextBtn = document.getElementById('nextMonth');
                 const clearBtn = document.getElementById('clearDate');
                 const applyBtn = document.getElementById('applyDate');
+                
+                // Mobile calendar elements
+                const mobilePrevBtn = document.getElementById('mobilePrevMonth');
+                const mobileNextBtn = document.getElementById('mobileNextMonth');
+                const mobileClearBtn = document.getElementById('mobileClearDate');
+                const mobileApplyBtn = document.getElementById('mobileApplyDate');
                 
                 console.log('When field found:', whenField);
                 console.log('Calendar popup found:', document.getElementById('calendarSection'));
@@ -213,6 +247,7 @@
                     });
                 }
                 
+                // Desktop calendar buttons
                 if (prevBtn) {
                     prevBtn.addEventListener('click', (e) => {
                         console.log('Prev month clicked');
@@ -245,60 +280,114 @@
                     });
                 }
                 
-                // Close calendar when clicking outside - with delay to prevent immediate closing
+                // Mobile calendar buttons
+                if (mobilePrevBtn) {
+                    mobilePrevBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.previousMonth();
+                    });
+                }
+                
+                if (mobileNextBtn) {
+                    mobileNextBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.nextMonth();
+                    });
+                }
+                
+                if (mobileClearBtn) {
+                    mobileClearBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.clearDate();
+                    });
+                }
+                
+                if (mobileApplyBtn) {
+                    mobileApplyBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.applyDate();
+                    });
+                }
+                
+                // Close calendar when clicking outside
                 document.addEventListener('click', (e) => {
-                    const calendar = document.getElementById('calendarSection');
-                    const trigger = document.getElementById('when');
-                    
-                    if (calendar && trigger && !calendar.contains(e.target) && !trigger.contains(e.target)) {
-                        // Add a small delay to prevent immediate closing
-                        setTimeout(() => {
+                    if (this.isMobile) {
+                        const mobileOverlay = document.getElementById('mobileCalendarOverlay');
+                        if (mobileOverlay && e.target === mobileOverlay) {
                             this.hideCalendar();
-                        }, 10);
+                        }
+                    } else {
+                        const calendar = document.getElementById('calendarSection');
+                        const trigger = document.getElementById('when');
+                        
+                        if (calendar && trigger && !calendar.contains(e.target) && !trigger.contains(e.target)) {
+                            setTimeout(() => {
+                                this.hideCalendar();
+                            }, 10);
+                        }
                     }
                 });
             }
             
             toggleCalendar() {
                 console.log('Toggle calendar called');
-                const calendar = document.getElementById('calendarSection');
-                console.log('Calendar element:', calendar);
-                console.log('Calendar classes:', calendar ? calendar.className : 'not found');
-                
-                if (calendar && calendar.classList.contains('show')) {
-                    this.hideCalendar();
+                if (this.isMobile) {
+                    const mobileOverlay = document.getElementById('mobileCalendarOverlay');
+                    if (mobileOverlay && mobileOverlay.classList.contains('show')) {
+                        this.hideCalendar();
+                    } else {
+                        this.showCalendar();
+                    }
                 } else {
-                    this.showCalendar();
+                    const calendar = document.getElementById('calendarSection');
+                    if (calendar && calendar.classList.contains('show')) {
+                        this.hideCalendar();
+                    } else {
+                        this.showCalendar();
+                    }
                 }
             }
             
             showCalendar() {
                 console.log('Show calendar called');
-                const calendar = document.getElementById('calendarSection');
-                if (calendar) {
-                    calendar.classList.add('show');
-                    console.log('Calendar should now be visible');
+                if (this.isMobile) {
+                    const mobileOverlay = document.getElementById('mobileCalendarOverlay');
+                    if (mobileOverlay) {
+                        mobileOverlay.classList.add('show');
+                    }
                 } else {
-                    console.error('Calendar element not found!');
+                    const calendar = document.getElementById('calendarSection');
+                    if (calendar) {
+                        calendar.classList.add('show');
+                    }
                 }
             }
             
             hideCalendar() {
                 console.log('Hide calendar called');
-                const calendar = document.getElementById('calendarSection');
-                if (calendar) {
-                    calendar.classList.remove('show');
+                if (this.isMobile) {
+                    const mobileOverlay = document.getElementById('mobileCalendarOverlay');
+                    if (mobileOverlay) {
+                        mobileOverlay.classList.remove('show');
+                    }
+                } else {
+                    const calendar = document.getElementById('calendarSection');
+                    if (calendar) {
+                        calendar.classList.remove('show');
+                    }
                 }
             }
             
             previousMonth() {
                 this.currentMonth.setMonth(this.currentMonth.getMonth() - 1);
                 this.renderCalendar();
+                this.renderMobileCalendar();
             }
             
             nextMonth() {
                 this.currentMonth.setMonth(this.currentMonth.getMonth() + 1);
                 this.renderCalendar();
+                this.renderMobileCalendar();
             }
             
             renderCalendar() {
@@ -359,6 +448,62 @@
                 }
             }
             
+            renderMobileCalendar() {
+                const monthNames = [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ];
+                
+                const mobileMonthElement = document.getElementById('mobileCurrentMonth');
+                if (mobileMonthElement) {
+                    mobileMonthElement.textContent = 
+                        `${monthNames[this.currentMonth.getMonth()]} ${this.currentMonth.getFullYear()}`;
+                }
+                
+                const mobileDaysContainer = document.getElementById('mobileCalendarDays');
+                if (!mobileDaysContainer) {
+                    return;
+                }
+                
+                mobileDaysContainer.innerHTML = '';
+                
+                const firstDay = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth(), 1);
+                const lastDay = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth() + 1, 0);
+                const startDate = new Date(firstDay);
+                startDate.setDate(startDate.getDate() - firstDay.getDay());
+                
+                for (let i = 0; i < 42; i++) {
+                    const date = new Date(startDate);
+                    date.setDate(startDate.getDate() + i);
+                    
+                    const dayButton = document.createElement('button');
+                    dayButton.className = 'calendar-day';
+                    dayButton.textContent = date.getDate();
+                    
+                    if (this.isToday(date)) {
+                        dayButton.classList.add('today');
+                    }
+                    
+                    if (this.selectedDate && this.isSameDate(date, this.selectedDate)) {
+                        dayButton.classList.add('selected');
+                    }
+                    
+                    if (date.getMonth() !== this.currentMonth.getMonth()) {
+                        dayButton.classList.add('other-month');
+                    }
+                    
+                    if (date < new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate())) {
+                        dayButton.classList.add('disabled');
+                    } else {
+                        dayButton.addEventListener('click', () => {
+                            this.selectDate(date);
+                        });
+                    }
+                    
+                    mobileDaysContainer.appendChild(dayButton);
+                }
+            }
+            
             selectDate(date) {
                 this.selectedDate = date;
                 const formattedDate = this.formatDate(date);
@@ -367,6 +512,7 @@
                     whenField.value = formattedDate;
                 }
                 this.renderCalendar();
+                this.renderMobileCalendar();
                 this.hideCalendar();
             }
             
