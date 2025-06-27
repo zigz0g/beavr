@@ -233,6 +233,7 @@ p {
     font-weight: 500;
     font-size: 1.1rem;
     transition: all 0.3s ease;
+    color: #fff;
   }
 
   .contact-submit-btn:hover {
@@ -866,22 +867,28 @@ p {
     font-size: 16px;
   }
   
-  /* Mobile slogan scaling */
+  /* Mobile slogan - centered in black bar */
   .hero-slogan {
     font-size: 1.8rem !important;
     line-height: 1.2;
     font-weight: 900;
+    text-align: center;
   }
   
   .hero-bottom-left {
-    left: 1.5vw;
-    bottom: 3vh;
-    max-width: 45vw;
+    left: 5vw;
+    right: 5vw;
+    bottom: 50%;
+    transform: translateY(50%);
+    max-width: none;
+    z-index: 6;
+    text-align: center;
   }
   
   .hero-bottom-right {
     right: 1.5vw;
-    bottom: 3vh;
+    bottom: 1vh;
+    z-index: 6;
   }
   
   .hero-label {
@@ -927,21 +934,28 @@ p {
     font-size: 1.1rem;
   }
   
-  /* Extra small mobile slogan */
+  /* Extra small mobile slogan - centered in black bar */
   .hero-slogan {
     font-size: 1.5rem !important;
     line-height: 1.1;
+    font-weight: 900;
+    text-align: center;
   }
   
   .hero-bottom-left {
-    left: 1vw;
-    bottom: 2vh;
-    max-width: 50vw;
+    left: 3vw;
+    right: 3vw;
+    bottom: 50%;
+    transform: translateY(50%);
+    max-width: none;
+    z-index: 6;
+    text-align: center;
   }
   
   .hero-bottom-right {
     right: 1vw;
-    bottom: 2vh;
+    bottom: 0.5vh;
+    z-index: 6;
   }
   
   .hero-label {
@@ -1128,14 +1142,6 @@ p {
 .hero-bottom-left, .hero-bottom-right {
   position: absolute;
 }
-/* Responsive */
-@media (max-width: 768px) {
-  .hero-slogan { font-size: 1.5rem; }
-  .hero-label { font-size: 0.85rem; }
-  .search-container { padding: 1.2rem 1rem; }
-}
-/* Remove old hero image styles if present */
-.headimg { display: none !important; }
 
 body.home .navbar-hero {
   background: #1b1450 !important;

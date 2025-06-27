@@ -9,9 +9,253 @@
         <link rel="icon" type="image/x-icon" href="../images/hawkico.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300&family=Lato:ital@1&family=Raleway:wght@200&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;900&family=Lato:ital@1&family=Raleway:wght@200;500;600;700;900&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <style>
+            body {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .content-wrapper {
+                flex: 1;
+            }
+
+            .footer {
+                margin-top: auto;
+            }
+
+            /* Contact Page Hero Section */
+            .contact-hero {
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                color: white;
+                padding: 4rem 0;
+                margin-bottom: 3rem;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .contact-hero::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+                opacity: 0.3;
+            }
+
+            .contact-title {
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                position: relative;
+                z-index: 2;
+            }
+
+            .contact-subtitle {
+                font-size: 1.2rem;
+                opacity: 0.9;
+                max-width: 600px;
+                margin: 0 auto;
+                position: relative;
+                z-index: 2;
+            }
+
+            /* Contact Info Cards */
+            .contact-info-section {
+                margin-bottom: 3rem;
+            }
+
+            .contact-info-card {
+                background: white;
+                border-radius: 15px;
+                padding: 2rem;
+                text-align: center;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+                transition: all 0.3s ease;
+                height: 100%;
+                border: none;
+            }
+
+            .contact-info-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            }
+
+            .contact-info-icon {
+                width: 60px;
+                height: 60px;
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 1rem;
+                color: white;
+                font-size: 1.5rem;
+            }
+
+            .contact-info-card h4 {
+                color: #1b1450;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            .contact-info-card p {
+                color: #585858;
+                margin-bottom: 0;
+            }
+
+            /* Contact Form Styling */
+            .contact-form-section {
+                background: white;
+                border-radius: 20px;
+                box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+                overflow: hidden;
+                margin-bottom: 3rem;
+            }
+
+            .contact-form-header {
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                color: white;
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .contact-form-header h3 {
+                font-size: 2rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            .contact-form-header p {
+                opacity: 0.9;
+                margin-bottom: 0;
+            }
+
+            .contact-form-body {
+                padding: 2rem;
+            }
+
+            .form-floating {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-control, .form-select {
+                border: 2px solid #e9ecef;
+                border-radius: 10px;
+                padding: 1rem 0.75rem;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+            }
+
+            .form-control:focus, .form-select:focus {
+                border-color: #1b1450;
+                box-shadow: 0 0 0 0.25rem rgba(27, 20, 80, 0.25);
+            }
+
+            .form-floating label {
+                color: #6c757d;
+                font-weight: 500;
+            }
+
+            .contact-submit-btn {
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                border: none;
+                padding: 1rem 3rem;
+                border-radius: 50px;
+                font-weight: 600;
+                font-size: 1.1rem;
+                transition: all 0.3s ease;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .contact-submit-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(27, 20, 80, 0.3);
+                background: linear-gradient(135deg, #2a1f7a 0%, #1b1450 100%);
+            }
+
+            /* Calendar Button Styling */
+            .calendar-trigger {
+                background: none;
+                border: none;
+                color: #1b1450;
+                font-size: 1.2rem;
+                transition: color 0.3s ease;
+            }
+
+            .calendar-trigger:hover {
+                color: #2a1f7a;
+            }
+
+            /* Mobile Responsive */
+            @media (max-width: 768px) {
+                .contact-hero {
+                    padding: 2rem 0;
+                    margin-bottom: 2rem;
+                }
+
+                .contact-title {
+                    font-size: 2rem;
+                }
+
+                .contact-subtitle {
+                    font-size: 1rem;
+                }
+
+                .contact-info-card {
+                    padding: 1.5rem;
+                    margin-bottom: 1rem;
+                }
+
+                .contact-form-header {
+                    padding: 1.5rem;
+                }
+
+                .contact-form-header h3 {
+                    font-size: 1.5rem;
+                }
+
+                .contact-form-body {
+                    padding: 1.5rem;
+                }
+
+                .contact-submit-btn {
+                    padding: 0.8rem 2rem;
+                    font-size: 1rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .contact-title {
+                    font-size: 1.8rem;
+                }
+
+                .contact-info-card {
+                    padding: 1rem;
+                }
+
+                .contact-form-header {
+                    padding: 1rem;
+                }
+
+                .contact-form-header h3 {
+                    font-size: 1.3rem;
+                }
+
+                .contact-form-body {
+                    padding: 1rem;
+                }
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-md bg-body-primary shadow-lg sticky-top">
@@ -23,171 +267,171 @@
                     <span class="mobile-text">Nest</span>
                   </h1>
                 </a>
-
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavBar" aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
-                </button>            
-
-                <div class="collapse navbar-collapse justify-content-end me-5" id="mainNavBar">
-                  <ul class="navbar-nav">
-                    <li class="nav-item">
-                      <a class="nav-link sh1 mx-1" href="../about/">About</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link sh1 mx-1" href="../events/">Events</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link sh1 mx-1 me-5" href="../faq/">FAQ</a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="collapse navbar-collapse me-5 justify-content-end" id="mainNavBar">
-                  <ul class="navbar-nav">
-                    <li class="nav-item">
-                      <a class="nav-link text-nowrap sh1 active2" href="./">Contact Us</a>
-                    </li>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="mainNavBar">
+                  <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="../about/index.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="../events/index.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="../faq/index.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1 active2" href="./index.html">Contact Us</a></li>
                   </ul>
                 </div>
             </div>
         </nav>
-        <br>
-        
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <h1 class="sh3 text-center mb-5">Get in Touch</h1>
-                    
-                    <div class="contact-info mb-1">
-                        <div class="row text-center">
-                            <div class="col-md-4 mb-4">
-                                <div class="contact-item">
-                                    <i class="fas fa-map-marker-alt contact-icon"></i>
-                                    <h3 class="sh4 mt-3">Location</h3>
-                                    <p class="contact-text">3471 Campus Drive Ijamsville,<br>MD 21754</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-4">
-                                <div class="contact-item">
-                                    <i class="fas fa-phone contact-icon"></i>
-                                    <h3 class="sh4 mt-3">Phone</h3>
-                                    <p class="contact-text">+1 227-203-3550</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-4">
-                                <div class="contact-item">
-                                    <i class="fas fa-envelope contact-icon"></i>
-                                    <h3 class="sh4 mt-3">Email</h3>
-                                    <p class="contact-text">info@hawksnest.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="card contact-form-card">
-                        <div class="card-body p-4 p-md-5">
-                            <form class="contact-form">
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control custom-input" id="firstName" placeholder="First Name">
-                                            <label for="firstName" class="contact-label">First Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control custom-input" id="lastName" placeholder="Last Name">
-                                            <label for="lastName" class="contact-label">Last Name</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-4">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control custom-input" id="email" placeholder="Email">
-                                        <label for="email" class="contact-label">Email Address</label>
-                                    </div>
-                                </div>
-
-                                <div class="mb-4">
-                                    <div class="form-floating">
-                                        <select class="form-select custom-input" id="inquiryType">
-                                            <option selected disabled value="">Select an option</option>
-                                            <option value="1">General Inquiry</option>
-                                            <option value="2">Venue Booking</option>
-                                            <option value="3">Event Information</option>
-                                            <option value="4">Feedback</option>
-                                        </select>
-                                        <label for="inquiryType" class="contact-label">Type of Inquiry</label>
-                                    </div>
-                                </div>
-
-                                <!-- Conditional fields for Venue Booking -->
-                                <div id="venueBookingFields" style="display: none;">
-                                    <div class="mb-4">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control custom-input" id="activity" placeholder="What activity are you planning?">
-                                            <label for="activity" class="contact-label">What activity are you planning?</label>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <div class="form-floating position-relative">
-                                            <input type="text" class="form-control custom-input" id="eventDate" placeholder="Select date" readonly>
-                                            <label for="eventDate" class="contact-label">Event Date</label>
-                                            <button type="button" class="btn btn-link position-absolute end-0 top-50 translate-middle-y me-2" id="calendarTrigger">
-                                                <i class="bi bi-calendar"></i>
-                                            </button>
-                                        </div>
-                                        
-                                        <!-- Calendar Section -->
-                                        <div class="calendar-section" id="calendarSection">
-                                            <div class="calendar-header">
-                                                <button class="calendar-nav" id="prevMonth">
-                                                    <i class="bi bi-chevron-left"></i>
-                                                </button>
-                                                <h3 id="currentMonth">December 2024</h3>
-                                                <button class="calendar-nav" id="nextMonth">
-                                                    <i class="bi bi-chevron-right"></i>
-                                                </button>
-                                            </div>
-                                            <div class="calendar-weekdays">
-                                                <div>Sun</div>
-                                                <div>Mon</div>
-                                                <div>Tue</div>
-                                                <div>Wed</div>
-                                                <div>Thu</div>
-                                                <div>Fri</div>
-                                                <div>Sat</div>
-                                            </div>
-                                            <div class="calendar-days" id="calendarDays">
-                                            </div>
-                                            <div class="calendar-footer">
-                                                <button type="button" class="btn-clear" id="clearDate">Clear</button>
-                                                <button type="button" class="btn-apply" id="applyDate">Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-4">
-                                    <div class="form-floating">
-                                        <textarea class="form-control custom-input" id="message" style="height: 150px" placeholder="Message"></textarea>
-                                        <label for="message" class="contact-label">Your Message</label>
-                                    </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary contact-submit-btn">Send Message</button>
-                                </div>
-                            </form>
-                        </div>
+        <!-- Hero Section -->
+        <section class="contact-hero" data-aos="fade-up" data-aos-once="true">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1 class="contact-title">Get in Touch</h1>
+                        <p class="contact-subtitle">Ready to create your perfect event? We're here to help you bring your vision to life. Reach out to us today and let's start planning something amazing.</p>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+        <div class="container">
+            <!-- Contact Info Cards -->
+            <section class="contact-info-section">
+                <div class="row g-4">
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100" data-aos-once="true">
+                        <div class="contact-info-card">
+                            <div class="contact-info-icon">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+                            <h4>Location</h4>
+                            <p>3471 Campus Drive<br>Ijamsville, MD 21754</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
+                        <div class="contact-info-card">
+                            <div class="contact-info-icon">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+                            <h4>Phone</h4>
+                            <p>+1 227-203-3550</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300" data-aos-once="true">
+                        <div class="contact-info-card">
+                            <div class="contact-info-icon">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+                            <h4>Email</h4>
+                            <p>info@hawksnest.com</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Form -->
+            <section class="contact-form-section" id="contact-form" data-aos="fade-up" data-aos-delay="400" data-aos-once="true">
+                <div class="contact-form-header">
+                    <h3>Send Us a Message</h3>
+                    <p>Tell us about your event and we'll get back to you within 24 hours</p>
+                </div>
+                <div class="contact-form-body">
+                    <form class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                                    <label for="firstName">First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                                    <label for="lastName">Last Name</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" placeholder="Email">
+                                <label for="email">Email Address</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="form-floating">
+                                <select class="form-select" id="inquiryType">
+                                    <option selected disabled value="">Select an option</option>
+                                    <option value="1">General Inquiry</option>
+                                    <option value="2">Venue Booking</option>
+                                    <option value="3">Event Information</option>
+                                    <option value="4">Feedback</option>
+                                </select>
+                                <label for="inquiryType">Type of Inquiry</label>
+                            </div>
+                        </div>
+
+                        <!-- Conditional fields for Venue Booking -->
+                        <div id="venueBookingFields" style="display: none;">
+                            <div class="mb-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="activity" placeholder="What activity are you planning?">
+                                    <label for="activity">What activity are you planning?</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="form-floating position-relative">
+                                    <input type="text" class="form-control" id="eventDate" placeholder="Select date" readonly>
+                                    <label for="eventDate">Event Date</label>
+                                    <button type="button" class="btn calendar-trigger position-absolute end-0 top-50 translate-middle-y me-2" id="calendarTrigger">
+                                        <i class="bi bi-calendar"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Calendar Section -->
+                                <div class="calendar-section" id="calendarSection">
+                                    <div class="calendar-header">
+                                        <button type="button" class="calendar-nav" id="prevMonth">
+                                            <i class="bi bi-chevron-left"></i>
+                                        </button>
+                                        <h3 id="currentMonth">December 2024</h3>
+                                        <button type="button" class="calendar-nav" id="nextMonth">
+                                            <i class="bi bi-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                    <div class="calendar-weekdays">
+                                        <div>Sun</div>
+                                        <div>Mon</div>
+                                        <div>Tue</div>
+                                        <div>Wed</div>
+                                        <div>Thu</div>
+                                        <div>Fri</div>
+                                        <div>Sat</div>
+                                    </div>
+                                    <div class="calendar-days" id="calendarDays">
+                                    </div>
+                                    <div class="calendar-footer">
+                                        <button type="button" class="btn-clear" id="clearDate">Clear</button>
+                                        <button type="button" class="btn-apply" id="applyDate">Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="form-floating">
+                                <textarea class="form-control" id="message" style="height: 150px" placeholder="Message"></textarea>
+                                <label for="message">Your Message</label>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn contact-submit-btn">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
 
         <footer class="footer mt-5 py-4">
             <div class="container">
@@ -199,10 +443,10 @@
                     <div class="col-md-4">
                         <h5 class="sh">Quick Links</h5>
                         <ul class="list-unstyled">
-                            <li><a href="../about/" class="sh1">About Us</a></li>
-                            <li><a href="../events/" class="sh1">Events</a></li>
-                            <li><a href="../faq/" class="sh1">FAQ</a></li>
-                            <li><a href="../contact/" class="sh1">Contact</a></li>
+                            <li><a href="../about/index.html" class="sh1">About Us</a></li>
+                            <li><a href="../events/index.html" class="sh1">Events</a></li>
+                            <li><a href="../faq/index.html" class="sh1">FAQ</a></li>
+                            <li><a href="../contact/index.html" class="sh1">Contact</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4">
@@ -217,6 +461,79 @@
                 </div>
             </div>
         </footer>
+
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+        // Initialize AOS
+        AOS.init({
+          offset: 120,
+          duration: 800,
+          easing: 'ease-in-out',
+          delay: 0,
+          once: true,
+          mirror: false
+        });
+
+        // Handle URL parameters and auto-scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const activity = urlParams.get('activity');
+            const date = urlParams.get('date');
+            const inquiry = urlParams.get('inquiry');
+            
+            // If we have parameters from the homepage search, auto-scroll to form
+            if (activity || date || inquiry) {
+                // Wait a bit for the page to fully load
+                setTimeout(() => {
+                    const contactForm = document.getElementById('contact-form');
+                    if (contactForm) {
+                        // Get the form's position relative to the viewport
+                        const formRect = contactForm.getBoundingClientRect();
+                        const navbarHeight = document.querySelector('.navbar-hero')?.offsetHeight || 80;
+                        
+                        // Calculate the absolute position of the form
+                        const formTop = window.pageYOffset + formRect.top;
+                        
+                        // Scroll to position the form at the top of the viewport with some padding
+                        const scrollPosition = formTop - navbarHeight - 100;
+                        
+                        // Smooth scroll to the form
+                        window.scrollTo({
+                            top: scrollPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 1000); // Increased delay to ensure everything is loaded
+            }
+            
+            // Pre-fill form fields if parameters exist
+            if (activity) {
+                const activityField = document.getElementById('activity');
+                if (activityField) {
+                    activityField.value = activity;
+                }
+            }
+            
+            if (date) {
+                const dateField = document.getElementById('eventDate');
+                if (dateField) {
+                    dateField.value = date;
+                }
+            }
+            
+            if (inquiry === 'venue-booking') {
+                const inquirySelect = document.getElementById('inquiryType');
+                if (inquirySelect) {
+                    inquirySelect.value = '2'; // Venue Booking option
+                    // Show venue booking fields
+                    const venueFields = document.getElementById('venueBookingFields');
+                    if (venueFields) {
+                        venueFields.style.display = 'block';
+                    }
+                }
+            }
+        });
+        </script>
 
         <script>
         // Calendar functionality for contact page
@@ -621,6 +938,44 @@
                     
                     requestAnimationFrame(animation);
                 }, 500); // Small delay to ensure the fields are visible
+            }
+
+            // Handle form submission
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const firstName = document.getElementById('firstName').value;
+                    const lastName = document.getElementById('lastName').value;
+                    const email = document.getElementById('email').value;
+                    const inquiryType = document.getElementById('inquiryType').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // Basic validation
+                    if (!firstName || !lastName || !email || !inquiryType || !message) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    // Show success message
+                    alert('Thank you for your message! We will get back to you within 24 hours.');
+                    
+                    // Reset the form
+                    contactForm.reset();
+                    
+                    // Reset venue booking fields if they were shown
+                    if (venueBookingFields) {
+                        venueBookingFields.style.display = 'none';
+                    }
+                    
+                    // Reset inquiry type
+                    const inquiryTypeSelect = document.getElementById('inquiryType');
+                    if (inquiryTypeSelect) {
+                        inquiryTypeSelect.value = '';
+                    }
+                });
             }
         });
         </script>

@@ -2,18 +2,208 @@
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link href="../style.css" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="utf-8">
-        <title>Hawk's Nest</title>
-        <link rel="icon" type="image/x-icon" href="../images/hawkico.png">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300&family=Lato:ital@1&family=Raleway:wght@200&display=swap" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="../style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Event Details - Hawk's Nest</title>
+    <link rel="icon" type="image/x-icon" href="../images/hawkico.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;900&family=Lato:ital@1&family=Raleway:wght@200;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding-top: 0;
+            min-height: calc(100vh - 200px);
+        }
+
+        .event-hero {
+            background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+            color: white;
+            padding: 5rem 0 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .event-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-hero .event-meta {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .event-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .event-image {
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            height: 100%;
+            border: none;
+        }
+
+        .info-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1b1450;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-title i {
+            margin-right: 0.5rem;
+            color: #2a1f7a;
+        }
+
+        .info-content {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        .price-badge {
+            background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(27, 20, 80, 0.3);
+            color: white;
+        }
+
+        .back-button {
+            background: #6c757d;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #5a6268;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .back-button i {
+            margin-right: 0.5rem;
+        }
+
+        .image-source {
+            font-size: 0.8rem;
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .event-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .event-image {
+                height: 250px;
+            }
+            
+            .info-card {
+                padding: 1.5rem;
+            }
+            
+            .cta-section {
+                padding: 1.5rem;
+            }
+            
+            .main-content {
+                padding-top: 60px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .event-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .event-image {
+                height: 200px;
+            }
+            
+            .info-card {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md bg-body-primary shadow-lg sticky-top">
+    <nav class="navbar navbar-expand-md navbar-hero bg-transparent shadow-lg fixed-top transition-navbar">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="../">
               <img src="../images/hawkico.png" width="50" height="50" class="d-inline-block align-text-top me-2">
@@ -22,142 +212,40 @@
                 <span class="mobile-text">Nest</span>
               </h1>
             </a>
-
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavBar" aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
-            </button>            
-
-            <div class="collapse navbar-collapse justify-content-end me-5" id="mainNavBar">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link sh1 mx-1" href="../about/">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link sh1 mx-1 active2" href="../events/">Events</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link sh1 mx-1 me-5" href="../faq/">FAQ</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="collapse navbar-collapse me-5 justify-content-end" id="mainNavBar">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link text-nowrap sh1" href="../contact/">Contact Us</a>
-                </li>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="mainNavBar">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../about/index.html">About</a></li>
+                <li class="nav-item"><a class="nav-link sh1 mx-1 active2" href="../events/index.html">Events</a></li>
+                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../faq/index.html">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="../contact/index.html">Contact Us</a></li>
               </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-5" id="event-details">
-        <!-- DAVID THIS IS WHERE THE EVENT CARDS WILL BE INSERTED YOU DUMBASS -->
-    </div>
-
-
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const eventId = urlParams.get('id');
-
-        const response = await fetch('data/events.json');
-        const data = await response.json();
-        const event = data.events.find(e => e.id === eventId);
-
-        if (event) {
-            const detailsContainer = document.getElementById('event-details');
-            detailsContainer.innerHTML = `
-                <h1 class="sh3 mb-4">${event.title}</h1>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="image-container d-flex justify-content-center align-items-center shadow-lg rounded-4" style="max-height: 400px; overflow: hidden;">
-                            <img src="${event.image}" class="img-fluid rounded-4" style="max-height: 400px; width: 100%; object-fit: cover;" alt="${event.title}">
-                        </div>
-                        <p class="text-muted small mt-2 fst-italic">${event.imageSource}</p>
-                        <div class="mt-3">
-                            <a href="purchase/?id=${eventId}" class="btn btn-primary w-100 py-3 fw-bold fs-4">Purchase Tickets</a>
-                        </div>
-                    </div> 
-                    <div class="col-md-6">
-                        <div class="card mb-4 shadow border-0 rounded-4">
-                            <div class="card-body">
-                                <h3 class="card-title sh2 text-dark mb-4">Event Details</h3>
-                                <div class="p-3 bg-light rounded-3 mb-3">
-                                    <p class="normalText mb-2"><strong>Date:</strong> ${event.date}</p>
-                                    <p class="normalText mb-2"><strong>Time:</strong> ${event.time}</p>
-                                    <p class="normalText mb-0"><strong>Location:</strong> ${event.location}</p>
-                                </div>
-                                <p class="mt-4 normalText">${event.fullDescription}</p>
-                            </div>
-                        </div>
-                        <div class="card mb-4 shadow border-0 rounded-4">
-                            <div class="card-body">
-                                <h3 class="card-title sh2 text-dark mb-4">Additional Information</h3>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="p-3 bg-light rounded-3 mb-3">
-                                            <p class="normalText mb-0"><strong>Ticket Price:</strong><br>$${event.studentPrice} students${event.adultPrice >= 0 ? `, $${event.adultPrice} adults` : ''}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="p-3 bg-light rounded-3 mb-3">
-                                            <p class="normalText mb-0"><strong>Age Restriction:</strong><br>${event.ageRestriction}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="p-3 bg-light rounded-3 mb-3">
-                                    <p class="normalText mb-0"><strong>Food & Beverage:</strong><br>${event.foodAndBeverage}</p>
-                                </div>
-                                <div class="d-flex">
-                                    <div class="p-3 bg-light rounded-3 flex-grow-1 me-3">
-                                        <p class="normalText mb-0"><strong>Dress Code:</strong><br>${event.dressCode}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- after this div goes payment if needed to revert -->
-                    </div>
+    <div class="main-content">
+        <div class="event-hero">
+            <div class="container">
+                <a href="../events/index.html" class="back-button" data-aos="fade-right" data-aos-once="true">
+                    <i class="bi bi-arrow-left"></i> Back to Events
+                </a>
+                <div id="event-hero-content">
+                    <!-- Event hero content will be loaded here -->
                 </div>
-            `;
+            </div>
+        </div>
 
-
-            const form = document.getElementById('ticketForm');
-            const totalPriceDiv = document.getElementById('totalPrice');
-            
-            const updateTotal = () => {
-                const studentQty = parseInt(document.getElementById('studentTickets').value) || 0;
-                const adultQty = parseInt(document.getElementById('adultTickets')?.value) || 0;
-                
-                const studentTotal = studentQty * event.studentPrice;
-                const adultTotal = adultQty * (event.adultPrice || 0);
-                
-                const total = studentTotal + adultTotal;
-                totalPriceDiv.textContent = `Total: $${total.toFixed(2)}`;
-            };
-
-            document.getElementById('studentTickets').addEventListener('input', updateTotal);
-            if (event.adultPrice >= 0) {
-                document.getElementById('adultTickets').addEventListener('input', updateTotal);
-            }
-            
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                if (!form.checkValidity()) {
-                    e.stopPropagation();
-                    form.classList.add('was-validated');
-                    return;
-                }
-                
-                alert('Thank you for your purchase! Check your email for more details.');
-            });
-        } else {
-            document.getElementById('event-details').innerHTML = '<h2>Event not found</h2>';
-        }
-    });
-    </script>
-
+        <div class="container">
+            <div class="event-container">
+                <div class="row g-4" id="event-details">
+                    <!-- Event details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer mt-5 py-4">
         <div class="container">
@@ -169,10 +257,10 @@
                 <div class="col-md-4">
                     <h5 class="sh">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="../about/" class="sh1">About Us</a></li>
-                        <li><a href="../events/" class="sh1">Events</a></li>
-                        <li><a href="../faq/" class="sh1">FAQ</a></li>
-                        <li><a href="../contact/" class="sh1">Contact</a></li>
+                        <li><a href="../about/index.html" class="sh1">About Us</a></li>
+                        <li><a href="../events/index.html" class="sh1">Events</a></li>
+                        <li><a href="../faq/index.html" class="sh1">FAQ</a></li>
+                        <li><a href="../contact/index.html" class="sh1">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -187,5 +275,161 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            offset: 120,
+            duration: 800,
+            easing: 'ease-in-out',
+            delay: 0,
+            once: true,
+            mirror: false
+        });
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('id');
+
+            try {
+                const response = await fetch('data/events.json');
+                const data = await response.json();
+                const event = data.events.find(e => e.id === eventId);
+
+                if (event) {
+                    // Load hero content
+                    const heroContent = document.getElementById('event-hero-content');
+                    heroContent.innerHTML = `
+                        <div class="row align-items-center">
+                            <div class="col-lg-8">
+                                <h1 data-aos="fade-up" data-aos-once="true">${event.title}</h1>
+                                <div class="event-meta" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
+                                    <i class="bi bi-calendar-event me-2"></i>${new Date(event.date).toLocaleDateString('en-US', { 
+                                        weekday: 'long', 
+                                        year: 'numeric', 
+                                        month: 'long', 
+                                        day: 'numeric' 
+                                    })}
+                                    <i class="bi bi-clock me-2 ms-3"></i>${event.time}
+                                    <i class="bi bi-geo-alt me-2 ms-3"></i>${event.location}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    // Load main content
+                    const detailsContainer = document.getElementById('event-details');
+                    const price = event.studentPrice === 0 ? 'Free' : 
+                                 event.studentPrice === -1 ? 'N/A' : 
+                                 `$${event.studentPrice}`;
+                    
+                    const adultPrice = event.adultPrice >= 0 ? 
+                                     (event.adultPrice === 0 ? 'Free' : `$${event.adultPrice}`) : 
+                                     'N/A';
+
+                    detailsContainer.innerHTML = `
+                        <div class="col-lg-6" data-aos="fade-right" data-aos-once="true">
+                            <div class="event-image">
+                                <img src="${event.image}" alt="${event.title}">
+                            </div>
+                            <div class="image-source">${event.imageSource}</div>
+                        </div>
+                        <div class="col-lg-6" data-aos="fade-left" data-aos-once="true">
+                            <div class="info-card">
+                                <div class="info-section">
+                                    <div class="info-title">
+                                        <i class="bi bi-info-circle"></i>
+                                        About This Event
+                                    </div>
+                                    <div class="info-content">
+                                        ${event.fullDescription}
+                                    </div>
+                                </div>
+
+                                <div class="info-section">
+                                    <div class="info-title">
+                                        <i class="bi bi-ticket-perforated"></i>
+                                        Ticket Information
+                                    </div>
+                                    <div class="price-badge">
+                                        ${price} ${event.adultPrice >= 0 ? `| Adults: ${adultPrice}` : ''}
+                                    </div>
+                                    <div class="info-content">
+                                        <strong>Age Restriction:</strong> ${event.ageRestriction}
+                                    </div>
+                                </div>
+
+                                <div class="info-section">
+                                    <div class="info-title">
+                                        <i class="bi bi-cup-hot"></i>
+                                        Food & Beverage
+                                    </div>
+                                    <div class="info-content">
+                                        ${event.foodAndBeverage}
+                                    </div>
+                                </div>
+
+                                <div class="info-section">
+                                    <div class="info-title">
+                                        <i class="bi bi-person-check"></i>
+                                        Dress Code
+                                    </div>
+                                    <div class="info-content">
+                                        ${event.dressCode}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" data-aos="fade-up" data-aos-delay="300" data-aos-once="true">
+                            <div class="cta-section">
+                                <h3 class="mb-3" style="color: #1b1450;">Ready to Attend?</h3>
+                                <p class="mb-4" style="color: #6c757d;">Secure your spot for this exciting event!</p>
+                                <a href="purchase/index.html?id=${eventId}" class="cta-button">
+                                    <i class="bi bi-ticket-perforated me-2"></i>
+                                    Purchase Tickets
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('event-details').innerHTML = `
+                        <div class="col-12 text-center">
+                            <div class="info-card">
+                                <h2>Event Not Found</h2>
+                                <p>The event you're looking for doesn't exist or has been removed.</p>
+                                <a href="../events/index.html" class="cta-button">Back to Events</a>
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading event:', error);
+                document.getElementById('event-details').innerHTML = `
+                    <div class="col-12 text-center">
+                        <div class="info-card">
+                            <h2>Error Loading Event</h2>
+                            <p>There was an error loading the event details. Please try again later.</p>
+                            <a href="../events/index.html" class="cta-button">Back to Events</a>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+
+        // Navbar scroll effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar-hero');
+            function onScroll() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+            window.addEventListener('scroll', onScroll);
+            onScroll();
+        });
+    </script>
 </body>
 </html> 

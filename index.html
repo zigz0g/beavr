@@ -10,6 +10,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;900&family=Lato:ital@1&family=Raleway:wght@200;500;600;700;900&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </head>
     <body class="home">
@@ -27,10 +28,10 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="mainNavBar">
                   <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="./about/">About</a></li>
-                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="./events/">Events</a></li>
-                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="./faq/">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="./contact/">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="./about/index.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="./events/index.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="./faq/index.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="./contact/index.html">Contact Us</a></li>
                   </ul>
                 </div>
             </div>
@@ -101,56 +102,46 @@
             
             <div class="row g-4 mt-4 mb-5">
                 <div class="col-md-4">
-                    <div class="feature-card card-animate">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100" data-aos-once="true">
                         <i class="bi bi-calendar-event icocolor"></i>
                         <h3 class="sh3 mt-3">Events</h3>
                         <p class="normalText">Perfect for weddings, corporate events, and special celebrations</p>
-                        <a href="./events/" class="btn btn-outline-primary sh4">View Events</a>
+                        <a href="./events/index.html" class="btn btn-outline-primary sh4">View Events</a>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="feature-card card-animate" style="animation-delay: 0.2s;">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
                         <i class="bi bi-building icocolor"></i>
                         <h3 class="sh3 mt-3">The Venue</h3>
                         <p class="normalText">Modern facilities with stunning architecture and flexible spaces, with the ability to fit around 3500 people.</p>
-                        <a href="./about/" class="btn btn-outline-primary sh4">Learn More</a>
+                        <a href="./about/index.html" class="btn btn-outline-primary sh4">Learn More</a>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="feature-card card-animate" style="animation-delay: 0.4s;">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300" data-aos-once="true">
                         <i class="bi bi-chat-dots icocolor"></i>
                         <h3 class="sh3 mt-3">Book Now</h3>
                         <p class="normalText">Ready to create your perfect event? Get in touch with us today</p>
-                        <a href="./contact/" class="btn btn-outline-primary sh4">Contact Us</a>
+                        <a href="./contact/index.html" class="btn btn-outline-primary sh4">Contact Us</a>
                     </div>
                 </div>
             </div>
 
             
             <div class="gallery-preview my-5">
-                <h2 class="sh3 mb-4">Experience the Space</h2>
+                <h2 class="sh3 mb-4" data-aos="fade-up" data-aos-once="true">Experience the Space</h2>
                 <div class="row g-3">
-                    <div class="col-md-4 card-animate" style="animation-delay: 0.2s;">
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100" data-aos-once="true">
                         <img src="images/uhs_gal1.jpeg" class="img-fluid gallery-img" alt="Venue Interior">
                         <p class="text-muted small mb-0">"Girls Basketball 12/14." Ryan Hines Dec 15, 2021, https://urbanahawksathletics.com/photos/girls-basketball-12-14#photo_2884. Accessed 11-20-24</p>
                     </div>
-                    <div class="col-md-4 card-animate" style="animation-delay: 0.4s;">
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200" data-aos-once="true">
                         <img src="images/urbanagym.jpg" class="img-fluid gallery-img" alt="Event Setup">
                         <p class="text-muted small mb-0">https://x.com/lewisuhs</p>
                     </div>
-                    <div class="col-md-4 card-animate" style="animation-delay: 0.6s;">
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300" data-aos-once="true">
                         <img src="images/UHS_head2.jpg" class="img-fluid gallery-img" alt="Venue Interior 2">
                         <p class="text-muted small mb-0">Hines, Ryan. "2018 Signing Day Ceremony." Urbana Hawks Athletics, 9 Feb. 2018, https://urbanahawksathletics.com/photos/2018-signing-day-ceremony. Accessed 20 Nov. 2024</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cta-section my-5 py-5 card-animate" style="animation-delay: 0.4s;">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <h2 class="sh3">Ready to Plan Your Event?</h2>
-                        <p class="st mb-4">Let us help you create an unforgettable experience</p>
-                        <a href="./contact/" class="btn btn-primary btn-lg contact-submit-btn">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -166,10 +157,10 @@
                     <div class="col-md-4">
                         <h5 class="sh">Quick Links</h5>
                         <ul class="list-unstyled">
-                            <li><a href="./about/" class="sh1">About Us</a></li>
-                            <li><a href="./events/" class="sh1">Events</a></li>
-                            <li><a href="./faq/" class="sh1">FAQ</a></li>
-                            <li><a href="./contact/" class="sh1">Contact</a></li>
+                            <li><a href="./about/index.html" class="sh1">About Us</a></li>
+                            <li><a href="./events/index.html" class="sh1">Events</a></li>
+                            <li><a href="./faq/index.html" class="sh1">FAQ</a></li>
+                            <li><a href="./contact/index.html" class="sh1">Contact</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4">
@@ -434,7 +425,7 @@
                     const when = document.getElementById('when').value;
                     
                     // Build URL with parameters
-                    let contactUrl = './contact/';
+                    let contactUrl = './contact/index.html';
                     const params = new URLSearchParams();
                     
                     if (activity && activity.trim() !== '') {
@@ -500,6 +491,18 @@
           }
           window.addEventListener('scroll', onScroll);
           onScroll();
+        });
+        </script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+        // Initialize AOS with custom settings
+        AOS.init({
+          offset: 120,
+          duration: 800,
+          easing: 'ease-in-out',
+          delay: 0,
+          once: false,
+          mirror: true
         });
         </script>
     </body>

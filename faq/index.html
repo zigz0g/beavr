@@ -9,7 +9,8 @@
         <link rel="icon" type="image/x-icon" href="../images/hawkico.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300&family=Lato:ital@1&family=Raleway:wght@200&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;900&family=Lato:ital@1&family=Raleway:wght@200;500;600;700;900&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <style>
             body {
@@ -25,6 +26,162 @@
             .footer {
                 margin-top: auto;
             }
+
+            /* FAQ Page Specific Styles */
+            .faq-hero {
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                color: white;
+                padding: 4rem 0;
+                margin-bottom: 3rem;
+            }
+
+            .faq-title {
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+
+            .faq-subtitle {
+                font-size: 1.2rem;
+                opacity: 0.9;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .accordion-item {
+                border: none !important;
+                border-radius: 15px !important;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+                margin-bottom: 1.5rem !important;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .accordion-item:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 30px rgba(0,0,0,0.12) !important;
+            }
+
+            .accordion-button {
+                background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+                border: none !important;
+                padding: 1.5rem !important;
+                font-weight: 600 !important;
+                font-size: 1.1rem !important;
+                color: #1b1450 !important;
+                transition: all 0.3s ease;
+            }
+
+            .accordion-button:not(.collapsed) {
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%) !important;
+                color: white !important;
+                box-shadow: none !important;
+            }
+
+            .accordion-button:focus {
+                box-shadow: 0 0 0 0.25rem rgba(27, 20, 80, 0.25) !important;
+            }
+
+            .accordion-button::after {
+                background-size: 1.2rem !important;
+                transition: all 0.3s ease;
+            }
+
+            .accordion-body {
+                padding: 1.5rem !important;
+                background: white;
+                font-size: 1rem;
+                line-height: 1.6;
+                color: #585858;
+            }
+
+            .contact-highlight {
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                color: white;
+                padding: 3rem 0;
+                margin: 3rem 0;
+                border-radius: 20px;
+            }
+
+            .contact-highlight h3 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .contact-highlight p {
+                font-size: 1.1rem;
+                opacity: 0.9;
+                margin-bottom: 2rem;
+            }
+
+            .contact-btn {
+                background: white;
+                color: #1b1450;
+                border: none;
+                padding: 1rem 2rem;
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                display: inline-block;
+            }
+
+            .contact-btn:hover {
+                background: #f8f9fa;
+                color: #1b1450;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            /* Mobile Responsive */
+            @media (max-width: 768px) {
+                .faq-hero {
+                    padding: 2rem 0;
+                    margin-bottom: 2rem;
+                }
+
+                .faq-title {
+                    font-size: 2rem;
+                }
+
+                .faq-subtitle {
+                    font-size: 1rem;
+                }
+
+                .accordion-button {
+                    padding: 1rem !important;
+                    font-size: 1rem !important;
+                }
+
+                .accordion-body {
+                    padding: 1rem !important;
+                }
+
+                .contact-highlight {
+                    padding: 2rem 1rem;
+                    margin: 2rem 0;
+                }
+
+                .contact-highlight h3 {
+                    font-size: 1.5rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .faq-title {
+                    font-size: 1.8rem;
+                }
+
+                .accordion-button {
+                    padding: 0.8rem !important;
+                    font-size: 0.95rem !important;
+                }
+
+                .contact-highlight h3 {
+                    font-size: 1.3rem;
+                }
+            }
         </style>
     </head>
     <body>
@@ -37,44 +194,37 @@
                     <span class="mobile-text">Nest</span>
                   </h1>
                 </a>
-
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavBar" aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
-                </button>            
-
-                <div class="collapse navbar-collapse justify-content-end me-5" id="mainNavBar">
-                  <ul class="navbar-nav">
-                    <li class="nav-item">
-                      <a class="nav-link sh1 mx-1" href="../about/">About</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link sh1 mx-1" href="../events/">Events</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link sh1 mx-1 me-5 active2" href="./">FAQ</a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="collapse navbar-collapse me-5 justify-content-end" id="mainNavBar">
-                  <ul class="navbar-nav">
-                    <li class="nav-item">
-                      <a class="nav-link text-nowrap sh1" href="../contact/">Contact Us</a>
-                    </li>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="mainNavBar">
+                  <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="../about/index.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="../events/index.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link sh1 mx-1 active2" href="./index.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="../contact/index.html">Contact Us</a></li>
                   </ul>
                 </div>
             </div>
         </nav>
         <div class="content-wrapper">
-            <br>
+            <!-- Hero Section -->
+            <div class="faq-hero">
+                <div class="container text-center">
+                    <h1 class="faq-title" data-aos="fade-up">Frequently Asked Questions</h1>
+                    <p class="faq-subtitle" data-aos="fade-up" data-aos-delay="100">Find answers to common questions about hosting your event at Hawk's Nest</p>
+                </div>
+            </div>
+
+            <!-- FAQ Content -->
             <div class="container">
-                <h2 class="text-center mb-4 sh3">Frequently Asked Questions</h2>
                 <div class="row g-4">
-                    <div class="col-md-6">
+                    <div class="col-lg-6">
                         <div class="accordion" id="faqAccordion1">
-                            <div class="accordion-item mb-4 border rounded shadow-sm">
+                            <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        <i class="bi bi-people-fill me-2"></i>
                                         What are the venue's seating arrangements?
                                     </button>
                                 </h2>
@@ -84,9 +234,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item mb-4 border rounded shadow-sm">
+                            <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                        <i class="bi bi-gear-fill me-2"></i>
                                         What amenities are included with venue rental?
                                     </button>
                                 </h2>
@@ -96,9 +247,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item mb-4 border rounded shadow-sm">
+                            <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                        <i class="bi bi-p-circle-fill me-2"></i>
                                         Is there on-site parking available?
                                     </button>
                                 </h2>
@@ -111,23 +263,25 @@
                         </div>
                     </div>
                     
-                    <div class="col-md-6">
+                    <div class="col-lg-6">
                         <div class="accordion" id="faqAccordion2">
-                            <div class="accordion-item mb-4 border rounded shadow-sm">
+                            <div class="accordion-item" data-aos="fade-up" data-aos-delay="150">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                        <i class="bi bi-calendar-check-fill me-2"></i>
                                         How do I book the venue?
                                     </button>
                                 </h2>
                                 <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion2">
                                     <div class="accordion-body">
-                                        Contact our events team at (227) 203-3550, email info@hawksnest.com, or fill out our <a href="../contact/" class="sh-link">contact form</a> to check availability and discuss your event needs. A 50% deposit is required to secure your booking.
+                                        Contact our events team at <strong>(227) 203-3550</strong>, email <strong>info@hawksnest.com</strong>, or fill out our <a href="../contact/" class="sh-link">contact form</a> to check availability and discuss your event needs. A 50% deposit is required to secure your booking.
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item mb-4 border rounded shadow-sm">
+                            <div class="accordion-item" data-aos="fade-up" data-aos-delay="250">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                                        <i class="bi bi-x-circle-fill me-2"></i>
                                         What is your cancellation policy?
                                     </button>
                                 </h2>
@@ -137,9 +291,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item mb-4 border rounded shadow-sm">
+                            <div class="accordion-item" data-aos="fade-up" data-aos-delay="350">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
+                                        <i class="bi bi-shop me-2"></i>
                                         Do you have preferred vendors?
                                     </button>
                                 </h2>
@@ -150,6 +305,18 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Contact Highlight Section -->
+                <div class="contact-highlight text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="container">
+                        <h3>Still Have Questions?</h3>
+                        <p>Our friendly events team is here to help you plan the perfect event. Get in touch with us today!</p>
+                        <a href="../contact/" class="contact-btn">
+                            <i class="bi bi-envelope-fill me-2"></i>
+                            Contact Our Team
+                        </a>
                     </div>
                 </div>
             </div>
@@ -170,10 +337,10 @@
                     <div class="col-md-4">
                         <h5 class="sh">Quick Links</h5>
                         <ul class="list-unstyled">
-                            <li><a href="../about/" class="sh1">About Us</a></li>
-                            <li><a href="../events/" class="sh1">Events</a></li>
-                            <li><a href="../faq/" class="sh1">FAQ</a></li>
-                            <li><a href="../contact/" class="sh1">Contact</a></li>
+                            <li><a href="../about/index.html" class="sh1">About Us</a></li>
+                            <li><a href="../events/index.html" class="sh1">Events</a></li>
+                            <li><a href="../faq/index.html" class="sh1">FAQ</a></li>
+                            <li><a href="../contact/index.html" class="sh1">Contact</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4">
@@ -188,5 +355,17 @@
                 </div>
             </div>
         </footer>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+        // Initialize AOS with custom settings
+        AOS.init({
+          offset: 120,
+          duration: 800,
+          easing: 'ease-in-out',
+          delay: 0,
+          once: true,
+          mirror: false
+        });
+        </script>
     </body>
 </html>

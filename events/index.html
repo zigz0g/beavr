@@ -5,15 +5,206 @@
         <link href="../style.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
-        <title>Hawk's Nest</title>
+        <title>Hawk's Nest - Events</title>
         <link rel="icon" type="image/x-icon" href="../images/hawkico.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300&family=Lato:ital@1&family=Raleway:wght@200&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;900&family=Lato:ital@1&family=Raleway:wght@200;500;600;700;900&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <style>
+            body {
+                padding-top: 0;
+            }
+            
+            /* Events Page Specific Styles */
+            .events-hero {
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                color: white;
+                padding: 6rem 0 4rem 0;
+                margin-bottom: 3rem;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .events-hero::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+                opacity: 0.3;
+            }
+
+            .events-title {
+                font-size: 3.5rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                position: relative;
+                z-index: 2;
+            }
+
+            .events-subtitle {
+                font-size: 1.3rem;
+                opacity: 0.9;
+                max-width: 600px;
+                margin: 0 auto;
+                position: relative;
+                z-index: 2;
+            }
+
+            .events-filter {
+                background: white;
+                border-radius: 15px;
+                padding: 2rem;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+                margin-bottom: 3rem;
+            }
+
+            .filter-btn {
+                background: #f8f9fa;
+                border: 2px solid #e9ecef;
+                color: #6c757d;
+                padding: 0.5rem 1.5rem;
+                border-radius: 25px;
+                margin: 0.25rem;
+                transition: all 0.3s ease;
+                font-weight: 500;
+            }
+
+            .filter-btn:hover, .filter-btn.active {
+                background: #1b1450;
+                border-color: #1b1450;
+                color: white;
+                transform: translateY(-2px);
+            }
+
+            .event-card {
+                background: white;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+                cursor: pointer;
+                border: none;
+                height: 100%;
+            }
+
+            .event-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 40px rgba(27, 20, 80, 0.15);
+            }
+
+            .event-image {
+                height: 250px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .event-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            .event-card:hover .event-image img {
+                transform: scale(1.05);
+            }
+
+            .event-date-badge {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: rgba(27, 20, 80, 0.9);
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                backdrop-filter: blur(10px);
+            }
+
+            .event-content {
+                padding: 1.5rem;
+            }
+
+            .event-title {
+                font-size: 1.4rem;
+                font-weight: 600;
+                color: #1b1450;
+                margin-bottom: 0.75rem;
+                line-height: 1.3;
+            }
+
+            .event-description {
+                color: #6c757d;
+                margin-bottom: 1rem;
+                line-height: 1.5;
+            }
+
+            .event-meta {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid #e9ecef;
+            }
+
+            .event-price {
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 15px;
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+
+            .event-time {
+                color: #6c757d;
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+            .no-events {
+                text-align: center;
+                padding: 3rem;
+                color: #6c757d;
+            }
+
+            .no-events i {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+                opacity: 0.5;
+            }
+
+            @media (max-width: 768px) {
+                .events-title {
+                    font-size: 2.5rem;
+                }
+                
+                .events-subtitle {
+                    font-size: 1.1rem;
+                }
+                
+                .event-card {
+                    margin-bottom: 1.5rem;
+                }
+                
+                .filter-btn {
+                    margin: 0.25rem;
+                    font-size: 0.9rem;
+                    padding: 0.4rem 1rem;
+                }
+            }
+        </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-md bg-body-primary shadow-lg sticky-top">
+        <nav class="navbar navbar-expand-md navbar-hero bg-transparent shadow-lg fixed-top transition-navbar">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="../">
                   <img src="../images/hawkico.png" width="50" height="50" class="d-inline-block align-text-top me-2">
@@ -22,89 +213,64 @@
                     <span class="mobile-text">Nest</span>
                   </h1>
                 </a>
-
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavBar" aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
-                </button>            
-
-                <div class="collapse navbar-collapse justify-content-end me-5" id="mainNavBar">
-                  <ul class="navbar-nav">
-                    <li class="nav-item">
-                      <a class="nav-link sh1 mx-1" href="../about/">About</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link sh1 mx-1 active2" href="./">Events</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link sh1 mx-1 me-5" href="../faq/">FAQ</a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="collapse navbar-collapse me-5 justify-content-end" id="mainNavBar">
-                  <ul class="navbar-nav">
-                    <li class="nav-item">
-                      <a class="nav-link text-nowrap sh1" href="../contact/">Contact Us</a>
-                    </li>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="mainNavBar">
+                  <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="../about/index.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link sh1 mx-1 active2" href="./index.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="../faq/index.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="../contact/index.html">Contact Us</a></li>
                   </ul>
                 </div>
             </div>
         </nav>
-        <br>
 
-        <div class="container-md mx-auto justify-content-center text-center">
-          <h1 class="sh3">Current Events</h1>
-        </div>
-
-        <!-- Use grid cards here for events, dates in footer + use horizontal cards -->
-        <div class="container text-center">
-          <div class="row row-cols-1 row-cols-md-3 g-4" id="card-container">
-            <!-- Insert cards here -->
-          </div>
-        </div>
-        
-        <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-
-          const response = await fetch('data/events.json');
-          const data = await response.json();
-          const cardContainer = document.getElementById("card-container");
-        
-
-          data.events.forEach((event, index) => {
-            const cardHTML = `
-              <div class="col-12 mb-3 card-animate" style="animation-delay: ${index * 0.2}s;" data-date="${event.date}">
-                <div class="card h-100" style="cursor: pointer; max-width: 400px; margin: 0 auto;" onclick="showEventDetails('${event.id}')">
-                  <div class="d-flex justify-content-center align-items-center" style="height: 250px; overflow: hidden;">
-                    <img src="${event.image}" class="img-fluid w-100 h-100 object-fit-cover" alt="${event.title}">
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">${event.title}</h5>
-                    <p class="card-text normalText">${event.description}</p>
-                    <p class="card-text dateDiv st"><small class="text-body-secondary">${event.date}</small></p>
-                  </div>
+        <!-- Hero Section -->
+        <section class="events-hero">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1 class="events-title" data-aos="fade-up" data-aos-once="true">Upcoming Events</h1>
+                        <p class="events-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
+                            Discover exciting events happening at Hawk's Nest. From sports championships to cultural celebrations, there's something for everyone.
+                        </p>
+                    </div>
                 </div>
-              </div>
-            `;
-            cardContainer.insertAdjacentHTML('beforeend', cardHTML);
-          });
-        
-          const cardDivs = Array.from(cardContainer.children);
-          cardDivs.sort((a, b) => {
-            const dateA = new Date(a.getAttribute("data-date"));
-            const dateB = new Date(b.getAttribute("data-date"));
-            return dateA - dateB;
-          });
-        
-          cardDivs.forEach(cardDiv => {
-            cardContainer.appendChild(cardDiv);
-          });
-        });
-        
-        function showEventDetails(eventId) {
-          window.location.href = `event-details.html?id=${eventId}`;
-        }
-        </script>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <div class="container">
+            <div class="events-filter" data-aos="fade-up" data-aos-delay="300" data-aos-once="true">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h5 class="mb-3" style="color: #1b1450; font-weight: 600;">Filter Events</h5>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">All Events</button>
+                            <button class="filter-btn" data-filter="sports">Sports</button>
+                            <button class="filter-btn" data-filter="academic">Academic</button>
+                            <button class="filter-btn" data-filter="cultural">Cultural</button>
+                            <button class="filter-btn" data-filter="community">Community</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Grid -->
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="events-container">
+                <!-- Events will be loaded here -->
+            </div>
+            
+            <div id="no-events" class="no-events" style="display: none;">
+                <i class="bi bi-calendar-x"></i>
+                <h4>No events found</h4>
+                <p>Try adjusting your filters or check back later for new events.</p>
+            </div>
+        </div>
 
         <footer class="footer mt-5 py-4">
             <div class="container">
@@ -116,10 +282,10 @@
                     <div class="col-md-4">
                         <h5 class="sh">Quick Links</h5>
                         <ul class="list-unstyled">
-                            <li><a href="../about/" class="sh1">About Us</a></li>
-                            <li><a href="../events/" class="sh1">Events</a></li>
-                            <li><a href="../faq/" class="sh1">FAQ</a></li>
-                            <li><a href="../contact/" class="sh1">Contact</a></li>
+                            <li><a href="../about/index.html" class="sh1">About Us</a></li>
+                            <li><a href="../events/index.html" class="sh1">Events</a></li>
+                            <li><a href="../faq/index.html" class="sh1">FAQ</a></li>
+                            <li><a href="../contact/index.html" class="sh1">Contact</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4">
@@ -134,5 +300,172 @@
                 </div>
             </div>
         </footer>
+
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            // Initialize AOS
+            AOS.init({
+                offset: 120,
+                duration: 800,
+                easing: 'ease-in-out',
+                delay: 0,
+                once: true,
+                mirror: false
+            });
+
+            // Handle window resize for mobile/desktop animation changes
+            let currentScreenSize = window.innerWidth <= 768 ? 'mobile' : 'desktop';
+            
+            window.addEventListener('resize', function() {
+                const newScreenSize = window.innerWidth <= 768 ? 'mobile' : 'desktop';
+                if (newScreenSize !== currentScreenSize) {
+                    currentScreenSize = newScreenSize;
+                    // Reinitialize AOS and reload events to update animations
+                    AOS.refresh();
+                    displayEvents(allEvents.filter(event => {
+                        if (currentFilter === 'all') return true;
+                        return eventCategories[event.id] === currentFilter;
+                    }));
+                }
+            });
+
+            // Event categories mapping
+            const eventCategories = {
+                '1': 'sports',    // Basketball Championship
+                '2': 'academic',  // College Fair
+                '3': 'cultural',  // Prom
+                '4': 'academic',  // Science Fair
+                '5': 'cultural',  // Graduation
+                '6': 'sports',    // Sports Camp
+                '7': 'community', // Health Fair
+                '8': 'cultural',  // Talent Show
+                '9': 'community', // Craft Fair
+                '10': 'cultural', // Winter Concert
+                '11': 'sports',   // Wrestling
+                '12': 'academic'  // CTE Showcase
+            };
+
+            let allEvents = [];
+            let currentFilter = 'all';
+
+            // Load and display events
+            async function loadEvents() {
+                try {
+                    const response = await fetch('data/events.json');
+                    const data = await response.json();
+                    allEvents = data.events;
+                    
+                    // Sort events by date
+                    allEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    
+                    displayEvents(allEvents);
+                } catch (error) {
+                    console.error('Error loading events:', error);
+                    document.getElementById('events-container').innerHTML = 
+                        '<div class="col-12 text-center"><p>Error loading events. Please try again later.</p></div>';
+                }
+            }
+
+            // Display events
+            function displayEvents(events) {
+                const container = document.getElementById('events-container');
+                const noEvents = document.getElementById('no-events');
+                
+                if (events.length === 0) {
+                    container.innerHTML = '';
+                    noEvents.style.display = 'block';
+                    return;
+                }
+                
+                noEvents.style.display = 'none';
+                
+                // Check if device is mobile
+                const isMobile = window.innerWidth <= 768;
+                
+                container.innerHTML = events.map((event, index) => {
+                    const eventDate = new Date(event.date);
+                    const formattedDate = eventDate.toLocaleDateString('en-US', { 
+                        month: 'short', 
+                        day: 'numeric',
+                        year: 'numeric'
+                    });
+                    
+                    const price = event.studentPrice === 0 ? 'Free' : 
+                                 event.studentPrice === -1 ? 'N/A' : 
+                                 `$${event.studentPrice}`;
+                    
+                    // Use 0 delay for mobile, staggered delay for desktop
+                    const animationDelay = isMobile ? 0 : index * 100;
+                    
+                    return `
+                        <div class="col" data-aos="fade-up" data-aos-delay="${animationDelay}" data-aos-once="true">
+                            <div class="event-card" onclick="showEventDetails('${event.id}')">
+                                <div class="event-image">
+                                    <img src="${event.image}" alt="${event.title}">
+                                    <div class="event-date-badge">${formattedDate}</div>
+                                </div>
+                                <div class="event-content">
+                                    <h5 class="event-title">${event.title}</h5>
+                                    <p class="event-description">${event.description}</p>
+                                    <div class="event-meta">
+                                        <span class="event-price">${price}</span>
+                                        <span class="event-time">${event.time}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Filter events
+            function filterEvents(category) {
+                currentFilter = category;
+                
+                // Update active filter button
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                event.target.classList.add('active');
+                
+                // Filter events
+                const filteredEvents = category === 'all' ? 
+                    allEvents : 
+                    allEvents.filter(event => eventCategories[event.id] === category);
+                
+                displayEvents(filteredEvents);
+            }
+
+            // Event handlers
+            document.addEventListener('DOMContentLoaded', function() {
+                loadEvents();
+                
+                // Filter button event listeners
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        const category = e.target.getAttribute('data-filter');
+                        filterEvents(category);
+                    });
+                });
+            });
+
+            function showEventDetails(eventId) {
+                window.location.href = `event-details.html?id=${eventId}`;
+            }
+
+            // Navbar scroll effect
+            document.addEventListener('DOMContentLoaded', function() {
+                const navbar = document.querySelector('.navbar-hero');
+                function onScroll() {
+                    if (window.scrollY > 100) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                }
+                window.addEventListener('scroll', onScroll);
+                onScroll();
+            });
+        </script>
     </body>
 </html>
