@@ -693,31 +693,6 @@
             const date = urlParams.get('date');
             const inquiry = urlParams.get('inquiry');
             
-            // If we have parameters from the homepage search, auto-scroll to form
-            if (activity || date || inquiry) {
-                // Wait a bit for the page to fully load
-                setTimeout(() => {
-                    const contactForm = document.getElementById('contact-form');
-                    if (contactForm) {
-                        // Get the form's position relative to the viewport
-                        const formRect = contactForm.getBoundingClientRect();
-                        const navbarHeight = document.querySelector('.navbar-hero')?.offsetHeight || 80;
-                        
-                        // Calculate the absolute position of the form
-                        const formTop = window.pageYOffset + formRect.top;
-                        
-                        // Scroll to position the form at the top of the viewport with some padding
-                        const scrollPosition = formTop - navbarHeight - 100;
-                        
-                        // Smooth scroll to the form
-                        window.scrollTo({
-                            top: scrollPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                }, 1000); // Increased delay to ensure everything is loaded
-            }
-            
             // Pre-fill form fields if parameters exist
             if (activity) {
                 const activityField = document.getElementById('activity');
@@ -1052,13 +1027,10 @@
                 resetForm();
             }
             
-            let shouldScroll = false;
-            
             if (activity) {
                 const activityField = document.getElementById('activity');
                 if (activityField) {
                     activityField.value = activity;
-                    shouldScroll = true;
                 }
             }
             
@@ -1066,7 +1038,6 @@
                 const eventDateField = document.getElementById('eventDate');
                 if (eventDateField) {
                     eventDateField.value = date;
-                    shouldScroll = true;
                 }
             }
             
@@ -1075,7 +1046,6 @@
                 if (inquiryTypeSelect) {
                     inquiryTypeSelect.value = '2';
                     venueBookingFields.style.display = 'block';
-                    shouldScroll = true;
                     
                     // Initialize calendar after fields are shown
                     setTimeout(() => {
@@ -1095,37 +1065,6 @@
                         window.contactCalendar = new ContactCalendar();
                     }
                 }, 100);
-            }
-            
-            // Scroll to venue booking fields if form was pre-filled
-            if (shouldScroll && venueBookingFields) {
-                setTimeout(() => {
-                    // Custom smooth scroll function
-                    const targetElement = venueBookingFields;
-                    const targetPosition = targetElement.offsetTop - 100; // Offset by 100px for better positioning
-                    const startPosition = window.pageYOffset;
-                    const distance = targetPosition - startPosition;
-                    const duration = 800; // Duration in milliseconds
-                    let start = null;
-                    
-                    function animation(currentTime) {
-                        if (start === null) start = currentTime;
-                        const timeElapsed = currentTime - start;
-                        const run = ease(timeElapsed, startPosition, distance, duration);
-                        window.scrollTo(0, run);
-                        if (timeElapsed < duration) requestAnimationFrame(animation);
-                    }
-                    
-                    // Easing function for smooth animation
-                    function ease(t, b, c, d) {
-                        t /= d / 2;
-                        if (t < 1) return c / 2 * t * t + b;
-                        t--;
-                        return -c / 2 * (t * (t - 2) - 1) + b;
-                    }
-                    
-                    requestAnimationFrame(animation);
-                }, 500); // Small delay to ensure the fields are visible
             }
 
             // Handle form submission
