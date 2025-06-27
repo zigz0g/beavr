@@ -462,7 +462,7 @@
                     const tickets = JSON.parse(decodeURIComponent(selectedTickets));
                     const selectedSeatsDiv = document.getElementById('selected-seats');
                     selectedSeatsDiv.innerHTML = tickets.map(ticket => 
-                        `<div class="seat-item">${ticket.quantity}x ${ticket.type === 'student' ? 'Student' : 'Adult'} Ticket(s) - $${ticket.price.toFixed(2)} each</div>`
+                        `<div class="seat-item">${ticket.quantity}x General Admission Ticket(s) - $${ticket.price.toFixed(2)} each</div>`
                     ).join('');
                 }
 

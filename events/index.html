@@ -253,6 +253,7 @@
                             <button class="filter-btn" data-filter="academic">Academic</button>
                             <button class="filter-btn" data-filter="cultural">Cultural</button>
                             <button class="filter-btn" data-filter="community">Community</button>
+                            <button class="filter-btn" data-filter="business">Business</button>
                         </div>
                     </div>
                 </div>
@@ -328,17 +329,19 @@
             // Event categories mapping
             const eventCategories = {
                 '1': 'sports',    // Basketball Championship
-                '2': 'academic',  // College Fair
-                '3': 'cultural',  // Prom
-                '4': 'academic',  // Science Fair
-                '5': 'cultural',  // Graduation
-                '6': 'sports',    // Sports Camp
-                '7': 'community', // Health Fair
-                '8': 'cultural',  // Talent Show
-                '9': 'community', // Craft Fair
-                '10': 'cultural', // Winter Concert
-                '11': 'sports',   // Wrestling
-                '12': 'academic'  // CTE Showcase
+                '2': 'community', // Community Wedding Expo
+                '3': 'academic',  // College Fair
+                '4': 'business',  // Corporate Training Seminar
+                '5': 'academic',  // Science Fair
+                '6': 'cultural',  // Prom
+                '7': 'cultural',  // Graduation
+                '8': 'sports',    // Sports Camp
+                '9': 'community', // Health Fair
+                '10': 'cultural', // Talent Show
+                '11': 'community', // Craft Fair
+                '12': 'cultural', // Winter Concert
+                '13': 'sports',   // Wrestling
+                '14': 'academic'  // CTE Showcase
             };
 
             let allEvents = [];
@@ -386,9 +389,9 @@
                         year: 'numeric'
                     });
                     
-                    const price = event.studentPrice === 0 ? 'Free' : 
-                                 event.studentPrice === -1 ? 'N/A' : 
-                                 `$${event.studentPrice}`;
+                    const price = event.price === 0 ? 'Free' : 
+                                 event.price === -1 ? 'N/A' : 
+                                 `$${event.price}`;
                     
                     // Use 0 delay for mobile, staggered delay for desktop
                     const animationDelay = isMobile ? 0 : index * 100;

@@ -316,14 +316,10 @@
 
                     // Load main content
                     const detailsContainer = document.getElementById('event-details');
-                    const price = event.studentPrice === 0 ? 'Free' : 
-                                 event.studentPrice === -1 ? 'N/A' : 
-                                 `$${event.studentPrice}`;
+                    const price = event.price === 0 ? 'Free' : 
+                                 event.price === -1 ? 'N/A' : 
+                                 `$${event.price}`;
                     
-                    const adultPrice = event.adultPrice >= 0 ? 
-                                     (event.adultPrice === 0 ? 'Free' : `$${event.adultPrice}`) : 
-                                     'N/A';
-
                     detailsContainer.innerHTML = `
                         <div class="col-lg-6" data-aos="fade-right" data-aos-once="true">
                             <div class="event-image">
@@ -349,7 +345,7 @@
                                         Ticket Information
                                     </div>
                                     <div class="price-badge">
-                                        ${price} ${event.adultPrice >= 0 ? `| Adults: ${adultPrice}` : ''}
+                                        General Admission: ${price}
                                     </div>
                                     <div class="info-content">
                                         <strong>Age Restriction:</strong> ${event.ageRestriction}

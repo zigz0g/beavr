@@ -896,23 +896,14 @@
                                     <h3>Available Tickets</h3>
                                     <div class="ticket-row">
                                         <div class="ticket-info">
-                                            <div class="ticket-label">Student Tickets</div>
-                                            <div class="ticket-price">$${event.studentPrice.toFixed(2)} each</div>
+                                            <div class="ticket-label">General Admission</div>
+                                            <div class="ticket-price">$${event.price.toFixed(2)} each</div>
                                         </div>
-                                        <input type="number" class="ticket-quantity" id="student-quantity" min="0" value="1">
+                                        <input type="number" class="ticket-quantity" id="general-quantity" min="0" value="1">
                                     </div>
-                                    ${event.adultPrice !== undefined && event.adultPrice >= 0 ? `
-                                    <div class="ticket-row">
-                                        <div class="ticket-info">
-                                            <div class="ticket-label">Adult Tickets</div>
-                                            <div class="ticket-price">$${event.adultPrice.toFixed(2)} each</div>
-                                        </div>
-                                        <input type="number" class="ticket-quantity" id="adult-quantity" min="0" value="0">
-                                    </div>
-                                    ` : ''}
                                     
                                     <div class="order-summary mt-4">
-                                        <div id="total-price" class="total-price">Total: $${event.studentPrice.toFixed(2)}</div>
+                                        <div id="total-price" class="total-price">Total: $${event.price.toFixed(2)}</div>
                                     </div>
                                     
                                     <div class="text-center mt-4">
@@ -927,39 +918,26 @@
 
                     // Add event listeners for quantity changes
                     const updateTotal = () => {
-                        const studentQty = parseInt(document.getElementById('student-quantity').value) || 0;
-                        const adultQty = parseInt(document.getElementById('adult-quantity').value) || 0;
-                        const total = (studentQty * event.studentPrice) +
-                            (event.adultPrice >= 0 ? (adultQty * event.adultPrice) : 0);
+                        const generalQty = parseInt(document.getElementById('general-quantity').value) || 0;
+                        const total = generalQty * event.price;
                         document.getElementById('total-price').textContent = `Total: $${total.toFixed(2)}`;
                     };
 
-                    document.getElementById('student-quantity').addEventListener('change', updateTotal);
-                    if (event.adultPrice !== undefined && event.adultPrice >= 0) {
-                        document.getElementById('adult-quantity').addEventListener('change', updateTotal);
-                    }
+                    document.getElementById('general-quantity').addEventListener('change', updateTotal);
 
                     // Add proceed to payment button handler
                     document.getElementById('proceed-to-payment').addEventListener('click', () => {
-                        const studentQty = parseInt(document.getElementById('student-quantity').value) || 0;
-                        const adultQty = parseInt(document.getElementById('adult-quantity').value) || 0;
+                        const generalQty = parseInt(document.getElementById('general-quantity').value) || 0;
                         
-                        if (studentQty === 0 && adultQty === 0) {
+                        if (generalQty === 0) {
                             alert('Please select at least one ticket.');
                             return;
                         }
 
-                        const total = (studentQty * event.studentPrice) +
-                            (event.adultPrice >= 0 ? (adultQty * event.adultPrice) : 0);
+                        const total = generalQty * event.price;
                         
                         // Create ticket data for non-seating events
-                        const ticketData = [];
-                        if (studentQty > 0) {
-                            ticketData.push({ type: 'student', quantity: studentQty, price: event.studentPrice });
-                        }
-                        if (adultQty > 0 && event.adultPrice >= 0) {
-                            ticketData.push({ type: 'adult', quantity: adultQty, price: event.adultPrice });
-                        }
+                        const ticketData = [{ type: 'general', quantity: generalQty, price: event.price }];
 
                         const ticketsParam = encodeURIComponent(JSON.stringify(ticketData));
                         const totalParam = total.toFixed(2);
@@ -973,9 +951,9 @@
                     document.getElementById('proceed-to-checkout').style.display = 'none';
 
                     // Set prices in legend
-                    document.getElementById('standard-price').textContent = event.studentPrice.toFixed(2);
-                    document.getElementById('premier-price').textContent = (event.studentPrice * 1.5).toFixed(2);
-                    document.getElementById('economy-price').textContent = (event.studentPrice * 0.8).toFixed(2);
+                    document.getElementById('standard-price').textContent = event.price.toFixed(2);
+                    document.getElementById('premier-price').textContent = (event.price * 1.5).toFixed(2);
+                    document.getElementById('economy-price').textContent = (event.price * 0.8).toFixed(2);
 
                     // Create custom seating chart
                     createSeatingChart(event);
@@ -1024,14 +1002,14 @@
                     
                     // Determine seat type
                     let seatType = 'standard';
-                    let seatPrice = event.studentPrice;
+                    let seatPrice = event.price;
                     
                     if (row < 3) {
                         seatType = 'premier';
-                        seatPrice = event.studentPrice * 1.5;
+                        seatPrice = event.price * 1.5;
                     } else if (row >= 7) {
                         seatType = 'economy';
-                        seatPrice = event.studentPrice * 0.8;
+                        seatPrice = event.price * 0.8;
                     }
                     
                     // Add aisle spacing
