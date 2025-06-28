@@ -396,6 +396,90 @@
             opacity: 1;
         }
 
+        /* Language Button Styles */
+                    .language-btn {
+                background: none;
+                border: 2px solid #1b1450;
+                color: #1b1450;
+                padding: 0.5rem;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                margin-left: 0.75rem;
+                margin-right: auto;
+                font-size: 1.2rem;
+                width: 45px;
+                height: 38px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+        .language-btn:hover {
+            background: #1b1450;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .language-modal .modal-content {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .language-modal .modal-header {
+            background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+            color: white;
+            border-radius: 20px 20px 0 0;
+            border-bottom: none;
+            padding: 1.5rem;
+        }
+
+        .language-modal .modal-title {
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        .language-modal .btn-close {
+            filter: invert(1);
+            opacity: 0.8;
+        }
+
+        .language-modal .btn-close:hover {
+            opacity: 1;
+        }
+
+        .language-modal .modal-body {
+            padding: 2rem;
+        }
+
+        .language-option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .language-option:hover {
+            background: #1b1450;
+            border-color: #1b1450;
+            color: white;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        .language-option.active {
+            background: #1b1450;
+            border-color: #1b1450;
+            color: white;
+        }
+
         /* Seat styling */
         .economy {
             color: white;
@@ -703,19 +787,25 @@
             <a class="navbar-brand d-flex align-items-center" href="../../">
               <img src="../../images/hawkico.png" width="50" height="50" class="d-inline-block align-text-top me-2">
               <h1 class="align-text-top d-inline-block my-auto sh mb-0">
-                <span class="desktop-text">Hawk's Nest</span>
-                <span class="mobile-text">Nest</span>
+                <span class="desktop-text" data-translate="siteName">Hawk's Nest</span>
+                <span class="mobile-text" data-translate="siteNameMobile">Nest</span>
               </h1>
             </a>
+            
+            <!-- Language Button - Mobile only -->
+                        <button class="language-btn" data-bs-toggle="modal" data-bs-target="#languageModal">
+                🌐
+            </button>
+            
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavBar" aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="mainNavBar">
               <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../../about/index.html">About</a></li>
-                <li class="nav-item"><a class="nav-link sh1 mx-1 active2" href="../index.html">Events</a></li>
-                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../../faq/index.html">FAQ</a></li>
-                <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="../../contact/index.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../../about/index.html" data-translate="about">About</a></li>
+                <li class="nav-item"><a class="nav-link sh1 mx-1 active2" href="../index.html" data-translate="events">Events</a></li>
+                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../../faq/index.html" data-translate="faq">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="../../contact/index.html" data-translate="contactUs">Contact Us</a></li>
               </ul>
             </div>
         </div>
@@ -726,12 +816,12 @@
         <section class="purchase-hero">
             <div class="container">
                 <a href="../index.html" class="back-button" data-aos="fade-right" data-aos-once="true">
-                    <i class="bi bi-arrow-left"></i> Back to Events
+                    <i class="bi bi-arrow-left"></i> <span data-translate="backToEvents">Back to Events</span>
                 </a>
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-8">
-                        <h1 class="purchase-title" data-aos="fade-up" data-aos-once="true" id="hero-title">Purchase Tickets</h1>
-                        <p class="purchase-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-once="true" id="hero-subtitle">
+                        <h1 class="purchase-title" data-aos="fade-up" data-aos-once="true" id="hero-title" data-translate="purchaseTickets">Purchase Tickets</h1>
+                        <p class="purchase-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-once="true" id="hero-subtitle" data-translate="selectSeatsComplete">
                             Select your seats and complete your purchase
                         </p>
                     </div>
@@ -745,8 +835,8 @@
                 <div class="seating-section">
                     <div class="seating-container">
                         <div class="seating-header">
-                            <h2 class="seating-title" id="event-title">Select Your Seats</h2>
-                            <p class="seating-subtitle">Choose your preferred seats from the interactive seating chart</p>
+                            <h2 class="seating-title" id="event-title" data-translate="selectYourSeats">Select Your Seats</h2>
+                            <p class="seating-subtitle" data-translate="choosePreferredSeats">Choose your preferred seats from the interactive seating chart</p>
                         </div>
                         
                         <div class="seating-chart-container">
@@ -757,31 +847,31 @@
                             <div class="seating-legend">
                                 <div class="legend-item">
                                     <div class="legend-color standard"></div>
-                                    <span>Standard - $<span id="standard-price">0</span></span>
+                                    <span><span data-translate="standard">Standard</span> - $<span id="standard-price">0</span></span>
                                 </div>
                                 <div class="legend-item">
                                     <div class="legend-color premier"></div>
-                                    <span>Premier - $<span id="premier-price">0</span></span>
+                                    <span><span data-translate="premier">Premier</span> - $<span id="premier-price">0</span></span>
                                 </div>
                                 <div class="legend-item">
                                     <div class="legend-color economy"></div>
-                                    <span>Economy - $<span id="economy-price">0</span></span>
+                                    <span><span data-translate="economy">Economy</span> - $<span id="economy-price">0</span></span>
                                 </div>
                                 <div class="legend-item">
                                     <div class="legend-color unavailable"></div>
-                                    <span>Unavailable</span>
+                                    <span data-translate="unavailable">Unavailable</span>
                                 </div>
                             </div>
                             
                             <div class="mobile-seating-controls">
                                 <button class="mobile-control-btn" onclick="zoomIn()">
-                                    <i class="bi bi-zoom-in"></i> Zoom In
+                                    <i class="bi bi-zoom-in"></i> <span data-translate="zoomIn">Zoom In</span>
                                 </button>
                                 <button class="mobile-control-btn" onclick="zoomOut()">
-                                    <i class="bi bi-zoom-out"></i> Zoom Out
+                                    <i class="bi bi-zoom-out"></i> <span data-translate="zoomOut">Zoom Out</span>
                                 </button>
                                 <button class="mobile-control-btn" onclick="resetZoom()">
-                                    <i class="bi bi-arrows-fullscreen"></i> Reset
+                                    <i class="bi bi-arrows-fullscreen"></i> <span data-translate="reset">Reset</span>
                                 </button>
                             </div>
                             
@@ -793,14 +883,60 @@
                             
                             <div class="text-center mt-4">
                                 <div id="selected-seats-info" class="mb-3" style="display: none;">
-                                    <h5>Selected Seats:</h5>
+                                    <h5><span data-translate="selectedSeats">Selected Seats</span>:</h5>
                                     <div id="selected-seats-list"></div>
                                     <div id="total-price-display" class="h4 mt-2"></div>
                                 </div>
                                 <button id="proceed-to-checkout" class="btn proceed-btn" style="display: none;">
-                                    <i class="bi bi-arrow-right me-2"></i>Proceed to Payment
+                                    <i class="bi bi-arrow-right me-2"></i><span data-translate="proceedToPayment">Proceed to Payment</span>
                                 </button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Language Selection Modal -->
+    <div class="modal fade language-modal" id="languageModal" tabindex="-1" aria-labelledby="languageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="languageModalLabel" data-translate="chooseLanguage">Choose Language</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="en">
+                                🇺🇸 English
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="es">
+                                🇪🇸 Español
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="fr">
+                                🇫🇷 Français
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="de">
+                                🇩🇪 Deutsch
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="zh">
+                                🇨🇳 中文
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="ja">
+                                🇯🇵 日本語
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -812,16 +948,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5 class="sh">Quick Links</h5>
+                    <h5 class="sh" data-translate="quickLinks">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="../../about/index.html" class="sh1">About Us</a></li>
-                        <li><a href="../index.html" class="sh1">Events</a></li>
-                        <li><a href="../../faq/index.html" class="sh1">FAQ</a></li>
-                        <li><a href="../../contact/index.html" class="sh1">Contact</a></li>
+                        <li><a href="../../about/index.html" class="sh1" data-translate="aboutUs">About Us</a></li>
+                        <li><a href="../index.html" class="sh1" data-translate="events">Events</a></li>
+                        <li><a href="../../faq/index.html" class="sh1" data-translate="faq">FAQ</a></li>
+                        <li><a href="../../contact/index.html" class="sh1" data-translate="contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-6">
-                    <h5 class="sh">Contact Info</h5>
+                    <h5 class="sh" data-translate="contactInfo">Contact Info</h5>
                     <ul class="list-unstyled">
                         <li><p>3471 Campus Drive</p></li>
                         <li><p>Ijamsville, MD 21704</p></li>
@@ -834,6 +970,7 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../translations.js"></script>
     <script>
         // Initialize AOS
         AOS.init({
@@ -844,6 +981,182 @@
             once: true,
             mirror: false
         });
+
+        // Translation functions
+        function resetAllText() {
+            const elements = document.querySelectorAll('[data-translate]');
+            const originalTexts = {
+                'siteName': "Hawk's Nest",
+                'siteNameMobile': "Nest",
+                'about': "About",
+                'events': "Events",
+                'faq': "FAQ",
+                'contactUs': "Contact Us",
+                'backToEvents': "Back to Events",
+                'purchaseTickets': "Purchase Tickets",
+                'selectSeatsComplete': "Select your seats and complete your purchase",
+                'quickLinks': "Quick Links",
+                'aboutUs': "About Us",
+                'contact': "Contact",
+                'contactInfo': "Contact Info",
+                'chooseLanguage': "Choose Language",
+                'selectYourSeats': "Select Your Seats",
+                'choosePreferredSeats': "Choose your preferred seats from the interactive seating chart",
+                'selectTickets': "Select Tickets",
+                'chooseNumberTickets': "Choose the number of tickets you need",
+                'availableTickets': "Available Tickets",
+                'generalAdmission': "General Admission",
+                'standard': "Standard",
+                'premier': "Premier",
+                'economy': "Economy",
+                'unavailable': "Unavailable",
+                'zoomIn': "Zoom In",
+                'zoomOut': "Zoom Out",
+                'reset': "Reset",
+                'selectedSeats': "Selected Seats",
+                'proceedToPayment': "Proceed to Payment",
+                'eventNotFound': "Event Not Found",
+                'eventNotFoundDesc': "The event you're looking for doesn't exist or has been removed.",
+                'errorLoadingEvent': "Error Loading Event",
+                'errorLoadingEventDesc': "There was an error loading the event details. Please try again later.",
+                'each': "each",
+                'pleaseSelectSeat': "Please select at least one seat",
+                'pleaseSelectTicket': "Please select at least one ticket."
+            };
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (originalTexts[key]) {
+                    element.textContent = originalTexts[key];
+                }
+            });
+        }
+
+        function applyTranslations(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                const translation = getTranslation(key, lang);
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+        }
+
+        function initializeLanguage() {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+            setCurrentLanguage(savedLang);
+            applyTranslations(savedLang);
+            updateActiveLanguage(savedLang);
+
+            // Ensure language buttons remain visible and functional
+            setTimeout(() => {
+                document.querySelectorAll('.language-btn').forEach(btn => {
+                    btn.style.display = '';
+                    btn.style.visibility = 'visible';
+                    btn.style.opacity = '1';
+                });
+            }, 10);
+        }
+
+        function updateActiveLanguage(lang) {
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.toggle('active', option.getAttribute('data-lang') === lang);
+            });
+        }
+
+        function changeLanguage(lang) {
+            resetAllText();
+            setCurrentLanguage(lang);
+            applyTranslations(lang);
+            localStorage.setItem('selectedLanguage', lang);
+            updateActiveLanguage(lang);
+            
+            // Reload page content with new language
+            if (currentEvent) {
+                updateEventContent(currentEvent, lang);
+            }
+
+            // Ensure language buttons remain visible and functional
+            setTimeout(() => {
+                document.querySelectorAll('.language-btn').forEach(btn => {
+                    btn.style.display = '';
+                    btn.style.visibility = 'visible';
+                    btn.style.opacity = '1';
+                });
+            }, 10);
+        }
+
+        // Language selection event listeners
+        function setupLanguageButtons() {
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const selectedLang = this.getAttribute('data-lang');
+                    changeLanguage(selectedLang);
+                    
+                    // Close modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('languageModal'));
+                    if (modal) {
+                        modal.hide();
+                    }
+                });
+            });
+
+            // Ensure language buttons in navbar stay visible and functional
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.style.display = '';
+                btn.style.visibility = 'visible';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setupLanguageButtons();
+            
+            // Initialize language on page load
+            initializeLanguage();
+
+            // Re-setup language buttons after language change
+            setupLanguageButtons();
+        });
+
+        // Function to translate event data
+        function translateEvent(event, lang) {
+            const eventTranslations = getTranslation('eventTypes', lang) || {};
+            const translatedTitle = eventTranslations[event.title] || event.title;
+            
+            return {
+                ...event,
+                title: translatedTitle
+            };
+        }
+
+        // Function to update event content with translation
+        function updateEventContent(event, lang) {
+            const translatedEvent = translateEvent(event, lang);
+            
+            // Update hero title and subtitle
+            const heroTitle = document.getElementById('hero-title');
+            const heroSubtitle = document.getElementById('hero-subtitle');
+            
+            if (heroTitle && heroTitle.textContent.includes(event.title)) {
+                heroTitle.textContent = `${getTranslation('purchaseTickets', lang)} - ${translatedEvent.title}`;
+            }
+            
+            if (heroSubtitle && heroSubtitle.textContent.includes(event.title)) {
+                heroSubtitle.textContent = `${getTranslation('secureYourSpot', lang)} ${translatedEvent.title}`;
+            }
+            
+            // Update seating section title if it exists
+            const eventTitle = document.getElementById('event-title');
+            if (eventTitle && eventTitle.textContent.includes(event.title)) {
+                if (event.hasSeatingChart) {
+                    eventTitle.textContent = `${getTranslation('selectYourSeats', lang)}`;
+                } else {
+                    eventTitle.textContent = `${getTranslation('selectTickets', lang)} - ${translatedEvent.title}`;
+                }
+            }
+        }
 
         let currentEvent;
         let selectedSeats = [];
@@ -867,37 +1180,43 @@
                 currentEvent = event;
 
                 if (!event) {
+                    const currentLang = getCurrentLanguage();
                     document.getElementById('seating-section').innerHTML = `
                         <div class="seating-section text-center">
-                            <h2>Event Not Found</h2>
-                            <p>The event you're looking for doesn't exist or has been removed.</p>
-                            <a href="../index.html" class="btn proceed-btn">Back to Events</a>
+                            <h2 data-translate="eventNotFound">${getTranslation('eventNotFound', currentLang)}</h2>
+                            <p data-translate="eventNotFoundDesc">${getTranslation('eventNotFoundDesc', currentLang)}</p>
+                            <a href="../index.html" class="btn proceed-btn" data-translate="backToEvents">${getTranslation('backToEvents', currentLang)}</a>
                         </div>
                     `;
                     return;
                 }
 
                 // Update hero section
-                document.getElementById('hero-title').textContent = `Purchase Tickets - ${event.title}`;
-                document.getElementById('hero-subtitle').textContent = `Secure your spot for ${event.title}`;
+                const currentLang = getCurrentLanguage();
+                const translatedEvent = translateEvent(event, currentLang);
+                document.getElementById('hero-title').textContent = `${getTranslation('purchaseTickets', currentLang)} - ${translatedEvent.title}`;
+                document.getElementById('hero-subtitle').textContent = `${getTranslation('secureYourSpot', currentLang)} ${translatedEvent.title}`;
 
                 // Show appropriate section based on hasSeatingChart
                 if (!event.hasSeatingChart) {
                     // For non-seating events, show a simple ticket selector
+                    const currentLang = getCurrentLanguage();
+                    const translatedEvent = translateEvent(event, currentLang);
+                    
                     document.getElementById('seating-section').innerHTML = `
                         <div class="seating-section">
                             <div class="seating-container">
                                 <div class="seating-header">
-                                    <h2 class="seating-title">Select Tickets - ${event.title}</h2>
-                                    <p class="seating-subtitle">Choose the number of tickets you need</p>
+                                    <h2 class="seating-title">${getTranslation('selectTickets', currentLang)} - ${translatedEvent.title}</h2>
+                                    <p class="seating-subtitle" data-translate="chooseNumberTickets">${getTranslation('chooseNumberTickets', currentLang)}</p>
                                 </div>
                                 
                                 <div class="ticket-selector" style="max-width: 600px; margin: 0 auto;">
-                                    <h3>Available Tickets</h3>
+                                    <h3 data-translate="availableTickets">${getTranslation('availableTickets', currentLang)}</h3>
                                     <div class="ticket-row">
                                         <div class="ticket-info">
-                                            <div class="ticket-label">General Admission</div>
-                                            <div class="ticket-price">$${event.price.toFixed(2)} each</div>
+                                            <div class="ticket-label" data-translate="generalAdmission">${getTranslation('generalAdmission', currentLang)}</div>
+                                            <div class="ticket-price">$${event.price.toFixed(2)} <span data-translate="each">${getTranslation('each', currentLang)}</span></div>
                                         </div>
                                         <input type="number" class="ticket-quantity" id="general-quantity" min="0" value="1">
                                     </div>
@@ -908,7 +1227,7 @@
                                     
                                     <div class="text-center mt-4">
                                         <button id="proceed-to-payment" class="btn proceed-btn">
-                                            <i class="bi bi-arrow-right me-2"></i>Proceed to Payment
+                                            <i class="bi bi-arrow-right me-2"></i><span data-translate="proceedToPayment">${getTranslation('proceedToPayment', currentLang)}</span>
                                         </button>
                                     </div>
                                 </div>
@@ -930,7 +1249,8 @@
                         const generalQty = parseInt(document.getElementById('general-quantity').value) || 0;
                         
                         if (generalQty === 0) {
-                            alert('Please select at least one ticket.');
+                            const currentLang = getCurrentLanguage();
+                            alert(getTranslation('pleaseSelectTicket', currentLang));
                             return;
                         }
 
@@ -947,7 +1267,9 @@
                     // Initialize total
                     updateTotal();
                 } else {
-                    document.getElementById('event-title').textContent = `Select Your Seats - ${event.title}`;
+                    const currentLang = getCurrentLanguage();
+                    const translatedEvent = translateEvent(event, currentLang);
+                    document.getElementById('event-title').textContent = `${getTranslation('selectYourSeats', currentLang)} - ${translatedEvent.title}`;
                     document.getElementById('proceed-to-checkout').style.display = 'none';
 
                     // Set prices in legend
@@ -961,11 +1283,12 @@
 
             } catch (error) {
                 console.error('Error loading event:', error);
+                const currentLang = getCurrentLanguage();
                 document.getElementById('seating-section').innerHTML = `
                     <div class="seating-section text-center">
-                        <h2>Error Loading Event</h2>
-                        <p>There was an error loading the event details. Please try again later.</p>
-                        <a href="../index.html" class="btn proceed-btn">Back to Events</a>
+                        <h2 data-translate="errorLoadingEvent">${getTranslation('errorLoadingEvent', currentLang)}</h2>
+                        <p data-translate="errorLoadingEventDesc">${getTranslation('errorLoadingEventDesc', currentLang)}</p>
+                        <a href="../index.html" class="btn proceed-btn" data-translate="backToEvents">${getTranslation('backToEvents', currentLang)}</a>
                     </div>
                 `;
             }
@@ -1036,7 +1359,8 @@
             // Add proceed button handler
             document.getElementById('proceed-to-checkout').addEventListener('click', () => {
                 if (selectedSeats.length === 0) {
-                    alert('Please select at least one seat');
+                    const currentLang = getCurrentLanguage();
+                    alert(getTranslation('pleaseSelectSeat', currentLang));
                     return;
                 }
                 

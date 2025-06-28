@@ -12,6 +12,31 @@
         <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;900&family=Lato:ital@1&family=Raleway:wght@200;500;600;700;900&display=swap" rel="stylesheet">
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <style>
+            /* Language Button Styles for main page */
+            .language-btn {
+                background: none;
+                border: 2px solid #1b1450;
+                color: #1b1450;
+                padding: 0.5rem;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                margin-left: 0.75rem;
+                margin-right: auto;
+                font-size: 1.2rem;
+                width: 45px;
+                height: 38px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .language-btn:hover {
+                background: #1b1450;
+                color: white;
+                transform: translateY(-2px);
+            }
+        </style>
     </head>
     <body class="home">
         <nav class="navbar navbar-expand-md navbar-hero bg-transparent shadow-lg fixed-top transition-navbar">
@@ -23,6 +48,10 @@
                     <span class="mobile-text">Nest</span>
                   </h1>
                 </a>
+                
+                <button class="language-btn" data-bs-toggle="modal" data-bs-target="#languageModal">
+                    🌐
+                </button>
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavBar" aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -124,6 +153,46 @@
             <div class="calendar-footer">
               <button class="btn-clear" id="mobileClearDate">Clear</button>
               <button class="btn-apply" id="mobileApplyDate">Apply</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Language Selection Modal -->
+        <div class="modal fade" id="languageModal" tabindex="-1" aria-labelledby="languageModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="languageModalLabel">Select Language / Seleccionar Idioma</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="language-options">
+                  <button class="language-option" data-lang="en">
+                    <span class="flag">🇺🇸</span>
+                    <span class="lang-name">English</span>
+                  </button>
+                  <button class="language-option" data-lang="es">
+                    <span class="flag">🇪🇸</span>
+                    <span class="lang-name">Español</span>
+                  </button>
+                  <button class="language-option" data-lang="fr">
+                    <span class="flag">🇫🇷</span>
+                    <span class="lang-name">Français</span>
+                  </button>
+                  <button class="language-option" data-lang="de">
+                    <span class="flag">🇩🇪</span>
+                    <span class="lang-name">Deutsch</span>
+                  </button>
+                  <button class="language-option" data-lang="zh">
+                    <span class="flag">🇨🇳</span>
+                    <span class="lang-name">中文</span>
+                  </button>
+                  <button class="language-option" data-lang="ja">
+                    <span class="flag">🇯🇵</span>
+                    <span class="lang-name">日本語</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -649,6 +718,192 @@
           delay: 0,
           once: false,
           mirror: true
+        });
+        </script>
+        
+        <!-- Shared Translation System -->
+        <script src="translations.js"></script>
+        
+        <!-- Translation Functionality -->
+        <script>
+        // Translation function
+        function translatePage(lang) {
+            if (!translations[lang]) return;
+            
+            const t = translations[lang];
+            
+            // Update navigation
+            const siteName = document.querySelector('.navbar-brand h1 .desktop-text');
+            if (siteName) siteName.textContent = t.siteName;
+            
+            const siteNameMobile = document.querySelector('.navbar-brand h1 .mobile-text');
+            if (siteNameMobile) siteNameMobile.textContent = t.siteNameMobile;
+            
+            // Update navigation links
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            if (navLinks.length >= 4) {
+                navLinks[0].textContent = t.about;
+                navLinks[1].textContent = t.events;
+                navLinks[2].textContent = t.faq;
+                navLinks[3].textContent = t.contactUs;
+            }
+            
+            // Update hero section
+            const heroSlogan = document.querySelector('.hero-slogan');
+            if (heroSlogan) heroSlogan.innerHTML = t.heroSlogan;
+            
+            const heroLabel = document.querySelector('.hero-label');
+            if (heroLabel) heroLabel.textContent = t.heroLabel;
+            
+            // Update feature cards - more robust selection
+            const featureCards = document.querySelectorAll('.feature-card');
+            if (featureCards.length >= 3) {
+                // Events card
+                const eventsCard = featureCards[0];
+                const eventsTitle = eventsCard.querySelector('h3');
+                const eventsDesc = eventsCard.querySelector('p');
+                const eventsBtn = eventsCard.querySelector('a');
+                
+                if (eventsTitle) eventsTitle.textContent = t.eventsTitle;
+                if (eventsDesc) eventsDesc.textContent = t.eventsDesc;
+                if (eventsBtn) eventsBtn.textContent = t.eventsBtn;
+                
+                // Venue card
+                const venueCard = featureCards[1];
+                const venueTitle = venueCard.querySelector('h3');
+                const venueDesc = venueCard.querySelector('p');
+                const venueBtn = venueCard.querySelector('a');
+                
+                if (venueTitle) venueTitle.textContent = t.venueTitle;
+                if (venueDesc) venueDesc.textContent = t.venueDesc;
+                if (venueBtn) venueBtn.textContent = t.venueBtn;
+                
+                // Book Now card
+                const bookCard = featureCards[2];
+                const bookTitle = bookCard.querySelector('h3');
+                const bookDesc = bookCard.querySelector('p');
+                const bookBtn = bookCard.querySelector('a');
+                
+                if (bookTitle) bookTitle.textContent = t.bookTitle;
+                if (bookDesc) bookDesc.textContent = t.bookDesc;
+                if (bookBtn) bookBtn.textContent = t.bookBtn;
+            }
+            
+            // Update gallery title
+            const galleryTitle = document.querySelector('.gallery-preview h2');
+            if (galleryTitle) galleryTitle.textContent = t.galleryTitle;
+            
+            // Update search form labels and placeholders
+            const activityLabel = document.querySelector('.search-field label[for="activity"]');
+            if (activityLabel) activityLabel.textContent = t.activityLabel;
+            
+            const activityInput = document.getElementById('activity');
+            if (activityInput) {
+                activityInput.placeholder = t.activityPlaceholder;
+            }
+            
+            const whenLabel = document.querySelector('.search-field label[for="when"]');
+            if (whenLabel) whenLabel.textContent = t.whenLabel;
+            
+            const whenInput = document.getElementById('when');
+            if (whenInput) {
+                const currentValue = whenInput.value;
+                if (currentValue === 'Event date' || 
+                    currentValue === 'Fecha del evento' ||
+                    currentValue === 'Date de l\'événement' ||
+                    currentValue === 'Veranstaltungsdatum' ||
+                    currentValue === '活动日期' ||
+                    currentValue === 'イベント日') {
+                    whenInput.value = t.whenPlaceholder;
+                }
+            }
+            
+            // Update footer - more specific selection
+            const footerTitles = document.querySelectorAll('.footer h5');
+            if (footerTitles.length >= 2) {
+                footerTitles[0].textContent = t.quickLinks;
+                footerTitles[1].textContent = t.contactInfo;
+            }
+            
+            // Update footer links more specifically
+            const footerLinks = document.querySelectorAll('.footer .list-unstyled a');
+            if (footerLinks.length >= 4) {
+                // About Us link
+                if (footerLinks[0]) footerLinks[0].textContent = t.aboutUs;
+                // Contact link (4th link)
+                if (footerLinks[3]) footerLinks[3].textContent = t.contact;
+            }
+            
+            // Update document language
+            document.documentElement.lang = lang;
+            
+            // Store selected language
+            setCurrentLanguage(lang);
+            
+            // Update selected state in modal
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.remove('selected');
+                if (option.dataset.lang === lang) {
+                    option.classList.add('selected');
+                }
+            });
+
+            // Ensure language buttons remain visible and functional
+            setTimeout(() => {
+                document.querySelectorAll('.language-btn').forEach(btn => {
+                    btn.style.display = '';
+                    btn.style.visibility = 'visible';
+                    btn.style.opacity = '1';
+                });
+            }, 10);
+        }
+
+        // Reset function to ensure clean state
+        function resetToEnglish() {
+            translatePage('en');
+        }
+
+        // Initialize translation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Language button click handler
+            const languageBtn = document.getElementById('languageBtn');
+            if (languageBtn) {
+                languageBtn.addEventListener('click', function() {
+                    const modal = new bootstrap.Modal(document.getElementById('languageModal'));
+                    modal.show();
+                });
+            }
+            
+            // Language option click handlers
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.dataset.lang;
+                    
+                    // Always reset to English first to ensure clean state
+                    if (lang !== 'en') {
+                        resetToEnglish();
+                        // Small delay to ensure reset is complete
+                        setTimeout(() => {
+                            translatePage(lang);
+                        }, 10);
+                    } else {
+                        resetToEnglish();
+                    }
+                    
+                    // Close modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('languageModal'));
+                    if (modal) modal.hide();
+                });
+            });
+            
+            // Load saved language preference
+            const savedLang = getCurrentLanguage();
+            if (savedLang && translations[savedLang] && savedLang !== 'en') {
+                // Reset to English first, then apply saved language
+                setTimeout(() => {
+                    translatePage(savedLang);
+                }, 100);
+            }
         });
         </script>
     </body>

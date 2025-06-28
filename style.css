@@ -1941,3 +1941,115 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     white-space: nowrap;
   }
 }
+
+@media (min-width: 769px) {
+  .hero-slogan {
+    font-size: 3.5rem;
+  }
+}
+
+/* Language Translation Styles */
+.language-btn {
+    background: none;
+    border: none;
+    color: #ededed;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.language-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.language-btn:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+    color: #ffffff;
+}
+
+.language-btn i {
+    font-size: 1.2rem;
+}
+
+.language-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+
+.language-option:hover {
+    background: #f8f9fa;
+    border-color: #007bff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.language-option:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+.language-option.selected {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.flag {
+    font-size: 1.5rem;
+}
+
+.lang-name {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Translation text classes */
+.translated {
+    transition: all 0.3s ease;
+}
+
+/* Mobile responsive for language modal */
+@media (max-width: 768px) {
+    .language-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .language-option {
+        padding: 15px 20px;
+    }
+    
+    /* Mobile specific styles for language button */
+    .language-btn {
+        padding: 0.4rem 0.6rem;
+        min-width: 40px;
+        min-height: 40px;
+        margin-right: 0.5rem;
+    }
+    
+    .language-btn i {
+        font-size: 1.1rem;
+    }
+}

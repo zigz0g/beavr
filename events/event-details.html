@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <title>Event Details - Hawk's Nest</title>
     <link rel="icon" type="image/x-icon" href="../images/hawkico.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;900&family=Lato:ital@1&family=Raleway:wght@200;500;600;700;900&display=swap" rel="stylesheet">
@@ -200,6 +201,89 @@
                 padding: 1rem;
             }
         }
+
+        /* Language Button Styles */
+        .language-btn {
+            background: none;
+            border: 2px solid #1b1450;
+            color: #1b1450;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            width: 45px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .language-btn:hover {
+            background: #1b1450;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .language-modal .modal-content {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .language-modal .modal-header {
+            background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+            color: white;
+            border-radius: 20px 20px 0 0;
+            border-bottom: none;
+            padding: 1.5rem;
+        }
+
+        .language-modal .modal-title {
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        .language-modal .btn-close {
+            filter: invert(1);
+            opacity: 0.8;
+        }
+
+        .language-modal .btn-close:hover {
+            opacity: 1;
+        }
+
+        .language-modal .modal-body {
+            padding: 2rem;
+        }
+
+        .language-option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .language-option:hover {
+            background: #1b1450;
+            border-color: #1b1450;
+            color: white;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        .language-option.active {
+            background: #1b1450;
+            border-color: #1b1450;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -208,19 +292,25 @@
             <a class="navbar-brand d-flex align-items-center" href="../">
               <img src="../images/hawkico.png" width="50" height="50" class="d-inline-block align-text-top me-2">
               <h1 class="align-text-top d-inline-block my-auto sh mb-0">
-                <span class="desktop-text">Hawk's Nest</span>
-                <span class="mobile-text">Nest</span>
+                <span class="desktop-text" data-translate="siteName">Hawk's Nest</span>
+                <span class="mobile-text" data-translate="siteNameMobile">Nest</span>
               </h1>
             </a>
+            
+            <!-- Language Button -->
+            <button type="button" class="language-btn d-md-block" data-bs-toggle="modal" data-bs-target="#languageModal">
+                <i class="bi bi-globe"></i>
+            </button>
+            
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavBar" aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="mainNavBar">
               <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../about/index.html">About</a></li>
-                <li class="nav-item"><a class="nav-link sh1 mx-1 active2" href="../events/index.html">Events</a></li>
-                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../faq/index.html">FAQ</a></li>
-                <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="../contact/index.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../about/index.html" data-translate="about">About</a></li>
+                <li class="nav-item"><a class="nav-link sh1 mx-1 active2" href="../events/index.html" data-translate="events">Events</a></li>
+                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../faq/index.html" data-translate="faq">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="../contact/index.html" data-translate="contactUs">Contact Us</a></li>
               </ul>
             </div>
         </div>
@@ -230,7 +320,7 @@
         <div class="event-hero">
             <div class="container">
                 <a href="../events/index.html" class="back-button" data-aos="fade-right" data-aos-once="true">
-                    <i class="bi bi-arrow-left"></i> Back to Events
+                    <i class="bi bi-arrow-left"></i> <span data-translate="backToEvents">Back to Events</span>
                 </a>
                 <div id="event-hero-content">
                     <!-- Event hero content will be loaded here -->
@@ -247,20 +337,66 @@
         </div>
     </div>
 
+    <!-- Language Selection Modal -->
+    <div class="modal fade language-modal" id="languageModal" tabindex="-1" aria-labelledby="languageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="languageModalLabel" data-translate="chooseLanguage">Choose Language</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="en">
+                                🇺🇸 English
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="es">
+                                🇪🇸 Español
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="fr">
+                                🇫🇷 Français
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="de">
+                                🇩🇪 Deutsch
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="zh">
+                                🇨🇳 中文
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="ja">
+                                🇯🇵 日本語
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer mt-5 py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5 class="sh">Quick Links</h5>
+                    <h5 class="sh" data-translate="quickLinks">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="../about/index.html" class="sh1">About Us</a></li>
-                        <li><a href="../events/index.html" class="sh1">Events</a></li>
-                        <li><a href="../faq/index.html" class="sh1">FAQ</a></li>
-                        <li><a href="../contact/index.html" class="sh1">Contact</a></li>
+                        <li><a href="../about/index.html" class="sh1" data-translate="aboutUs">About Us</a></li>
+                        <li><a href="../events/index.html" class="sh1" data-translate="events">Events</a></li>
+                        <li><a href="../faq/index.html" class="sh1" data-translate="faq">FAQ</a></li>
+                        <li><a href="../contact/index.html" class="sh1" data-translate="contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-6">
-                    <h5 class="sh">Contact Info</h5>
+                    <h5 class="sh" data-translate="contactInfo">Contact Info</h5>
                     <ul class="list-unstyled">
                         <li><p>3471 Campus Drive</p></li>
                         <li><p>Ijamsville, MD 21704</p></li>
@@ -273,6 +409,7 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../translations.js"></script>
     <script>
         // Initialize AOS
         AOS.init({
@@ -284,9 +421,134 @@
             mirror: false
         });
 
-        document.addEventListener("DOMContentLoaded", async () => {
+        // Translation functions
+        function resetAllText() {
+            const elements = document.querySelectorAll('[data-translate]');
+            const originalTexts = {
+                'siteName': "Hawk's Nest",
+                'siteNameMobile': "Nest",
+                'about': "About",
+                'events': "Events",
+                'faq': "FAQ",
+                'contactUs': "Contact Us",
+                'backToEvents': "Back to Events",
+                'aboutThisEvent': "About This Event",
+                'ticketInformation': "Ticket Information",
+                'generalAdmission': "General Admission",
+                'ageRestriction': "Age Restriction",
+                'foodAndBeverage': "Food & Beverage",
+                'dressCode': "Dress Code",
+                'readyToAttend': "Ready to Attend?",
+                'secureYourSpot': "Secure your spot for this exciting event!",
+                'purchaseTickets': "Purchase Tickets",
+                'eventNotFound': "Event Not Found",
+                'eventNotFoundDesc': "The event you're looking for doesn't exist or has been removed.",
+                'errorLoadingEvent': "Error Loading Event",
+                'errorLoadingEventDesc': "There was an error loading the event details. Please try again later.",
+                'free': "Free",
+                'quickLinks': "Quick Links",
+                'aboutUs': "About Us",
+                'contact': "Contact",
+                'contactInfo': "Contact Info",
+                'chooseLanguage': "Choose Language"
+            };
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (originalTexts[key]) {
+                    element.textContent = originalTexts[key];
+                }
+            });
+        }
+
+        function applyTranslations(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                const translation = getTranslation(key, lang);
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+        }
+
+        function initializeLanguage() {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+            setCurrentLanguage(savedLang);
+            applyTranslations(savedLang);
+            updateActiveLanguage(savedLang);
+        }
+
+        function updateActiveLanguage(lang) {
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.toggle('active', option.getAttribute('data-lang') === lang);
+            });
+        }
+
+        function changeLanguage(lang) {
+            resetAllText();
+            setCurrentLanguage(lang);
+            applyTranslations(lang);
+            localStorage.setItem('selectedLanguage', lang);
+            updateActiveLanguage(lang);
+            
+            // Reload event details with new language
+            loadEventDetails();
+        }
+
+        // Language selection event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const selectedLang = this.getAttribute('data-lang');
+                    changeLanguage(selectedLang);
+                    
+                    // Close modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('languageModal'));
+                    if (modal) {
+                        modal.hide();
+                    }
+                });
+            });
+            
+            // Initialize language on page load
+            initializeLanguage();
+        });
+
+        // Function to translate event data
+        function translateEvent(event, lang) {
+            const eventTranslations = getTranslation('eventTypes', lang) || {};
+            const translatedTitle = eventTranslations[event.title] || event.title;
+            
+            const eventDescriptions = getTranslation('eventDescriptions', lang) || {};
+            const translatedDescription = eventDescriptions[event.id] || event.fullDescription;
+            
+            // Get event details translations
+            const eventFoodAndBeverage = getTranslation('eventFoodAndBeverage', lang) || {};
+            const translatedFoodAndBeverage = eventFoodAndBeverage[event.id] || event.foodAndBeverage;
+            
+            const eventDressCode = getTranslation('eventDressCode', lang) || {};
+            const translatedDressCode = eventDressCode[event.id] || event.dressCode;
+            
+            const eventAgeRestriction = getTranslation('eventAgeRestriction', lang) || {};
+            const translatedAgeRestriction = eventAgeRestriction[event.id] || event.ageRestriction;
+            
+            return {
+                ...event,
+                title: translatedTitle,
+                fullDescription: translatedDescription,
+                foodAndBeverage: translatedFoodAndBeverage,
+                dressCode: translatedDressCode,
+                ageRestriction: translatedAgeRestriction
+            };
+        }
+
+        // Extract event loading into separate function
+        async function loadEventDetails() {
             const urlParams = new URLSearchParams(window.location.search);
             const eventId = urlParams.get('id');
+            const currentLang = getCurrentLanguage();
 
             try {
                 const response = await fetch('data/events.json');
@@ -294,21 +556,24 @@
                 const event = data.events.find(e => e.id === eventId);
 
                 if (event) {
+                    // Translate the event data
+                    const translatedEvent = translateEvent(event, currentLang);
+                    
                     // Load hero content
                     const heroContent = document.getElementById('event-hero-content');
                     heroContent.innerHTML = `
                         <div class="row align-items-center">
                             <div class="col-lg-8">
-                                <h1 data-aos="fade-up" data-aos-once="true">${event.title}</h1>
+                                <h1 data-aos="fade-up" data-aos-once="true">${translatedEvent.title}</h1>
                                 <div class="event-meta" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
-                                    <i class="bi bi-calendar-event me-2"></i>${new Date(event.date).toLocaleDateString('en-US', { 
+                                    <i class="bi bi-calendar-event me-2"></i>${new Date(translatedEvent.date).toLocaleDateString('en-US', { 
                                         weekday: 'long', 
                                         year: 'numeric', 
                                         month: 'long', 
                                         day: 'numeric' 
                                     })}
-                                    <i class="bi bi-clock me-2 ms-3"></i>${event.time}
-                                    <i class="bi bi-geo-alt me-2 ms-3"></i>${event.location}
+                                    <i class="bi bi-clock me-2 ms-3"></i>${translatedEvent.time}
+                                    <i class="bi bi-geo-alt me-2 ms-3"></i>${translatedEvent.location}
                                 </div>
                             </div>
                         </div>
@@ -316,97 +581,109 @@
 
                     // Load main content
                     const detailsContainer = document.getElementById('event-details');
-                    const price = event.price === 0 ? 'Free' : 
-                                 event.price === -1 ? 'N/A' : 
-                                 `$${event.price}`;
+                    const price = translatedEvent.price === 0 ? getTranslation('free', currentLang) : 
+                                 translatedEvent.price === -1 ? 'N/A' : 
+                                 `$${translatedEvent.price}`;
                     
                     detailsContainer.innerHTML = `
                         <div class="col-lg-6" data-aos="fade-right" data-aos-once="true">
                             <div class="event-image">
-                                <img src="${event.image}" alt="${event.title}">
+                                <img src="${translatedEvent.image}" alt="${translatedEvent.title}">
                             </div>
-                            <div class="image-source">${event.imageSource}</div>
+                            <div class="image-source">${translatedEvent.imageSource}</div>
                         </div>
                         <div class="col-lg-6" data-aos="fade-left" data-aos-once="true">
                             <div class="info-card">
                                 <div class="info-section">
                                     <div class="info-title">
                                         <i class="bi bi-info-circle"></i>
-                                        About This Event
+                                        <span data-translate="aboutThisEvent">About This Event</span>
                                     </div>
                                     <div class="info-content">
-                                        ${event.fullDescription}
+                                        ${translatedEvent.fullDescription}
                                     </div>
                                 </div>
 
                                 <div class="info-section">
                                     <div class="info-title">
                                         <i class="bi bi-ticket-perforated"></i>
-                                        Ticket Information
+                                        <span data-translate="ticketInformation">Ticket Information</span>
                                     </div>
                                     <div class="price-badge">
-                                        General Admission: ${price}
+                                        <span data-translate="generalAdmission">General Admission</span>: ${price}
                                     </div>
                                     <div class="info-content">
-                                        <strong>Age Restriction:</strong> ${event.ageRestriction}
+                                        <strong><span data-translate="ageRestriction">Age Restriction</span>:</strong> ${translatedEvent.ageRestriction}
                                     </div>
                                 </div>
 
                                 <div class="info-section">
                                     <div class="info-title">
                                         <i class="bi bi-cup-hot"></i>
-                                        Food & Beverage
+                                        <span data-translate="foodAndBeverage">Food & Beverage</span>
                                     </div>
                                     <div class="info-content">
-                                        ${event.foodAndBeverage}
+                                        ${translatedEvent.foodAndBeverage}
                                     </div>
                                 </div>
 
                                 <div class="info-section">
                                     <div class="info-title">
                                         <i class="bi bi-person-check"></i>
-                                        Dress Code
+                                        <span data-translate="dressCode">Dress Code</span>
                                     </div>
                                     <div class="info-content">
-                                        ${event.dressCode}
+                                        ${translatedEvent.dressCode}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12" data-aos="fade-up" data-aos-delay="300" data-aos-once="true">
                             <div class="cta-section">
-                                <h3 class="mb-3" style="color: #1b1450;">Ready to Attend?</h3>
-                                <p class="mb-4" style="color: #6c757d;">Secure your spot for this exciting event!</p>
+                                <h3 class="mb-3" style="color: #1b1450;" data-translate="readyToAttend">Ready to Attend?</h3>
+                                <p class="mb-4" style="color: #6c757d;" data-translate="secureYourSpot">Secure your spot for this exciting event!</p>
                                 <a href="purchase/index.html?id=${eventId}" class="cta-button">
                                     <i class="bi bi-ticket-perforated me-2"></i>
-                                    Purchase Tickets
+                                    <span data-translate="purchaseTickets">Purchase Tickets</span>
                                 </a>
                             </div>
                         </div>
                     `;
+                    
+                    // Apply translations to the newly added content
+                    applyTranslations(currentLang);
                 } else {
+                    const currentLang = getCurrentLanguage();
                     document.getElementById('event-details').innerHTML = `
                         <div class="col-12 text-center">
                             <div class="info-card">
-                                <h2>Event Not Found</h2>
-                                <p>The event you're looking for doesn't exist or has been removed.</p>
-                                <a href="../events/index.html" class="cta-button">Back to Events</a>
+                                <h2 data-translate="eventNotFound">Event Not Found</h2>
+                                <p data-translate="eventNotFoundDesc">The event you're looking for doesn't exist or has been removed.</p>
+                                <a href="../events/index.html" class="cta-button" data-translate="backToEvents">Back to Events</a>
                             </div>
                         </div>
                     `;
+                    applyTranslations(currentLang);
                 }
             } catch (error) {
                 console.error('Error loading event:', error);
+                const currentLang = getCurrentLanguage();
                 document.getElementById('event-details').innerHTML = `
                     <div class="col-12 text-center">
                         <div class="info-card">
-                            <h2>Error Loading Event</h2>
-                            <p>There was an error loading the event details. Please try again later.</p>
-                            <a href="../events/index.html" class="cta-button">Back to Events</a>
+                            <h2 data-translate="errorLoadingEvent">Error Loading Event</h2>
+                            <p data-translate="errorLoadingEventDesc">There was an error loading the event details. Please try again later.</p>
+                            <a href="../events/index.html" class="cta-button" data-translate="backToEvents">Back to Events</a>
                         </div>
                     </div>
                 `;
+                applyTranslations(currentLang);
             }
+        }
+
+        // Initialize on page load
+        document.addEventListener("DOMContentLoaded", () => {
+            loadEventDetails();
         });
 
         // Navbar scroll effect

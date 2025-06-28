@@ -12,6 +12,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;900&family=Lato:ital@1&family=Raleway:wght@200;500;600;700;900&display=swap" rel="stylesheet">
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="../translations.js"></script>
         <style>
             body {
                 padding-top: 0;
@@ -182,6 +183,118 @@
                 opacity: 0.5;
             }
 
+            /* Language Button Styles */
+            .language-btn {
+                background: none;
+                border: 2px solid #1b1450;
+                color: #1b1450;
+                padding: 0.5rem;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                margin-left: 0.75rem;
+                margin-right: auto;
+                font-size: 1.2rem;
+                width: 45px;
+                height: 38px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .language-btn:hover {
+                background: #1b1450;
+                color: white;
+                transform: translateY(-2px);
+            }
+
+            .language-modal .modal-content {
+                border-radius: 20px;
+                border: none;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            }
+
+            .language-modal .modal-header {
+                background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+                color: white;
+                border-radius: 20px 20px 0 0;
+                border-bottom: none;
+                padding: 1.5rem;
+            }
+
+            .language-modal .modal-title {
+                font-weight: 600;
+                font-size: 1.3rem;
+            }
+
+            .language-modal .btn-close {
+                filter: invert(1);
+                opacity: 0.8;
+            }
+
+            .language-modal .btn-close:hover {
+                opacity: 1;
+            }
+
+            .language-modal .modal-body {
+                padding: 2rem;
+            }
+
+            .language-option {
+                background: #f8f9fa;
+                border: 2px solid #e9ecef;
+                border-radius: 15px;
+                padding: 1rem;
+                margin-bottom: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: #333;
+            }
+
+            .language-option:hover {
+                background: #1b1450;
+                border-color: #1b1450;
+                color: white;
+                transform: translateY(-2px);
+                text-decoration: none;
+            }
+
+            .language-option.active {
+                background: #1b1450;
+                border-color: #1b1450;
+                color: white;
+            }
+
+            /* Desktop language button in navbar */
+            .navbar-nav .language-btn {
+                border: 1px solid #dee2e6;
+                margin-right: 0.5rem;
+                width: auto;
+                height: auto;
+                padding: 0.375rem 0.75rem;
+                font-size: 1rem;
+                border-radius: 6px;
+                background: transparent;
+                color: var(--bs-navbar-color);
+            }
+
+            .navbar-nav .language-btn:hover {
+                background: var(--bs-navbar-hover-color);
+                color: var(--bs-navbar-active-color);
+                transform: none;
+                border-color: var(--bs-navbar-hover-color);
+            }
+
+            .language-flag {
+                width: 24px;
+                height: 18px;
+                margin-right: 0.75rem;
+                border-radius: 3px;
+                font-size: 18px;
+            }
+
             @media (max-width: 768px) {
                 .events-title {
                     font-size: 2.5rem;
@@ -200,6 +313,14 @@
                     font-size: 0.9rem;
                     padding: 0.4rem 1rem;
                 }
+
+                .language-btn {
+                    margin-left: 0.5rem;
+                    margin-right: auto;
+                    font-size: 1rem;
+                    width: 40px;
+                    height: 34px;
+                }
             }
         </style>
     </head>
@@ -209,31 +330,72 @@
                 <a class="navbar-brand d-flex align-items-center" href="../">
                   <img src="../images/hawkico.png" width="50" height="50" class="d-inline-block align-text-top me-2">
                   <h1 class="align-text-top d-inline-block my-auto sh mb-0">
-                    <span class="desktop-text">Hawk's Nest</span>
-                    <span class="mobile-text">Nest</span>
+                    <span class="desktop-text" data-translate="siteName">Hawk's Nest</span>
+                    <span class="mobile-text" data-translate="siteNameMobile">Nest</span>
                   </h1>
                 </a>
+                <button class="language-btn" data-bs-toggle="modal" data-bs-target="#languageModal">
+                    🌐
+                </button>
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavBar" aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="mainNavBar">
                   <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="../about/index.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link sh1 mx-1 active2" href="./index.html">Events</a></li>
-                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="../faq/index.html">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="../contact/index.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="../about/index.html" data-translate="about">About</a></li>
+                    <li class="nav-item"><a class="nav-link sh1 mx-1 active2" href="./index.html" data-translate="events">Events</a></li>
+                    <li class="nav-item"><a class="nav-link sh1 mx-1" href="../faq/index.html" data-translate="faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="../contact/index.html" data-translate="contactUs">Contact Us</a></li>
                   </ul>
                 </div>
             </div>
         </nav>
+
+        <!-- Language Selection Modal -->
+        <div class="modal fade language-modal" id="languageModal" tabindex="-1" aria-labelledby="languageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="languageModalLabel">Select Language</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <a href="#" class="language-option" data-lang="en">
+                            <span class="language-flag">🇺🇸</span>
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="es">
+                            <span class="language-flag">🇪🇸</span>
+                            <span>Español</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="fr">
+                            <span class="language-flag">🇫🇷</span>
+                            <span>Français</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="de">
+                            <span class="language-flag">🇩🇪</span>
+                            <span>Deutsch</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="zh">
+                            <span class="language-flag">🇨🇳</span>
+                            <span>中文</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="ja">
+                            <span class="language-flag">🇯🇵</span>
+                            <span>日本語</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Hero Section -->
         <section class="events-hero">
             <div class="container">
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-8">
-                        <h1 class="events-title" data-aos="fade-up" data-aos-once="true">Upcoming Events</h1>
-                        <p class="events-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
+                        <h1 class="events-title" data-aos="fade-up" data-aos-once="true" data-translate="eventsPageTitle">Upcoming Events</h1>
+                        <p class="events-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-once="true" data-translate="eventsPageSubtitle">
                             Discover exciting events happening at Hawk's Nest. From sports championships to cultural celebrations, there's something for everyone.
                         </p>
                     </div>
@@ -246,14 +408,14 @@
             <div class="events-filter" data-aos="fade-up" data-aos-delay="300" data-aos-once="true">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h5 class="mb-3" style="color: #1b1450; font-weight: 600;">Filter Events</h5>
+                        <h5 class="mb-3" style="color: #1b1450; font-weight: 600;" data-translate="filterEventsTitle">Filter Events</h5>
                         <div class="filter-buttons">
-                            <button class="filter-btn active" data-filter="all">All Events</button>
-                            <button class="filter-btn" data-filter="sports">Sports</button>
-                            <button class="filter-btn" data-filter="academic">Academic</button>
-                            <button class="filter-btn" data-filter="cultural">Cultural</button>
-                            <button class="filter-btn" data-filter="community">Community</button>
-                            <button class="filter-btn" data-filter="business">Business</button>
+                            <button class="filter-btn active" data-filter="all" data-translate="allEvents">All Events</button>
+                            <button class="filter-btn" data-filter="sports" data-translate="sports">Sports</button>
+                            <button class="filter-btn" data-filter="academic" data-translate="academic">Academic</button>
+                            <button class="filter-btn" data-filter="cultural" data-translate="cultural">Cultural</button>
+                            <button class="filter-btn" data-filter="community" data-translate="community">Community</button>
+                            <button class="filter-btn" data-filter="business" data-translate="business">Business</button>
                         </div>
                     </div>
                 </div>
@@ -268,8 +430,8 @@
             
             <div id="no-events" class="no-events" style="display: none;">
                 <i class="bi bi-calendar-x"></i>
-                <h4>No events found</h4>
-                <p>Try adjusting your filters or check back later for new events.</p>
+                <h4 data-translate="noEventsFound">No events found</h4>
+                <p data-translate="noEventsText">Try adjusting your filters or check back later for new events.</p>
             </div>
         </div>
 
@@ -277,16 +439,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h5 class="sh">Quick Links</h5>
+                        <h5 class="sh" data-translate="quickLinks">Quick Links</h5>
                         <ul class="list-unstyled">
-                            <li><a href="../about/index.html" class="sh1">About Us</a></li>
-                            <li><a href="../events/index.html" class="sh1">Events</a></li>
-                            <li><a href="../faq/index.html" class="sh1">FAQ</a></li>
-                            <li><a href="../contact/index.html" class="sh1">Contact</a></li>
+                            <li><a href="../about/index.html" class="sh1" data-translate="aboutUs">About Us</a></li>
+                            <li><a href="../events/index.html" class="sh1" data-translate="events">Events</a></li>
+                            <li><a href="../faq/index.html" class="sh1" data-translate="faq">FAQ</a></li>
+                            <li><a href="../contact/index.html" class="sh1" data-translate="contact">Contact</a></li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <h5 class="sh">Contact Info</h5>
+                        <h5 class="sh" data-translate="contactInfo">Contact Info</h5>
                         <ul class="list-unstyled">
                             <li><p>3471 Campus Drive</p></li>
                             <li><p>Ijamsville, MD 21704</p></li>
@@ -300,6 +462,207 @@
 
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>
+            // Initialize language system
+            function initializeLanguage() {
+                // Reset all text first to ensure clean state
+                resetAllText();
+                
+                const currentLang = getCurrentLanguage();
+                
+                // Apply current language
+                applyLanguage(currentLang);
+                
+                // Update active language in modal
+                updateActiveLanguage(currentLang);
+
+                // Ensure language buttons remain visible and functional
+                setTimeout(() => {
+                    document.querySelectorAll('.language-btn').forEach(btn => {
+                        btn.style.display = '';
+                        btn.style.visibility = 'visible';
+                        btn.style.opacity = '1';
+                    });
+                }, 10);
+            }
+
+            function resetAllText() {
+                // Reset all elements with data-translate attributes to their original English text
+                const elements = document.querySelectorAll('[data-translate]');
+                const originalTexts = {
+                    'siteName': "Hawk's Nest",
+                    'siteNameMobile': "Nest",
+                    'about': "About",
+                    'events': "Events",
+                    'faq': "FAQ",
+                    'contactUs': "Contact Us",
+                    'eventsPageTitle': "Upcoming Events",
+                    'eventsPageSubtitle': "Discover exciting events happening at Hawk's Nest. From sports championships to cultural celebrations, there's something for everyone.",
+                    'filterEventsTitle': "Filter Events",
+                    'allEvents': "All Events",
+                    'sports': "Sports",
+                    'academic': "Academic",
+                    'cultural': "Cultural",
+                    'community': "Community",
+                    'business': "Business",
+                    'noEventsFound': "No events found",
+                    'noEventsText': "Try adjusting your filters or check back later for new events.",
+                    'quickLinks': "Quick Links",
+                    'aboutUs': "About Us",
+                    'contact': "Contact",
+                    'contactInfo': "Contact Info"
+                };
+                
+                elements.forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    if (originalTexts[key]) {
+                        element.textContent = originalTexts[key];
+                    }
+                });
+            }
+
+            function applyLanguage(lang) {
+                document.querySelectorAll('[data-translate]').forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    const translation = getTranslation(key, lang);
+                    if (translation) {
+                        element.textContent = translation;
+                    }
+                });
+            }
+
+            function updateActiveLanguage(lang) {
+                document.querySelectorAll('.language-option').forEach(option => {
+                    option.classList.toggle('active', option.getAttribute('data-lang') === lang);
+                });
+            }
+
+                        // Language selection event listeners
+            function setupLanguageButtons() {
+                document.querySelectorAll('.language-option').forEach(option => {
+                    option.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const selectedLang = this.getAttribute('data-lang');
+                        changeLanguage(selectedLang);
+                        
+                        // Close modal
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('languageModal'));
+                        if (modal) {
+                            modal.hide();
+                        }
+                    });
+                });
+
+                // Ensure language buttons in navbar stay visible and functional
+                document.querySelectorAll('.language-btn').forEach(btn => {
+                    btn.style.display = '';
+                    btn.style.visibility = 'visible';
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                setupLanguageButtons();
+                
+                // Initialize language on page load
+                initializeLanguage();
+
+                // Re-setup language buttons after language change
+                setupLanguageButtons();
+            });
+        
+        // Language switching functions
+        function resetAllText() {
+            const elements = document.querySelectorAll('[data-translate]');
+            const originalTexts = {
+                'siteName': "Hawk's Nest",
+                'siteNameMobile': "Nest", 
+                'about': "About",
+                'events': "Events",
+                'faq': "FAQ",
+                'contactUs': "Contact Us",
+                'eventsPageTitle': "Upcoming Events",
+                'eventsPageSubtitle': "Discover exciting events happening at Hawk's Nest. From sports championships to cultural celebrations, there's something for everyone.",
+                'filterEventsTitle': "Filter Events",
+                'allEvents': "All Events",
+                'sports': "Sports",
+                'academic': "Academic", 
+                'cultural': "Cultural",
+                'community': "Community",
+                'business': "Business",
+                'noEventsFound': "No events found",
+                'noEventsText': "Try adjusting your filters or check back later for new events.",
+                'free': "Free",
+                'quickLinks': "Quick Links",
+                'aboutUs': "About Us",
+                'contact': "Contact",
+                'contactInfo': "Contact Info"
+            };
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (originalTexts[key]) {
+                    element.textContent = originalTexts[key];
+                }
+            });
+        }
+        
+        function applyTranslations(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                const translation = getTranslation(key, lang);
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+        }
+        
+        function changeLanguage(lang) {
+            resetAllText();
+            setCurrentLanguage(lang);
+            applyTranslations(lang);
+            localStorage.setItem('selectedLanguage', lang);
+            updateLanguageButton(lang);
+            
+            // Immediately refresh events display with new language
+            const filteredEvents = currentFilter === 'all' ? 
+                allEvents : 
+                allEvents.filter(event => eventCategories[event.id] === currentFilter);
+            displayEvents(filteredEvents);
+            
+            // Force re-render by triggering a small delay to ensure DOM updates
+            setTimeout(() => {
+                displayEvents(filteredEvents);
+            }, 50);
+
+            // Ensure language buttons remain visible and functional
+            setTimeout(() => {
+                document.querySelectorAll('.language-btn').forEach(btn => {
+                    btn.style.display = '';
+                    btn.style.visibility = 'visible';
+                    btn.style.opacity = '1';
+                });
+            }, 60);
+        }
+        
+        function updateLanguageButton(lang) {
+            const langNames = {
+                'en': '🇺🇸 English',
+                'es': '🇪🇸 Español', 
+                'fr': '🇫🇷 Français',
+                'de': '🇩🇪 Deutsch',
+                'zh': '🇨🇳 中文',
+                'ja': '🇯🇵 日本語'
+            };
+            document.getElementById('currentLanguage').textContent = langNames[lang] || langNames['en'];
+        }
+        
+        function initializeLanguage() {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+            setCurrentLanguage(savedLang);
+            applyTranslations(savedLang);
+            updateLanguageButton(savedLang);
+        }
+
             // Initialize AOS
             AOS.init({
                 offset: 120,
@@ -365,10 +728,27 @@
                 }
             }
 
+            // Function to translate event title and description
+            function translateEvent(event, lang) {
+                const eventTranslations = getTranslation('eventTypes', lang) || {};
+                const translatedTitle = eventTranslations[event.title] || event.title;
+                
+                // For event descriptions, we'll use a simple mapping
+                const eventDescriptions = getTranslation('eventDescriptions', lang) || {};
+                const translatedDescription = eventDescriptions[event.id] || event.description;
+                
+                return {
+                    ...event,
+                    title: translatedTitle,
+                    description: translatedDescription
+                };
+            }
+
             // Display events
             function displayEvents(events) {
                 const container = document.getElementById('events-container');
                 const noEvents = document.getElementById('no-events');
+                const currentLang = getCurrentLanguage();
                 
                 if (events.length === 0) {
                     container.innerHTML = '';
@@ -382,33 +762,36 @@
                 const isMobile = window.innerWidth <= 768;
                 
                 container.innerHTML = events.map((event, index) => {
-                    const eventDate = new Date(event.date);
+                    // Translate the event data
+                    const translatedEvent = translateEvent(event, currentLang);
+                    
+                    const eventDate = new Date(translatedEvent.date);
                     const formattedDate = eventDate.toLocaleDateString('en-US', { 
                         month: 'short', 
                         day: 'numeric',
                         year: 'numeric'
                     });
                     
-                    const price = event.price === 0 ? 'Free' : 
-                                 event.price === -1 ? 'N/A' : 
-                                 `$${event.price}`;
+                    const price = translatedEvent.price === 0 ? getTranslation('free', currentLang) : 
+                                 translatedEvent.price === -1 ? 'N/A' : 
+                                 `$${translatedEvent.price}`;
                     
                     // Use 0 delay for mobile, staggered delay for desktop
                     const animationDelay = isMobile ? 0 : index * 100;
                     
                     return `
                         <div class="col" data-aos="fade-up" data-aos-delay="${animationDelay}" data-aos-once="true">
-                            <div class="event-card" onclick="showEventDetails('${event.id}')">
+                            <div class="event-card" onclick="showEventDetails('${translatedEvent.id}')">
                                 <div class="event-image">
-                                    <img src="${event.image}" alt="${event.title}">
+                                    <img src="${translatedEvent.image}" alt="${translatedEvent.title}">
                                     <div class="event-date-badge">${formattedDate}</div>
                                 </div>
                                 <div class="event-content">
-                                    <h5 class="event-title">${event.title}</h5>
-                                    <p class="event-description">${event.description}</p>
+                                    <h5 class="event-title">${translatedEvent.title}</h5>
+                                    <p class="event-description">${translatedEvent.description}</p>
                                     <div class="event-meta">
                                         <span class="event-price">${price}</span>
-                                        <span class="event-time">${event.time}</span>
+                                        <span class="event-time">${translatedEvent.time}</span>
                                     </div>
                                 </div>
                             </div>

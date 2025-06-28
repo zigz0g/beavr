@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <title>Payment - Hawk's Nest</title>
     <link rel="icon" type="image/x-icon" href="../../images/hawkico.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;900&family=Lato:ital@1&family=Raleway:wght@200;500;600;700;900&display=swap" rel="stylesheet">
@@ -254,6 +255,90 @@
                 font-size: 1.8rem;
             }
         }
+
+        /* Language Button Styles */
+                    .language-btn {
+                background: none;
+                border: 2px solid #1b1450;
+                color: #1b1450;
+                padding: 0.5rem;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                margin-left: 0.75rem;
+                margin-right: auto;
+                font-size: 1.2rem;
+                width: 45px;
+                height: 38px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+        .language-btn:hover {
+            background: #1b1450;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .language-modal .modal-content {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .language-modal .modal-header {
+            background: linear-gradient(135deg, #1b1450 0%, #2a1f7a 100%);
+            color: white;
+            border-radius: 20px 20px 0 0;
+            border-bottom: none;
+            padding: 1.5rem;
+        }
+
+        .language-modal .modal-title {
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        .language-modal .btn-close {
+            filter: invert(1);
+            opacity: 0.8;
+        }
+
+        .language-modal .btn-close:hover {
+            opacity: 1;
+        }
+
+        .language-modal .modal-body {
+            padding: 2rem;
+        }
+
+        .language-option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .language-option:hover {
+            background: #1b1450;
+            border-color: #1b1450;
+            color: white;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        .language-option.active {
+            background: #1b1450;
+            border-color: #1b1450;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -262,19 +347,25 @@
             <a class="navbar-brand d-flex align-items-center" href="../../">
               <img src="../../images/hawkico.png" width="50" height="50" class="d-inline-block align-text-top me-2">
               <h1 class="align-text-top d-inline-block my-auto sh mb-0">
-                <span class="desktop-text">Hawk's Nest</span>
-                <span class="mobile-text">Nest</span>
+                <span class="desktop-text" data-translate="siteName">Hawk's Nest</span>
+                <span class="mobile-text" data-translate="siteNameMobile">Nest</span>
               </h1>
             </a>
+            
+            <!-- Language Button - Mobile only -->
+                        <button class="language-btn" data-bs-toggle="modal" data-bs-target="#languageModal">
+                🌐
+            </button>
+            
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavBar" aria-controls="mainNavBar" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="mainNavBar">
               <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../../about/index.html">About</a></li>
-                <li class="nav-item"><a class="nav-link sh1 mx-1 active2" href="../index.html">Events</a></li>
-                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../../faq/index.html">FAQ</a></li>
-                <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="../../contact/index.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../../about/index.html" data-translate="about">About</a></li>
+                <li class="nav-item"><a class="nav-link sh1 mx-1 active2" href="../index.html" data-translate="events">Events</a></li>
+                <li class="nav-item"><a class="nav-link sh1 mx-1" href="../../faq/index.html" data-translate="faq">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link text-nowrap sh1 mx-1" href="../../contact/index.html" data-translate="contactUs">Contact Us</a></li>
               </ul>
             </div>
         </div>
@@ -285,12 +376,12 @@
         <section class="payment-hero">
             <div class="container">
                 <a href="../purchase/index.html" class="back-button" data-aos="fade-right" data-aos-once="true" id="back-button">
-                    <i class="bi bi-arrow-left"></i> Back to Seating
+                    <i class="bi bi-arrow-left"></i> <span data-translate="backToSeating">Back to Seating</span>
                 </a>
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-8">
-                        <h1 class="payment-title" data-aos="fade-up" data-aos-once="true">Complete Payment</h1>
-                        <p class="payment-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
+                        <h1 class="payment-title" data-aos="fade-up" data-aos-once="true" data-translate="completePayment">Complete Payment</h1>
+                        <p class="payment-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-once="true" data-translate="secureCheckout">
                             Secure checkout for your event tickets
                         </p>
                     </div>
@@ -303,76 +394,122 @@
                 <div class="col-lg-8">
                     <div class="payment-section" data-aos="fade-up" data-aos-once="true">
                         <div class="payment-header">
-                            <h1>Payment Information</h1>
-                            <p>Please provide your details to complete your purchase</p>
+                            <h1 data-translate="paymentInformation">Payment Information</h1>
+                            <p data-translate="provideDetails">Please provide your details to complete your purchase</p>
                         </div>
                         <div class="payment-body">
                             <!-- Security Badge -->
                             <div class="security-badge" data-aos="fade-up" data-aos-once="true">
                                 <i class="bi bi-shield-check"></i>
                                 <div class="security-text">
-                                    <strong>Secure Payment</strong><br>
-                                    Your payment information is encrypted and secure
+                                    <strong data-translate="securePayment">Secure Payment</strong><br>
+                                    <span data-translate="encryptedInfo">Your payment information is encrypted and secure</span>
                                 </div>
                             </div>
 
                             <!-- Order Summary -->
                             <div id="order-summary" class="order-summary" data-aos="fade-up" data-aos-once="true">
-                                <h3>Order Summary</h3>
+                                <h3 data-translate="orderSummary">Order Summary</h3>
                                 <div id="event-info" class="event-info">
                                     <div class="event-title" id="event-title">Event Title</div>
                                     <div class="event-details" id="event-details">Event details will appear here</div>
                                 </div>
                                 <div id="selected-seats" class="selected-seats"></div>
-                                <div id="total-price" class="total-price">Total: $0.00</div>
+                                <div id="total-price" class="total-price"><span data-translate="total">Total</span>: $0.00</div>
                             </div>
 
                             <!-- Payment Form -->
                             <form id="paymentForm" class="needs-validation" novalidate>
                                 <div class="form-section" data-aos="fade-up" data-aos-once="true">
-                                    <h3>Contact Information</h3>
+                                    <h3 data-translate="contactInformation">Contact Information</h3>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="firstName" class="form-label">First Name</label>
+                                            <label for="firstName" class="form-label" data-translate="firstName">First Name</label>
                                             <input type="text" class="form-control" id="firstName" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="lastName" class="form-label">Last Name</label>
+                                            <label for="lastName" class="form-label" data-translate="lastName">Last Name</label>
                                             <input type="text" class="form-control" id="lastName" required>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Email Address</label>
+                                        <label for="email" class="form-label" data-translate="emailAddress">Email Address</label>
                                         <input type="email" class="form-control" id="email" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Phone Number</label>
+                                        <label for="phone" class="form-label" data-translate="phoneNumber">Phone Number</label>
                                         <input type="tel" class="form-control" id="phone" required>
                                     </div>
                                 </div>
 
                                 <div class="form-section" data-aos="fade-up" data-aos-once="true">
-                                    <h3>Payment Information</h3>
+                                    <h3 data-translate="paymentInformationForm">Payment Information</h3>
                                     <div class="mb-3">
-                                        <label for="cardNumber" class="form-label">Card Number</label>
+                                        <label for="cardNumber" class="form-label" data-translate="cardNumber">Card Number</label>
                                         <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" required>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="expiry" class="form-label">Expiration Date</label>
+                                            <label for="expiry" class="form-label" data-translate="expirationDate">Expiration Date</label>
                                             <input type="text" class="form-control" id="expiry" placeholder="MM/YY" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="cvv" class="form-label">CVV</label>
+                                            <label for="cvv" class="form-label" data-translate="cvv">CVV</label>
                                             <input type="text" class="form-control" id="cvv" placeholder="123" required>
                                         </div>
                                     </div>
                                 </div>
 
                                 <button type="submit" class="btn complete-purchase-btn" data-aos="fade-up" data-aos-once="true">
-                                    <i class="bi bi-check-circle me-2"></i>Complete Purchase
+                                    <i class="bi bi-check-circle me-2"></i><span data-translate="completePurchase">Complete Purchase</span>
                                 </button>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Language Selection Modal -->
+    <div class="modal fade language-modal" id="languageModal" tabindex="-1" aria-labelledby="languageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="languageModalLabel" data-translate="chooseLanguage">Choose Language</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="en">
+                                🇺🇸 English
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="es">
+                                🇪🇸 Español
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="fr">
+                                🇫🇷 Français
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="de">
+                                🇩🇪 Deutsch
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="zh">
+                                🇨🇳 中文
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="language-option" data-lang="ja">
+                                🇯🇵 日本語
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -384,16 +521,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5 class="sh">Quick Links</h5>
+                    <h5 class="sh" data-translate="quickLinks">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="../../about/index.html" class="sh1">About Us</a></li>
-                        <li><a href="../index.html" class="sh1">Events</a></li>
-                        <li><a href="../../faq/index.html" class="sh1">FAQ</a></li>
-                        <li><a href="../../contact/index.html" class="sh1">Contact</a></li>
+                        <li><a href="../../about/index.html" class="sh1" data-translate="aboutUs">About Us</a></li>
+                        <li><a href="../index.html" class="sh1" data-translate="events">Events</a></li>
+                        <li><a href="../../faq/index.html" class="sh1" data-translate="faq">FAQ</a></li>
+                        <li><a href="../../contact/index.html" class="sh1" data-translate="contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-6">
-                    <h5 class="sh">Contact Info</h5>
+                    <h5 class="sh" data-translate="contactInfo">Contact Info</h5>
                     <ul class="list-unstyled">
                         <li><p>3471 Campus Drive</p></li>
                         <li><p>Ijamsville, MD 21704</p></li>
@@ -406,6 +543,7 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../translations.js"></script>
     <script>
         // Initialize AOS
         AOS.init({
@@ -417,12 +555,168 @@
             mirror: false
         });
 
-        document.addEventListener("DOMContentLoaded", async () => {
+        // Translation functions
+        function resetAllText() {
+            const elements = document.querySelectorAll('[data-translate]');
+            const originalTexts = {
+                'siteName': "Hawk's Nest",
+                'siteNameMobile': "Nest",
+                'about': "About",
+                'events': "Events",
+                'faq': "FAQ",
+                'contactUs': "Contact Us",
+                'backToSeating': "Back to Seating",
+                'completePayment': "Complete Payment",
+                'secureCheckout': "Secure checkout for your event tickets",
+                'paymentInformation': "Payment Information",
+                'provideDetails': "Please provide your details to complete your purchase",
+                'securePayment': "Secure Payment",
+                'encryptedInfo': "Your payment information is encrypted and secure",
+                'orderSummary': "Order Summary",
+                'total': "Total",
+                'contactInformation': "Contact Information",
+                'firstName': "First Name",
+                'lastName': "Last Name",
+                'emailAddress': "Email Address",
+                'phoneNumber': "Phone Number",
+                'paymentInformationForm': "Payment Information",
+                'cardNumber': "Card Number",
+                'expirationDate': "Expiration Date",
+                'cvv': "CVV",
+                'completePurchase': "Complete Purchase",
+                'quickLinks': "Quick Links",
+                'aboutUs': "About Us",
+                'contact': "Contact",
+                'contactInfo': "Contact Info",
+                'chooseLanguage': "Choose Language",
+                'eventNotFound': "Event Not Found",
+                'eventNotFoundDesc': "The event you're looking for doesn't exist or has been removed.",
+                'backToEvents': "Back to Events",
+                'errorLoadingPayment': "Error Loading Payment",
+                'errorLoadingPaymentDesc': "There was an error loading the payment details. Please try again later.",
+                'seat': "Seat",
+                'premier': "Premier",
+                'economy': "Economy",
+                'standard': "Standard",
+                'generalAdmissionTickets': "General Admission Ticket(s)",
+                'each': "each",
+                'paymentSuccessful': "Payment successful! Your tickets have been sent to your email.",
+                'fillAllFields': "Please fill in all required fields."
+            };
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (originalTexts[key]) {
+                    element.textContent = originalTexts[key];
+                }
+            });
+        }
+
+        function applyTranslations(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                const translation = getTranslation(key, lang);
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+        }
+
+        function initializeLanguage() {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+            setCurrentLanguage(savedLang);
+            applyTranslations(savedLang);
+            updateActiveLanguage(savedLang);
+
+            // Ensure language buttons remain visible and functional
+            setTimeout(() => {
+                document.querySelectorAll('.language-btn').forEach(btn => {
+                    btn.style.display = '';
+                    btn.style.visibility = 'visible';
+                    btn.style.opacity = '1';
+                });
+            }, 10);
+        }
+
+        function updateActiveLanguage(lang) {
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.toggle('active', option.getAttribute('data-lang') === lang);
+            });
+        }
+
+        function changeLanguage(lang) {
+            resetAllText();
+            setCurrentLanguage(lang);
+            applyTranslations(lang);
+            localStorage.setItem('selectedLanguage', lang);
+            updateActiveLanguage(lang);
+            
+            // Reload payment details with new language
+            loadPaymentDetails();
+
+            // Ensure language buttons remain visible and functional
+            setTimeout(() => {
+                document.querySelectorAll('.language-btn').forEach(btn => {
+                    btn.style.display = '';
+                    btn.style.visibility = 'visible';
+                    btn.style.opacity = '1';
+                });
+            }, 10);
+        }
+
+        // Language selection event listeners
+        function setupLanguageButtons() {
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const selectedLang = this.getAttribute('data-lang');
+                    changeLanguage(selectedLang);
+                    
+                    // Close modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('languageModal'));
+                    if (modal) {
+                        modal.hide();
+                    }
+                });
+            });
+
+            // Ensure language buttons in navbar stay visible and functional
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.style.display = '';
+                btn.style.visibility = 'visible';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setupLanguageButtons();
+            
+            // Initialize language on page load
+            initializeLanguage();
+
+            // Re-setup language buttons after language change
+            setupLanguageButtons();
+        });
+
+        // Function to translate event data
+        function translateEvent(event, lang) {
+            const eventTranslations = getTranslation('eventTypes', lang) || {};
+            const translatedTitle = eventTranslations[event.title] || event.title;
+            
+            return {
+                ...event,
+                title: translatedTitle
+            };
+        }
+
+        // Extract payment loading into separate function
+        async function loadPaymentDetails() {
             const urlParams = new URLSearchParams(window.location.search);
             const eventId = urlParams.get('id');
             const selectedSeats = urlParams.get('seats');
             const selectedTickets = urlParams.get('tickets');
             const totalPrice = urlParams.get('total');
+            const currentLang = getCurrentLanguage();
 
             try {
                 // Load event data
@@ -433,17 +727,21 @@
                 if (!event) {
                     document.getElementById('order-summary').innerHTML = `
                         <div class="text-center">
-                            <h3>Event Not Found</h3>
-                            <p>The event you're looking for doesn't exist or has been removed.</p>
-                            <a href="../index.html" class="btn complete-purchase-btn">Back to Events</a>
+                            <h3 data-translate="eventNotFound">Event Not Found</h3>
+                            <p data-translate="eventNotFoundDesc">The event you're looking for doesn't exist or has been removed.</p>
+                            <a href="../index.html" class="btn complete-purchase-btn" data-translate="backToEvents">Back to Events</a>
                         </div>
                     `;
+                    applyTranslations(currentLang);
                     return;
                 }
 
+                // Translate the event data
+                const translatedEvent = translateEvent(event, currentLang);
+
                 // Update event information
-                document.getElementById('event-title').textContent = event.title;
-                document.getElementById('event-details').textContent = `${event.date} at ${event.time}`;
+                document.getElementById('event-title').textContent = translatedEvent.title;
+                document.getElementById('event-details').textContent = `${translatedEvent.date} at ${translatedEvent.time}`;
 
                 // Update back button URL
                 document.getElementById('back-button').href = `../purchase/index.html?id=${eventId}`;
@@ -452,9 +750,12 @@
                 if (selectedSeats) {
                     const seats = JSON.parse(decodeURIComponent(selectedSeats));
                     const selectedSeatsDiv = document.getElementById('selected-seats');
-                    selectedSeatsDiv.innerHTML = seats.map(seat => 
-                        `<div class="seat-item">Seat: ${seat.label} - ${seat.type === 'first' ? 'Premier' : seat.type === 'economy' ? 'Economy' : 'Standard'}</div>`
-                    ).join('');
+                    selectedSeatsDiv.innerHTML = seats.map(seat => {
+                        const seatTypeTranslation = seat.type === 'first' ? getTranslation('premier', currentLang) : 
+                                                   seat.type === 'economy' ? getTranslation('economy', currentLang) : 
+                                                   getTranslation('standard', currentLang);
+                        return `<div class="seat-item">${getTranslation('seat', currentLang)}: ${seat.label} - ${seatTypeTranslation}</div>`;
+                    }).join('');
                 }
 
                 // Update selected tickets if provided (for non-seating events)
@@ -462,13 +763,13 @@
                     const tickets = JSON.parse(decodeURIComponent(selectedTickets));
                     const selectedSeatsDiv = document.getElementById('selected-seats');
                     selectedSeatsDiv.innerHTML = tickets.map(ticket => 
-                        `<div class="seat-item">${ticket.quantity}x General Admission Ticket(s) - $${ticket.price.toFixed(2)} each</div>`
+                        `<div class="seat-item">${ticket.quantity}x ${getTranslation('generalAdmissionTickets', currentLang)} - $${ticket.price.toFixed(2)} ${getTranslation('each', currentLang)}</div>`
                     ).join('');
                 }
 
                 // Update total price
                 if (totalPrice) {
-                    document.getElementById('total-price').textContent = `Total: $${totalPrice}`;
+                    document.getElementById('total-price').innerHTML = `<span data-translate="total">${getTranslation('total', currentLang)}</span>: $${totalPrice}`;
                 }
 
                 // Add form submission handler
@@ -485,11 +786,11 @@
                     const cvv = document.getElementById('cvv').value;
                     
                     if (!firstName || !lastName || !email || !phone || !cardNumber || !expiry || !cvv) {
-                        alert('Please fill in all required fields.');
+                        alert(getTranslation('fillAllFields', currentLang));
                         return;
                     }
                     
-                    alert('Payment successful! Your tickets have been sent to your email.');
+                    alert(getTranslation('paymentSuccessful', currentLang));
                     window.location.href = '../index.html';
                 });
 
@@ -497,12 +798,18 @@
                 console.error('Error loading payment data:', error);
                 document.getElementById('order-summary').innerHTML = `
                     <div class="text-center">
-                        <h3>Error Loading Payment</h3>
-                        <p>There was an error loading the payment details. Please try again later.</p>
-                        <a href="../index.html" class="btn complete-purchase-btn">Back to Events</a>
+                        <h3 data-translate="errorLoadingPayment">Error Loading Payment</h3>
+                        <p data-translate="errorLoadingPaymentDesc">There was an error loading the payment details. Please try again later.</p>
+                        <a href="../index.html" class="btn complete-purchase-btn" data-translate="backToEvents">Back to Events</a>
                     </div>
                 `;
+                applyTranslations(currentLang);
             }
+        }
+
+        // Initialize on page load
+        document.addEventListener("DOMContentLoaded", () => {
+            loadPaymentDetails();
         });
 
         // Navbar scroll effect
